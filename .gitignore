@@ -1,6 +1,4 @@
-# Composer
-/vendor/
-/composer.lock
+
 
 # WordPress
 .DS_Store
