@@ -1,0 +1,162 @@
+/**
+ * Course Archive Page Styles
+ * 
+ * Custom styles for the courses archive page (/courses/)
+ * Includes responsive filter section and grid layout
+ */
+
+/* ========================================
+   Filter Section
+   ======================================== */
+
+.courses-filter-section {
+  width: 100%;
+  background: rgba(10, 15, 26, 0.8);
+  border-radius: 20px;
+  padding: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.courses-filter-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+/* Search Box */
+.filter-search-box {
+  margin-bottom: 25px;
+}
+
+.filter-search-box form {
+  display: flex;
+  gap: 10px;
+}
+
+.filter-search-box input[type="text"] {
+  flex: 1;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.filter-search-box input[type="text"]:focus {
+  border-color: rgba(64, 119, 243, 0.5);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.filter-search-box button {
+  padding: 12px 30px;
+  background: #4077F3;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.filter-search-box button:hover {
+  background: #3566d9;
+}
+
+/* Category Filter Buttons */
+.filter-categories-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter-category-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #999EB2;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.filter-category-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.filter-category-btn.active {
+  background: rgba(64, 119, 243, 0.2);
+  border-color: rgba(64, 119, 243, 0.5);
+  color: #4077F3;
+}
+
+/* ========================================
+   Courses Grid - Full Width
+   ======================================== */
+
+.learnsimply-courses-grid {
+  width: 100%;
+}
+
+/* ========================================
+   Responsive Styles
+   ======================================== */
+
+/* Mobile: max-width 768px */
+@media (max-width: 768px) {
+  .courses-filter-section {
+    padding: 20px;
+  }
+  
+  .courses-filter-title {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  
+  .filter-search-box form {
+    flex-direction: column;
+  }
+  
+  .filter-search-box button {
+    width: 100%;
+  }
+  
+  .filter-categories-wrapper {
+    gap: 8px;
+  }
+  
+  .filter-category-btn {
+    font-size: 13px;
+    padding: 8px 15px;
+  }
+  
+  .learnsimply-courses-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Tablet: 769px - 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .learnsimply-courses-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Desktop: 1025px+ */
+@media (min-width: 1025px) {
+  .learnsimply-courses-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+

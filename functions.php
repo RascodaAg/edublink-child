@@ -91,8 +91,14 @@ function edublink_child_force_front_page_template( $template ) {
 add_action( 'wp_enqueue_scripts', 'edublink_child_unload_elementor_assets', 99999 );
 
 function edublink_child_unload_elementor_assets() {
-    // Only run on front page
-    if ( is_front_page() || is_home() || get_the_ID() == 9834 ) {
+    // Check if we're on front page, home, or courses archive
+    $is_courses_archive = false;
+    if ( function_exists( 'tutor_utils' ) ) {
+        $course_post_type = tutor()->course_post_type;
+        $is_courses_archive = is_post_type_archive( $course_post_type ) || is_tax( 'course-category' ) || is_tax( 'course-tag' );
+    }
+    
+    if ( is_front_page() || is_home() || get_the_ID() == 9834 || $is_courses_archive ) {
         
         // Remove Elementor Core
         wp_dequeue_script( 'elementor-frontend' );
@@ -159,7 +165,14 @@ function edublink_child_clean_body_classes( $classes ) {
 add_action( 'wp', 'edublink_child_disable_elementor_locations', 0 );
 
 function edublink_child_disable_elementor_locations() {
-    if ( is_front_page() || is_home() || get_the_ID() == 9834 ) {
+    // Check if we're on front page, home, or courses archive
+    $is_courses_archive = false;
+    if ( function_exists( 'tutor_utils' ) ) {
+        $course_post_type = tutor()->course_post_type;
+        $is_courses_archive = is_post_type_archive( $course_post_type ) || is_tax( 'course-category' ) || is_tax( 'course-tag' );
+    }
+    
+    if ( is_front_page() || is_home() || get_the_ID() == 9834 || $is_courses_archive ) {
         // Stop Elementor Theme Builder
         add_filter( 'elementor/theme/get_location_templates', '__return_empty_array', 999 );
         add_filter( 'elementor/theme/get_location_template_id', '__return_false', 999 );

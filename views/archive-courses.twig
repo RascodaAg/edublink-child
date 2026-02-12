@@ -1,19 +1,88 @@
-    <!-- ===== START: Featured Courses Section ===== -->
-    <section id="courses" class="learnsimply-featured-courses-section">
-      <div class="learnsimply-section-container">
-        <div class="learnsimply-section-header">
-          <img
-            src="{{ theme_uri }}/assets/img/Video Library.png"
-            alt=""
-            class="learnsimply-section-icon"
-          />
-          <h2 class="learnsimply-section-title">الدورات المميزة</h2>
-        </div>
-        <p class="learnsimply-section-description">
-          تصفّح جميع الكورسات المتاحة وابدأ التعلّم حسب مستواك وهدفك.
-        </p>
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ archive_title }} - {{ site.name }}</title>
+    <link rel="stylesheet" href="{{ theme_uri }}/assets/global/styles.css" />
+  </head>
+  <body class="learnsimply-homepage-body">
+    
+    {% include 'components/header.twig' %}
 
-        <div class="learnsimply-courses-grid">
+    <!-- ===== START: Main Content ===== -->
+    <main class="course-main-content">
+      <div class="container">
+        <!-- Archive Header -->
+        <div class="learnsimply-section-container" style="margin-top: 100px; margin-bottom: 40px;">
+          <div class="learnsimply-section-header">
+            <img
+              src="{{ theme_uri }}/assets/img/Video Library.png"
+              alt=""
+              class="learnsimply-section-icon"
+            />
+            <h1 class="learnsimply-section-title">{{ archive_title }}</h1>
+          </div>
+        </div>
+
+        <!-- Filter Section (Responsive) -->
+        <div class="courses-filter-section" style="background: rgba(10, 15, 26, 0.8); border-radius: 20px; padding: 25px; border: 1px solid rgba(255, 255, 255, 0.1); margin-top: 40px; margin-bottom: 40px;">
+          <h3 class="courses-filter-title" style="font-size: 20px; font-weight: 600; color: #fff; margin-bottom: 20px;">تصفية الدورات</h3>
+          
+          <!-- Search Box -->
+          <div class="filter-search-box" style="margin-bottom: 25px;">
+            <form method="get" action="{{ site.url }}/courses/" class="courses-search-form" style="display: flex; gap: 10px;">
+              <input 
+                type="text" 
+                name="s" 
+                id="course-search-input"
+                placeholder="ابحث عن دورة..." 
+                value="{{ search_query|default('') }}"
+                style="flex: 1; padding: 12px 20px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; color: #fff; font-size: 16px; outline: none; transition: all 0.3s ease;"
+                onfocus="this.style.borderColor='rgba(64, 119, 243, 0.5)'; this.style.background='rgba(255, 255, 255, 0.08)'"
+                onblur="this.style.borderColor='rgba(255, 255, 255, 0.1)'; this.style.background='rgba(255, 255, 255, 0.05)'"
+              />
+              <button 
+                type="submit" 
+                style="padding: 12px 30px; background: #4077F3; border: none; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 500; cursor: pointer; transition: all 0.3s ease; white-space: nowrap;"
+                onmouseover="this.style.background='#3566d9'"
+                onmouseout="this.style.background='#4077F3'"
+              >
+                بحث
+              </button>
+            </form>
+          </div>
+
+          <!-- Categories Filter (Responsive) -->
+          {% if course_categories and course_categories|length > 0 %}
+          <div class="filter-categories-wrapper" style="display: flex; flex-wrap: wrap; gap: 10px;">
+            <a 
+              href="{{ site.url }}/courses/" 
+              class="filter-category-btn {% if not current_course_category_slug %}active{% endif %}"
+              style="display: inline-block; padding: 10px 20px; background: {% if not current_course_category_slug %}rgba(64, 119, 243, 0.2){% else %}rgba(255, 255, 255, 0.05){% endif %}; border: 1px solid {% if not current_course_category_slug %}rgba(64, 119, 243, 0.5){% else %}rgba(255, 255, 255, 0.1){% endif %}; border-radius: 8px; color: {% if not current_course_category_slug %}#4077F3{% else %}#999EB2{% endif %}; text-decoration: none; font-size: 14px; transition: all 0.3s ease; white-space: nowrap;"
+              onmouseover="if(!this.classList.contains('active')) { this.style.background='rgba(255, 255, 255, 0.08)'; this.style.borderColor='rgba(255, 255, 255, 0.2)'; }"
+              onmouseout="if(!this.classList.contains('active')) { this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 255, 255, 0.1)'; }"
+            >
+              كل الدورات
+            </a>
+            {% for cat in course_categories %}
+              <a 
+                href="{{ cat.link }}" 
+                class="filter-category-btn {% if current_course_category_slug and current_course_category_slug == cat.slug %}active{% endif %}"
+                style="display: inline-block; padding: 10px 20px; background: {% if current_course_category_slug and current_course_category_slug == cat.slug %}rgba(64, 119, 243, 0.2){% else %}rgba(255, 255, 255, 0.05){% endif %}; border: 1px solid {% if current_course_category_slug and current_course_category_slug == cat.slug %}rgba(64, 119, 243, 0.5){% else %}rgba(255, 255, 255, 0.1){% endif %}; border-radius: 8px; color: {% if current_course_category_slug and current_course_category_slug == cat.slug %}#4077F3{% else %}#999EB2{% endif %}; text-decoration: none; font-size: 14px; transition: all 0.3s ease; white-space: nowrap;"
+                onmouseover="if(!this.classList.contains('active')) { this.style.background='rgba(255, 255, 255, 0.08)'; this.style.borderColor='rgba(255, 255, 255, 0.2)'; }"
+                onmouseout="if(!this.classList.contains('active')) { this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 255, 255, 0.1)'; }"
+              >
+                {{ cat.name }} <span style="color: #666; font-size: 12px;">({{ cat.count }})</span>
+              </a>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+
+        <!-- Courses Grid (Full Width) -->
+        {% if courses|length > 0 %}
+        <div class="learnsimply-courses-grid" style="width: 100%;">
           {% for course in courses %}
           <article class="course-card">
             <!-- Course Image -->
@@ -240,7 +309,45 @@
           {% endfor %}
         </div>
 
-        <a href="{% if site.courses_archive_url %}{{ site.courses_archive_url }}{% else %}{{ site.url }}/courses/{% endif %}" class="learnsimply-view-all-button">عرض كل الدورات</a>
+        <!-- Pagination -->
+        {% if pagination %}
+        <div class="learnsimply-pagination" style="margin-top: 60px; margin-bottom: 60px; text-align: center; display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap;">
+          {% if pagination.prev %}
+            <a href="{{ pagination.prev.link }}" class="learnsimply-pagination-link learnsimply-pagination-prev" style="padding: 10px 20px; background: rgba(10, 15, 26, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; color: #fff; text-decoration: none; transition: all 0.3s ease;">
+              السابق
+            </a>
+          {% endif %}
+          
+          {% for page in pagination.pages %}
+            {% if page.link %}
+              <a href="{{ page.link }}" class="learnsimply-pagination-link {% if page.current %}learnsimply-pagination-current{% endif %}" style="padding: 10px 15px; background: {% if page.current %}rgba(64, 119, 243, 0.2){% else %}rgba(10, 15, 26, 0.8){% endif %}; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; color: {% if page.current %}#4077F3{% else %}#fff{% endif %}; text-decoration: none; transition: all 0.3s ease; min-width: 40px; text-align: center;">
+                {{ page.title }}
+              </a>
+            {% else %}
+              <span class="learnsimply-pagination-link learnsimply-pagination-dots" style="padding: 10px 5px; color: #999EB2;">{{ page.title }}</span>
+            {% endif %}
+          {% endfor %}
+          
+          {% if pagination.next %}
+            <a href="{{ pagination.next.link }}" class="learnsimply-pagination-link learnsimply-pagination-next" style="padding: 10px 20px; background: rgba(10, 15, 26, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; color: #fff; text-decoration: none; transition: all 0.3s ease;">
+              التالي
+            </a>
+          {% endif %}
+        </div>
+        {% endif %}
+
+        {% else %}
+        <div class="learnsimply-no-courses" style="text-align: center; padding: 60px 20px;">
+          <p style="font-size: 18px; color: #999EB2;">لا توجد دورات متاحة حالياً.</p>
+        </div>
+        {% endif %}
       </div>
-    </section>
-    <!-- ===== END: Featured Courses Section ===== -->
+    </main>
+    <!-- ===== END: Main Content ===== -->
+
+    {% include 'components/footer.twig' %}
+
+    <script src="{{ theme_uri }}/assets/global/script.js"></script>
+  </body>
+</html>
+
