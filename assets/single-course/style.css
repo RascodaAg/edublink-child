@@ -627,6 +627,62 @@
   gap: 20px;
 }
 
+/* Course Media Container (Image or Video) */
+.single-course-media {
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.single-course-video {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #0a0c10;
+}
+
+.single-course-video iframe,
+.single-course-video video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 20px;
+}
+
+.single-course-video video {
+  object-fit: cover;
+  background: #0a0c10;
+}
+
+.single-course-video .course-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.single-course-image {
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.single-course-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+}
+
 /* استجابة للشاشات الصغيرة - Course Details Card */
 @media (max-width: 768px) {
   .course-details-card {

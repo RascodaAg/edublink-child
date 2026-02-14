@@ -1,0 +1,339 @@
+{% extends "layouts/base.twig" %}
+
+{% block title %}{{ page_title }} - {{ site.name }}{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ theme_uri }}/assets/home/style.css" />
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ theme_uri }}/assets/home/script.js"></script>
+{% endblock %}
+
+{% block content %}
+<!-- ===== START: Shop 2 Page ===== -->
+<section id="books" class="learnsimply-books-section">
+    <div class="learnsimply-section-container">
+        <div class="learnsimply-section-header">
+            <img src="{{ theme_uri }}/assets/img/book.png" alt="" class="learnsimply-section-icon">
+            <h2 class="learnsimply-section-title">{{ page_title }}</h2>
+        </div>
+        <p class="learnsimply-section-description">
+            {{ page_description }}
+        </p>
+
+        <!-- Search Box -->
+        <div class="shop-search-box">
+            <form class="shop-search-form" action="{{ site.url }}/shop-2/" method="get">
+                {% if product_cat %}
+                    <input type="hidden" name="product_cat" value="{{ product_cat }}" />
+                {% endif %}
+                <div class="search-input-wrapper">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <input 
+                        type="text" 
+                        name="s" 
+                        class="search-input" 
+                        placeholder="ابحث عن منتج..." 
+                        value="{{ search_term }}"
+                        autocomplete="off"
+                    />
+                    {% if search_term %}
+                        <a href="{{ site.url }}/shop-2/{% if product_cat %}?product_cat={{ product_cat }}{% endif %}" class="search-clear" aria-label="مسح البحث">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    {% endif %}
+                    <button type="submit" class="search-button">
+                        بحث
+                    </button>
+                </div>
+            </form>
+            {% if search_term %}
+                <p class="search-results-info">نتائج البحث عن: "{{ search_term }}" ({{ products|length }} نتيجة)</p>
+            {% endif %}
+        </div>
+
+        <div class="learnsimply-books-grid">
+            {% if products and products|length > 0 %}
+                {% for product in products %}
+                <article class="book-card">
+                    <!-- Product Image -->
+                    <div class="book-image">
+                        <img src="{{ product.thumbnail ?: theme_uri ~ '/assets/img/book.png' }}" alt="{{ product.title }}" />
+                    </div>
+
+                    <!-- Header: Badge + Instructor -->
+                    <div class="book-header">
+                        <div class="instructor-info">
+                            <div class="instructor-text">
+                                {% if product.author %}
+                                    <p class="name">{{ product.author.display_name }}</p>
+                                    <p class="title">
+                                        {% if product.author.user_meta.description %}
+                                            {{ product.author.user_meta.description }}
+                                        {% else %}
+                                            مؤلف
+                                        {% endif %}
+                                    </p>
+                                {% else %}
+                                    <p class="name">مؤلف</p>
+                                    <p class="title">كاتب</p>
+                                {% endif %}
+                            </div>
+
+                            <div class="instructor-avatar">
+                                <div class="avatar-glow avatar-glow-1">
+                                    <svg fill="none" viewBox="0 0 37.0813 37.0813">
+                                        <g filter="url(#filter0_f_product_{{ loop.index }})">
+                                            <circle cx="18.5406" cy="18.5406" fill="url(#paint0_linear_product_{{ loop.index }})" r="16.6701" />
+                                        </g>
+                                        <defs>
+                                            <filter colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse" height="37.0813" id="filter0_f_product_{{ loop.index }}" width="37.0813" x="0" y="0">
+                                                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                                                <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape" />
+                                                <feGaussianBlur result="effect1_foregroundBlur_product_{{ loop.index }}" stdDeviation="0.935285" />
+                                            </filter>
+                                            <linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear_product_{{ loop.index }}" x1="18.5406" x2="18.5406" y1="1.87057" y2="35.2107">
+                                                <stop stopColor="#F8EEE4" />
+                                                <stop offset="1" stopColor="#F8EEE4" stopOpacity="0" />
+                                            </linearGradient>
+                                        </defs>
+                                    </svg>
+                                </div>
+                                <div class="avatar-glow avatar-glow-2">
+                                    <svg fill="none" viewBox="0 0 37.0813 37.0813">
+                                        <g filter="url(#filter0_f_product2_{{ loop.index }})">
+                                            <circle cx="18.5406" cy="18.5406" fill="url(#paint0_linear_product2_{{ loop.index }})" r="16.6701" />
+                                        </g>
+                                        <defs>
+                                            <filter colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse" height="37.0813" id="filter0_f_product2_{{ loop.index }}" width="37.0813" x="0" y="0">
+                                                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                                                <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape" />
+                                                <feGaussianBlur result="effect1_foregroundBlur_product2_{{ loop.index }}" stdDeviation="0.935285" />
+                                            </filter>
+                                            <linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear_product2_{{ loop.index }}" x1="18.5406" x2="18.5406" y1="1.87057" y2="35.2107">
+                                                <stop stopColor="#F8EEE4" />
+                                                <stop offset="1" stopColor="#F8EEE4" stopOpacity="0" />
+                                            </linearGradient>
+                                        </defs>
+                                    </svg>
+                                </div>
+                                {% if product.author and product.author.avatar %}
+                                    <img src="{{ product.author.avatar }}" alt="{{ product.author.display_name }}" />
+                                {% else %}
+                                    <img src="{{ theme_uri }}/assets/img/card_image.png" alt="مؤلف" />
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="book-badge">
+                            <p>منتج</p>
+                        </div>
+                    </div>
+
+                    <!-- Product Title -->
+                    <div class="book-title">
+                        <p>{{ product.title }}</p>
+                    </div>
+
+                    <!-- Product Info -->
+                    <div class="book-info">
+                        {% if product.stock_quantity or product.stock_status %}
+                        <div class="info-item">
+                            <img class="info-icon" src="{{ theme_uri }}/assets/img/Archive Check.png" alt="متوفر" />
+                            <p>
+                                {% if product.stock_quantity %}
+                                    +{{ product.stock_quantity }} متوفر
+                                {% elseif product.stock_status == 'instock' %}
+                                    متوفر
+                                {% else %}
+                                    غير متوفر
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        <div class="info-divider">
+                            <svg fill="none" viewBox="0 0 32 1">
+                                <line stroke="white" strokeOpacity="0.05" x2="32" y1="0.5" y2="0.5" />
+                            </svg>
+                        </div>
+                        {% endif %}
+
+                        {% if product_cat == 'book' and product.pages %}
+                        <div class="info-item">
+                            <svg class="info-icon" fill="none" viewBox="0 0 24 24">
+                                <path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="#999EB2" strokeWidth="1.5"/>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke="#999EB2" strokeWidth="1.5"/>
+                                <path d="M8 7h8M8 10.5h5" stroke="#999EB2" strokeWidth="1.5" strokeLinecap="round"/>
+                                <path d="M19.5 19H8" stroke="#999EB2" strokeWidth="1.5" strokeLinecap="round"/>
+                            </svg>
+                            <p>{{ product.pages }} صفحة</p>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Price Section -->
+                    <div class="price-section">
+                        {% if product.is_free or (product.price == 0 and not product.regular_price and not product.sale_price) %}
+                        {# Free product #}
+                        <div class="price-display">
+                            <p class="new-price">مجاني</p>
+                        </div>
+                        {% else %}
+                            {% if product.discount_percent > 0 %}
+                            <div class="discount-badge">
+                                <p>خصم {{ product.discount_percent }}%</p>
+                            </div>
+                            {% endif %}
+
+                            <div class="price-display">
+                                {% if product.regular_price and product.sale_price %}
+                                    <p class="old-price">{{ product.regular_price|number_format(2, '.', ',') }} ج.م</p>
+                                    <p class="new-price">{{ product.sale_price|number_format(2, '.', ',') }} ج.م</p>
+                                {% else %}
+                                    <p class="new-price">{{ product.price|number_format(2, '.', ',') }} ج.م</p>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        {% if product.is_free or (product.price == 0 and not product.regular_price and not product.sale_price) %}
+                        {# Free product - show get it free button #}
+                        <a 
+                            href="{{ product.product_url }}" 
+                            class="learnsimply-buy-now-button buy-button"
+                        >
+                            <span>احصل عليه مجاناً</span>
+                        </a>
+                        {% else %}
+                            {# Paid product - show cart and buy buttons - direct link for add to cart #}
+                            <a 
+                                href="{{ site.url }}/?add-to-cart={{ product.id }}"
+                                class="cart-button" 
+                                aria-label="أضف إلى السلة"
+                            >
+                                <img class="cart-icon" src="{{ theme_uri }}/assets/img/Cart.png" alt="سلة التسوق" />
+                            </a>
+
+                            <a 
+                                href="{{ product.product_url }}" 
+                                class="learnsimply-buy-now-button buy-button"
+                            >
+                                <span>اشتر الآن</span>
+                            </a>
+                        {% endif %}
+                    </div>
+                </article>
+                {% endfor %}
+            {% else %}
+                <!-- Fallback: No products available -->
+                <div class="no-books-message" style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #999;">
+                    <p>لا توجد منتجات متاحة حالياً</p>
+                </div>
+            {% endif %}
+        </div>
+
+        {% if pagination and pagination.total > 1 %}
+        <!-- Pagination -->
+        <nav class="shop-pagination" aria-label="التنقل بين الصفحات">
+            <div class="pagination-container">
+                {# Previous Button #}
+                {% if pagination.current > 1 %}
+                    <a href="?{% if product_cat %}product_cat={{ product_cat }}&{% endif %}{% if search_term %}s={{ search_term }}&{% endif %}paged={{ pagination.current - 1 }}" class="pagination-btn pagination-prev" aria-label="الصفحة السابقة">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>السابق</span>
+                    </a>
+                {% else %}
+                    <span class="pagination-btn pagination-prev disabled" aria-disabled="true">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>السابق</span>
+                    </span>
+                {% endif %}
+
+                {# Page Numbers #}
+                <div class="pagination-numbers">
+                    {% set start_page = pagination.current - 2 %}
+                    {% set end_page = pagination.current + 2 %}
+                    
+                    {% if start_page < 1 %}
+                        {% set end_page = end_page + (1 - start_page) %}
+                        {% set start_page = 1 %}
+                    {% endif %}
+                    
+                    {% if end_page > pagination.total %}
+                        {% set start_page = start_page - (end_page - pagination.total) %}
+                        {% set end_page = pagination.total %}
+                    {% endif %}
+                    
+                    {% if start_page < 1 %}
+                        {% set start_page = 1 %}
+                    {% endif %}
+
+                    {# First page + ellipsis #}
+                    {% if start_page > 1 %}
+                        <a href="?{% if product_cat %}product_cat={{ product_cat }}&{% endif %}{% if search_term %}s={{ search_term }}&{% endif %}paged=1" class="pagination-number">1</a>
+                        {% if start_page > 2 %}
+                            <span class="pagination-ellipsis">...</span>
+                        {% endif %}
+                    {% endif %}
+
+                    {# Page numbers #}
+                    {% for page in start_page..end_page %}
+                        {% if page == pagination.current %}
+                            <span class="pagination-number current" aria-current="page">{{ page }}</span>
+                        {% else %}
+                            <a href="?{% if product_cat %}product_cat={{ product_cat }}&{% endif %}{% if search_term %}s={{ search_term }}&{% endif %}paged={{ page }}" class="pagination-number">{{ page }}</a>
+                        {% endif %}
+                    {% endfor %}
+
+                    {# Last page + ellipsis #}
+                    {% if end_page < pagination.total %}
+                        {% if end_page < pagination.total - 1 %}
+                            <span class="pagination-ellipsis">...</span>
+                        {% endif %}
+                        <a href="?{% if product_cat %}product_cat={{ product_cat }}&{% endif %}{% if search_term %}s={{ search_term }}&{% endif %}paged={{ pagination.total }}" class="pagination-number">{{ pagination.total }}</a>
+                    {% endif %}
+                </div>
+
+                {# Next Button #}
+                {% if pagination.current < pagination.total %}
+                    <a href="?{% if product_cat %}product_cat={{ product_cat }}&{% endif %}{% if search_term %}s={{ search_term }}&{% endif %}paged={{ pagination.current + 1 }}" class="pagination-btn pagination-next" aria-label="الصفحة التالية">
+                        <span>التالي</span>
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                {% else %}
+                    <span class="pagination-btn pagination-next disabled" aria-disabled="true">
+                        <span>التالي</span>
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                {% endif %}
+            </div>
+
+            {# Page info #}
+            <div class="pagination-info">
+                صفحة {{ pagination.current }} من {{ pagination.total }}
+            </div>
+        </nav>
+        {% endif %}
+    </div>
+</section>
+<!-- ===== END: Shop 2 Page ===== -->
+
+{# Add to cart script - must be loaded for buttons to work #}
+<script src="{{ theme_uri }}/assets/home/script.js"></script>
+{% endblock %}
+

@@ -37,6 +37,21 @@ if ( class_exists( 'Timber\Timber' ) ) {
 		// Global theme URI for assets in Twig (images, CSS, JS)
 		$context['theme_uri'] = get_stylesheet_directory_uri();
 		
+		// Cart page URL for JavaScript redirects
+		$cart_page_id = function_exists( 'wc_get_page_id' ) ? wc_get_page_id( 'cart' ) : 0;
+		if ( $cart_page_id && $cart_page_id > 0 ) {
+			$context['cart_url'] = get_permalink( $cart_page_id );
+		} else {
+			$context['cart_url'] = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : '/cart-1/';
+		}
+		
+		// Cart items count for header badge
+		if ( function_exists( 'WC' ) && WC()->cart ) {
+			$context['cart_count'] = WC()->cart->get_cart_contents_count();
+		} else {
+			$context['cart_count'] = 0;
+		}
+		
 		$context['is_front_page'] = is_front_page();
 		$context['is_home'] = is_home();
 		$context['is_user_logged_in'] = is_user_logged_in();
@@ -59,6 +74,15 @@ if ( class_exists( 'Timber\Timber' ) ) {
 			$context['courses_archive_url'] = home_url( '/courses/' );
 		}
 		
+		// Add site icon (favicon) URL
+		$site_icon_id = get_option( 'site_icon' );
+		if ( $site_icon_id ) {
+			$context['site_icon_url'] = wp_get_attachment_image_url( $site_icon_id, 'full' );
+		} else {
+			// Fallback to default favicon if no site icon is set
+			$context['site_icon_url'] = get_site_icon_url();
+		}
+		
 		return $context;
 	}
 }
@@ -68,11 +92,76 @@ if ( class_exists( 'Timber\Timber' ) ) {
    ========================================================================== */
 
 /**
- * 1. Force load front-page.php using the strongest filter (template_include)
+ * 1. Force load front-page.php and shop-2.php
+ * Use woocommerce_locate_template to override WooCommerce archive template for shop-2
  */
-add_filter( 'template_include', 'edublink_child_force_front_page_template', 99999 );
+add_filter( 'woocommerce_locate_template', 'edublink_child_override_shop_2_template', 10, 3 );
 
-function edublink_child_force_front_page_template( $template ) {
+function edublink_child_override_shop_2_template( $template, $template_name, $template_path ) {
+    // IMPORTANT: Exclude single product pages, cart, checkout FIRST
+    if ( is_product() || is_cart() || is_checkout() || is_account_page() ) {
+        return $template; // Don't apply shop-2 template to these pages
+    }
+    
+    // Check URL directly - most reliable method
+    $request_uri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
+    if ( strpos( $request_uri, '/product/' ) !== false ||
+         strpos( $request_uri, '/cart' ) !== false || 
+         strpos( $request_uri, '/checkout' ) !== false || 
+         strpos( $request_uri, '/my-account' ) !== false ) {
+        return $template; // Don't apply shop-2 template to these pages
+    }
+    
+    // Check if this is archive-product.php and we're on shop-2
+    // IMPORTANT: Only apply to shop archive pages, not cart, checkout, or other pages
+    if ( $template_name === 'archive-product.php' ) {
+        // Verify we're actually on a shop archive page
+        if ( ! is_shop() && ! is_product_category() && ! is_product_tag() && ! is_post_type_archive( 'product' ) ) {
+            return $template; // Not a shop archive, return original template
+        }
+        
+        $woocommerce_shop_page_id = 0;
+        if ( function_exists( 'wc_get_page_id' ) ) {
+            $woocommerce_shop_page_id = wc_get_page_id( 'shop' );
+        }
+        
+        $request_uri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
+        $is_shop_2_url = ( strpos( $request_uri, '/shop-2' ) !== false );
+        
+        if ( $woocommerce_shop_page_id == 22662 || $is_shop_2_url ) {
+            $shop_2_template = get_stylesheet_directory() . '/page-shop-2.php';
+            if ( file_exists( $shop_2_template ) ) {
+                // Prevent Elementor
+                add_filter( 'elementor/frontend/print_google_fonts', '__return_false' );
+                add_filter( 'elementor/theme/get_location_templates', '__return_empty_array', 999 );
+                add_filter( 'elementor/theme/get_location_template_id', '__return_false', 999 );
+                add_filter( 'hfe_header_enabled', '__return_false' );
+                add_filter( 'hfe_footer_enabled', '__return_false' );
+                
+                // Return shop-2 template instead
+                return $shop_2_template;
+            }
+        }
+    }
+    
+    return $template;
+}
+
+// Also use template_include as fallback
+add_filter( 'template_include', 'edublink_child_force_custom_templates_via_filter', 999999 );
+
+function edublink_child_force_custom_templates_via_filter( $template ) {
+    // Check URL directly FIRST - most reliable method
+    $request_uri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
+    
+    // IMPORTANT: Exclude product pages, cart, checkout, my-account URLs FIRST
+    if ( strpos( $request_uri, '/product/' ) !== false ||
+         strpos( $request_uri, '/cart' ) !== false || 
+         strpos( $request_uri, '/checkout' ) !== false || 
+         strpos( $request_uri, '/my-account' ) !== false ) {
+        return $template; // Don't apply shop-2 template to these pages
+    }
+    
     // Check if we are on the front page or the specific page ID 9834 found in your HTML
     if ( is_front_page() || is_home() || get_the_ID() == 9834 ) {
         $custom_front = get_stylesheet_directory() . '/front-page.php';
@@ -81,6 +170,215 @@ function edublink_child_force_front_page_template( $template ) {
             return $custom_front;
         }
     }
+    
+    // IMPORTANT: Exclude cart, checkout, my-account, single product pages, and other pages FIRST
+    if ( is_cart() || is_checkout() || is_account_page() || is_wc_endpoint_url() || is_product() ) {
+        return $template; // Don't apply shop-2 template to these pages
+    }
+    
+    // Exclude single posts, pages (except shop-2), and other archives
+    if ( is_single() || ( is_page() && ! is_page( 'shop-2' ) && ! is_page( 22662 ) ) || ( is_archive() && ! is_shop() && ! is_product_category() && ! is_product_tag() && ! is_post_type_archive( 'product' ) ) ) {
+        return $template; // Don't apply shop-2 template to these pages
+    }
+    
+    // Get current page ID and slug to exclude cart pages
+    $current_page_id = get_queried_object_id();
+    global $wp_query;
+    $queried_object = get_queried_object();
+    $current_page_slug = '';
+    if ( $queried_object && isset( $queried_object->post_name ) ) {
+        $current_page_slug = $queried_object->post_name;
+    }
+    
+    // Exclude cart pages by ID or slug - MUST be checked BEFORE shop-2 check
+    if ( $current_page_id == 21 || // cart-1 page ID
+         $current_page_id == 21744 || // cart-3 page ID
+         strpos( $current_page_slug, 'cart' ) === 0 || // starts with 'cart'
+         strpos( $current_page_slug, 'checkout' ) === 0 ||
+         strpos( $current_page_slug, 'my-account' ) === 0 ) {
+        return $template; // Don't apply shop-2 template to these pages
+    }
+    
+    // Also check if we're on a regular page (not shop archive) - exclude all pages except shop-2
+    if ( is_page() && ! is_page( 'shop-2' ) && ! is_page( 22662 ) && $current_page_id != 22662 ) {
+        // This is a regular page, not shop-2, so don't apply shop-2 template
+        return $template;
+    }
+    
+    // Check URL directly - most reliable method
+    $request_uri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
+    
+    // Also check if URL contains cart, checkout, product (single product), etc. and exclude them BEFORE checking shop-2
+    if ( strpos( $request_uri, '/cart' ) !== false || 
+         strpos( $request_uri, '/checkout' ) !== false || 
+         strpos( $request_uri, '/my-account' ) !== false ||
+         strpos( $request_uri, '/product/' ) !== false ) {
+        return $template; // Don't apply shop-2 template to these pages
+    }
+    
+    // Check if this is shop-2 URL (only after excluding cart/checkout)
+    $is_shop_2_url = ( strpos( $request_uri, '/shop-2' ) !== false || strpos( $request_uri, '/shop-2/' ) !== false );
+    
+    // Check if shop-2 is the WooCommerce shop page
+    // IMPORTANT: Only apply to shop archive pages, not cart, checkout, or other pages
+    $woocommerce_shop_page_id = 0;
+    if ( function_exists( 'wc_get_page_id' ) ) {
+        $woocommerce_shop_page_id = wc_get_page_id( 'shop' );
+    }
+    
+    // Verify we're actually on a shop archive page (not cart, checkout, etc.)
+    $is_shop_archive = is_shop() || is_product_category() || is_product_tag() || is_post_type_archive( 'product' );
+    
+    // Check if we're on shop-2 (either as shop page or regular page)
+    // Only apply if we're on a shop archive page
+    $is_shop_2 = false;
+    if ( $is_shop_archive ) {
+        if ( 
+            $is_shop_2_url ||
+            ( $woocommerce_shop_page_id == 22662 && ( is_shop() || is_post_type_archive( 'product' ) ) ) ||
+            is_page( 'shop-2' ) || 
+            is_page( 22662 ) || 
+            get_queried_object_id() == 22662
+        ) {
+            $is_shop_2 = true;
+        }
+    }
+    
+    if ( $is_shop_2 ) {
+        $shop_2_template = get_stylesheet_directory() . '/page-shop-2.php';
+        
+        if ( file_exists( $shop_2_template ) ) {
+            // Prevent Elementor from loading on this page
+            add_filter( 'elementor/frontend/print_google_fonts', '__return_false' );
+            add_filter( 'elementor/theme/get_location_templates', '__return_empty_array', 999 );
+            add_filter( 'elementor/theme/get_location_template_id', '__return_false', 999 );
+            add_filter( 'hfe_header_enabled', '__return_false' );
+            add_filter( 'hfe_footer_enabled', '__return_false' );
+            
+            return $shop_2_template;
+        }
+    }
+    
+    return $template;
+}
+
+// Also keep template_redirect as backup
+add_action( 'template_redirect', 'edublink_child_force_custom_templates', 0 );
+
+function edublink_child_force_custom_templates() {
+    // Check URL directly FIRST - most reliable method
+    $request_uri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
+    
+    // IMPORTANT: Exclude product pages, cart, checkout, my-account URLs FIRST
+    if ( strpos( $request_uri, '/product/' ) !== false ||
+         strpos( $request_uri, '/cart' ) !== false || 
+         strpos( $request_uri, '/checkout' ) !== false || 
+         strpos( $request_uri, '/my-account' ) !== false ) {
+        return; // Don't apply shop-2 template to these pages
+    }
+    
+    // IMPORTANT: Exclude cart, checkout, my-account, single product pages FIRST
+    if ( is_cart() || is_checkout() || is_account_page() || is_wc_endpoint_url() || is_product() ) {
+        return; // Don't apply shop-2 template to these pages
+    }
+    
+    // Exclude single posts, pages (except shop-2), and other archives
+    if ( is_single() || ( is_page() && ! is_page( 'shop-2' ) && ! is_page( 22662 ) ) || ( is_archive() && ! is_shop() && ! is_product_category() && ! is_product_tag() && ! is_post_type_archive( 'product' ) ) ) {
+        return; // Don't apply shop-2 template to these pages
+    }
+    
+    // Get current page info
+    global $wp_query;
+    $queried_object_id = get_queried_object_id();
+    $current_page_slug = get_query_var( 'pagename' );
+    $queried_object = get_queried_object();
+    $current_page_slug_from_object = '';
+    if ( $queried_object && isset( $queried_object->post_name ) ) {
+        $current_page_slug_from_object = $queried_object->post_name;
+    }
+    
+    // Exclude cart pages by ID or slug
+    if ( $queried_object_id == 21 || // cart-1 page ID
+         $queried_object_id == 21744 || // cart-3 page ID
+         $current_page_slug === 'cart-1' ||
+         $current_page_slug === 'cart-3' ||
+         ( $current_page_slug_from_object && strpos( $current_page_slug_from_object, 'cart' ) === 0 ) ) {
+        return; // Don't apply shop-2 template to these pages
+    }
+    
+    // Check URL directly first (most reliable method)
+    $request_uri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
+    
+    // Exclude cart, checkout, my-account, product (single product) URLs
+    if ( strpos( $request_uri, '/cart' ) !== false || 
+         strpos( $request_uri, '/checkout' ) !== false || 
+         strpos( $request_uri, '/my-account' ) !== false ||
+         strpos( $request_uri, '/product/' ) !== false ) {
+        return; // Don't apply shop-2 template to these pages
+    }
+    
+    $is_shop_2_url = ( strpos( $request_uri, '/shop-2' ) !== false );
+    
+    // Check if we are on the front page or the specific page ID 9834 found in your HTML
+    if ( is_front_page() || is_home() || get_the_ID() == 9834 ) {
+        $custom_front = get_stylesheet_directory() . '/front-page.php';
+        
+        if ( file_exists( $custom_front ) ) {
+            include( $custom_front );
+            exit;
+        }
+    }
+    
+    // Force load shop-2 template for shop-2 page
+    // Check if shop-2 is set as WooCommerce shop page OR if it's a regular page
+    // Check if shop-2 is the WooCommerce shop page
+    $woocommerce_shop_page_id = 0;
+    if ( function_exists( 'wc_get_page_id' ) ) {
+        $woocommerce_shop_page_id = wc_get_page_id( 'shop' );
+    }
+    
+    // Check multiple ways to identify shop-2 page
+    $is_shop_2 = false;
+    if ( 
+        $is_shop_2_url ||
+        is_page( 'shop-2' ) || 
+        is_page( 22662 ) || 
+        $queried_object_id == 22662 ||
+        $woocommerce_shop_page_id == 22662 ||
+        $current_page_slug === 'shop-2' ||
+        ( isset( $wp_query->queried_object ) && isset( $wp_query->queried_object->post_name ) && $wp_query->queried_object->post_name === 'shop-2' ) ||
+        ( isset( $wp_query->queried_object ) && isset( $wp_query->queried_object->ID ) && $wp_query->queried_object->ID == 22662 )
+    ) {
+        $is_shop_2 = true;
+    }
+    
+    if ( $is_shop_2 ) {
+        $shop_2_template = get_stylesheet_directory() . '/page-shop-2.php';
+        
+        if ( file_exists( $shop_2_template ) ) {
+            // Prevent Elementor from loading on this page - do this BEFORE including template
+            add_filter( 'elementor/frontend/print_google_fonts', '__return_false' );
+            add_filter( 'elementor/theme/get_location_templates', '__return_empty_array', 999 );
+            add_filter( 'elementor/theme/get_location_template_id', '__return_false', 999 );
+            add_filter( 'hfe_header_enabled', '__return_false' );
+            add_filter( 'hfe_footer_enabled', '__return_false' );
+            
+            // Override WooCommerce archive template
+            add_filter( 'woocommerce_is_shop', '__return_false', 999 );
+            
+            include( $shop_2_template );
+            exit;
+        }
+    }
+}
+
+/**
+ * Also use template_include as fallback
+ */
+add_filter( 'template_include', 'edublink_child_force_front_page_template', 999999 );
+
+function edublink_child_force_front_page_template( $template ) {
+    // This is a fallback - template_redirect should handle it first
     return $template;
 }
 
@@ -98,7 +396,24 @@ function edublink_child_unload_elementor_assets() {
         $is_courses_archive = is_post_type_archive( $course_post_type ) || is_tax( 'course-category' ) || is_tax( 'course-tag' );
     }
     
-    if ( is_front_page() || is_home() || get_the_ID() == 9834 || $is_courses_archive ) {
+    // Check if we're on shop-2 page - multiple methods
+    global $wp_query;
+    $queried_object_id = get_queried_object_id();
+    $current_page_slug = get_query_var( 'pagename' );
+    $is_shop_2 = false;
+    
+    if ( 
+        is_page( 'shop-2' ) || 
+        is_page( 22662 ) || 
+        $queried_object_id == 22662 ||
+        $current_page_slug === 'shop-2' ||
+        ( isset( $wp_query->queried_object ) && isset( $wp_query->queried_object->post_name ) && $wp_query->queried_object->post_name === 'shop-2' ) ||
+        ( isset( $wp_query->queried_object ) && isset( $wp_query->queried_object->ID ) && $wp_query->queried_object->ID == 22662 )
+    ) {
+        $is_shop_2 = true;
+    }
+    
+    if ( is_front_page() || is_home() || get_the_ID() == 9834 || $is_courses_archive || $is_shop_2 ) {
         
         // Remove Elementor Core
         wp_dequeue_script( 'elementor-frontend' );
@@ -120,8 +435,10 @@ function edublink_child_unload_elementor_assets() {
         wp_dequeue_style( 'hfe-widgets-style' );
         
         // Remove EduBlink Theme specific Elementor styles
+        // NOTE: Only remove edublink-style if it's loaded by Elementor, not the parent theme's main style
         wp_dequeue_style( 'edublink-elementor' );
-        wp_dequeue_style( 'edublink-style' ); 
+        // Don't remove edublink-style here - it's needed for other pages like cart, checkout, etc.
+        // wp_dequeue_style( 'edublink-style' ); 
         
         // Remove Google Fonts loaded by Elementor
         add_filter( 'elementor/frontend/print_google_fonts', '__return_false' );
@@ -147,12 +464,15 @@ function edublink_child_prevent_caching_front_page() {
  */
 add_filter( 'body_class', 'edublink_child_clean_body_classes', 999 );
 function edublink_child_clean_body_classes( $classes ) {
-    if ( is_front_page() || is_home() || get_the_ID() == 9834 ) {
+    $is_shop_2 = is_page( 'shop-2' ) || is_page( 22662 ) || get_queried_object_id() == 22662;
+    
+    if ( is_front_page() || is_home() || get_the_ID() == 9834 || $is_shop_2 ) {
         $remove_classes = array( 
             'elementor-default', 
             'elementor-kit-24541', 
             'elementor-page', 
-            'elementor-page-9834' 
+            'elementor-page-9834',
+            'elementor-page-22662'
         );
         $classes = array_diff( $classes, $remove_classes );
     }
@@ -172,7 +492,24 @@ function edublink_child_disable_elementor_locations() {
         $is_courses_archive = is_post_type_archive( $course_post_type ) || is_tax( 'course-category' ) || is_tax( 'course-tag' );
     }
     
-    if ( is_front_page() || is_home() || get_the_ID() == 9834 || $is_courses_archive ) {
+    // Check if we're on shop-2 page - multiple methods
+    global $wp_query;
+    $queried_object_id = get_queried_object_id();
+    $current_page_slug = get_query_var( 'pagename' );
+    $is_shop_2 = false;
+    
+    if ( 
+        is_page( 'shop-2' ) || 
+        is_page( 22662 ) || 
+        $queried_object_id == 22662 ||
+        $current_page_slug === 'shop-2' ||
+        ( isset( $wp_query->queried_object ) && isset( $wp_query->queried_object->post_name ) && $wp_query->queried_object->post_name === 'shop-2' ) ||
+        ( isset( $wp_query->queried_object ) && isset( $wp_query->queried_object->ID ) && $wp_query->queried_object->ID == 22662 )
+    ) {
+        $is_shop_2 = true;
+    }
+    
+    if ( is_front_page() || is_home() || get_the_ID() == 9834 || $is_courses_archive || $is_shop_2 ) {
         // Stop Elementor Theme Builder
         add_filter( 'elementor/theme/get_location_templates', '__return_empty_array', 999 );
         add_filter( 'elementor/theme/get_location_template_id', '__return_false', 999 );
@@ -629,3 +966,13 @@ function edublink_child_save_book_metabox( $post_id ) {
 }
 add_action( 'save_post', 'edublink_child_save_book_metabox' );
 add_action( 'woocommerce_process_product_meta', 'edublink_child_save_book_metabox' );
+
+/**
+ * Simple redirect to cart after add to cart
+ * Only use woocommerce_add_to_cart_redirect filter - the standard WooCommerce way
+ */
+add_filter( 'woocommerce_add_to_cart_redirect', 'edublink_child_redirect_to_cart_after_add', 10 );
+function edublink_child_redirect_to_cart_after_add( $url ) {
+    // Redirect to cart page after adding product
+    return wc_get_cart_url();
+}

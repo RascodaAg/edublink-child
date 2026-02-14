@@ -45,3 +45,301 @@
 	background-image: url("../img/levele.png") !important;
 }
 
+/* ============================================
+   Book Info Icons Fix
+   ============================================ */
+
+/* Replace SVG page icon with PNG image for book cards */
+/* Hide SVG icon for pages */
+.learnsimply-books-section .book-info .info-item svg.info-icon {
+	display: none !important;
+}
+
+/* Show PNG icon using ::before pseudo-element on the info-item that contains SVG */
+/* Method 1: Target info-item that comes after info-divider (this is the pages item when stock exists) */
+.learnsimply-books-section .book-info .info-divider + .info-item::before {
+	content: "" !important;
+	display: inline-block !important;
+	width: 24px !important;
+	height: 24px !important;
+	background-size: contain !important;
+	background-repeat: no-repeat !important;
+	background-position: center !important;
+	margin-bottom: 6px !important;
+	background-image: url("../img/page.png") !important;
+}
+
+/* Method 2: If no divider exists, target the info-item that contains SVG (last child without img) */
+/* This handles the case when stock_quantity is not available */
+.learnsimply-books-section .book-info .info-item:last-child:not(:has(img.info-icon))::before {
+	content: "" !important;
+	display: inline-block !important;
+	width: 24px !important;
+	height: 24px !important;
+	background-size: contain !important;
+	background-repeat: no-repeat !important;
+	background-position: center !important;
+	margin-bottom: 6px !important;
+	background-image: url("../img/page.png") !important;
+}
+
+/* ============================================
+   Shop Search Box Styles
+   ============================================ */
+
+.shop-search-box {
+	margin-bottom: 32px;
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.shop-search-form {
+	width: 100%;
+}
+
+.search-input-wrapper {
+	display: flex;
+	align-items: center;
+	background: linear-gradient(135deg, rgba(30, 33, 48, 0.95), rgba(20, 22, 35, 0.98));
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 16px;
+	padding: 4px;
+	gap: 8px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3),
+				inset 0 1px 0 rgba(255, 255, 255, 0.05);
+	transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-input-wrapper:focus-within {
+	border-color: rgba(160, 100, 255, 0.5);
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3),
+				0 0 0 4px rgba(160, 100, 255, 0.1),
+				inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.search-icon {
+	width: 20px;
+	height: 20px;
+	color: rgba(255, 255, 255, 0.4);
+	margin-right: 12px;
+	flex-shrink: 0;
+}
+
+.search-input {
+	flex: 1;
+	background: transparent;
+	border: none;
+	outline: none;
+	color: #fff;
+	font-size: 15px;
+	font-family: inherit;
+	padding: 12px 0;
+	direction: rtl;
+}
+
+.search-input::placeholder {
+	color: rgba(255, 255, 255, 0.4);
+}
+
+.search-clear {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	border-radius: 8px;
+	background: rgba(255, 255, 255, 0.08);
+	color: rgba(255, 255, 255, 0.5);
+	transition: all 0.2s ease;
+	flex-shrink: 0;
+}
+
+.search-clear:hover {
+	background: rgba(255, 100, 100, 0.2);
+	color: #ff6464;
+}
+
+.search-clear svg {
+	width: 14px;
+	height: 14px;
+}
+
+.search-button {
+	background: linear-gradient(135deg, #a064ff, #8b5cf6);
+	color: #fff;
+	border: none;
+	padding: 12px 28px;
+	border-radius: 12px;
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	flex-shrink: 0;
+	font-family: inherit;
+}
+
+.search-button:hover {
+	background: linear-gradient(135deg, #b07aff, #9d70f7);
+	transform: translateY(-1px);
+	box-shadow: 0 4px 15px rgba(160, 100, 255, 0.4);
+}
+
+.search-button:active {
+	transform: translateY(0);
+}
+
+.search-results-info {
+	margin-top: 16px;
+	text-align: center;
+	color: rgba(255, 255, 255, 0.6);
+	font-size: 14px;
+}
+
+/* ============================================
+   Shop Pagination Styles
+   ============================================ */
+
+.shop-pagination {
+	margin-top: 48px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 16px;
+}
+
+.pagination-container {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	background: linear-gradient(135deg, rgba(30, 33, 48, 0.95), rgba(20, 22, 35, 0.98));
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	border-radius: 16px;
+	padding: 8px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.pagination-btn {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding: 10px 18px;
+	background: rgba(255, 255, 255, 0.05);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	border-radius: 10px;
+	color: rgba(255, 255, 255, 0.8);
+	font-size: 14px;
+	font-weight: 500;
+	text-decoration: none;
+	transition: all 0.2s ease;
+	cursor: pointer;
+}
+
+.pagination-btn svg {
+	width: 16px;
+	height: 16px;
+}
+
+.pagination-btn:hover:not(.disabled) {
+	background: rgba(160, 100, 255, 0.15);
+	border-color: rgba(160, 100, 255, 0.3);
+	color: #fff;
+}
+
+.pagination-btn.disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+	pointer-events: none;
+}
+
+.pagination-numbers {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	padding: 0 8px;
+}
+
+.pagination-number {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 40px;
+	height: 40px;
+	padding: 0 12px;
+	background: transparent;
+	border: 1px solid transparent;
+	border-radius: 10px;
+	color: rgba(255, 255, 255, 0.6);
+	font-size: 14px;
+	font-weight: 500;
+	text-decoration: none;
+	transition: all 0.2s ease;
+}
+
+.pagination-number:hover:not(.current) {
+	background: rgba(255, 255, 255, 0.05);
+	border-color: rgba(255, 255, 255, 0.1);
+	color: #fff;
+}
+
+.pagination-number.current {
+	background: linear-gradient(135deg, #a064ff, #8b5cf6);
+	color: #fff;
+	font-weight: 600;
+	box-shadow: 0 4px 15px rgba(160, 100, 255, 0.4);
+}
+
+.pagination-ellipsis {
+	color: rgba(255, 255, 255, 0.4);
+	padding: 0 4px;
+	font-size: 14px;
+}
+
+.pagination-info {
+	color: rgba(255, 255, 255, 0.5);
+	font-size: 13px;
+}
+
+/* Responsive Pagination */
+@media (max-width: 640px) {
+	.pagination-container {
+		flex-wrap: wrap;
+		justify-content: center;
+		padding: 12px;
+		gap: 8px;
+	}
+	
+	.pagination-btn span {
+		display: none;
+	}
+	
+	.pagination-btn {
+		padding: 10px 14px;
+	}
+	
+	.pagination-numbers {
+		order: -1;
+		width: 100%;
+		justify-content: center;
+		padding: 0;
+		padding-bottom: 8px;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+		margin-bottom: 4px;
+	}
+	
+	.pagination-number {
+		min-width: 36px;
+		height: 36px;
+		font-size: 13px;
+	}
+	
+	.shop-search-box {
+		padding: 0 16px;
+	}
+	
+	.search-button {
+		padding: 12px 20px;
+		font-size: 13px;
+	}
+}
+

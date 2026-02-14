@@ -1,0 +1,240 @@
+    <!-- ===== START: Bundles Section ===== -->
+    <section id="bundles" class="learnsimply-featured-courses-section">
+      <div class="learnsimply-section-container">
+        <div class="learnsimply-section-header">
+          <img
+            src="{{ theme_uri }}/assets/img/Video Library.png"
+            alt=""
+            class="learnsimply-section-icon"
+          />
+          <h2 class="learnsimply-section-title">الباقات المميزة</h2>
+        </div>
+        <p class="learnsimply-section-description">
+          باقات متكاملة تجمع عدة دورات معاً بأسعار مميزة.
+        </p>
+
+        <div class="learnsimply-courses-grid">
+          {% if bundles is defined and bundles|length > 0 %}
+            {% for bundle in bundles %}
+            <article class="course-card">
+              <!-- Bundle Image -->
+              <div class="course-image">
+                <a href="{{ bundle.link }}">
+                  <img src="{{ bundle.thumbnail }}" alt="{{ bundle.title }}" />
+                </a>
+              </div>
+
+              <!-- Header: Badge + Bundle Info -->
+              <div class="course-header">
+                <div class="instructor-info">
+                  <div class="instructor-text">
+                    <p class="name">باقة متكاملة</p>
+                    <p class="title">عدة دورات معاً</p>
+                  </div>
+
+                  <div class="instructor-avatar">
+                    <div class="avatar-glow avatar-glow-1"></div>
+                    <div class="avatar-glow avatar-glow-2"></div>
+                    <img src="{{ theme_uri }}/assets/img/card_image.png" alt="باقة" />
+                  </div>
+                </div>
+
+                <div class="course-badge">
+                  <p>باقة</p>
+                </div>
+              </div>
+
+              <!-- Bundle Title -->
+              <div class="course-title">
+                <a href="{{ bundle.link }}"><p>{{ bundle.title }}</p></a>
+              </div>
+
+              <!-- Review and Bundle Items Count -->
+              <div class="review-students">
+                <div class="review">
+                  <svg class="star-icon" fill="none" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l2.9 6.26L21.9 9.27l-5 3.86L18 21l-6-3.16L6 21l1.1-7.87-5-3.86 6.99-0.99L12 2z"
+                      fill="#FFBB54"
+                    />
+                  </svg>
+                  <p>{{ bundle.rating_avg }} ({{ bundle.rating_count }} تقييم)</p>
+                </div>
+
+                <div class="students">
+                  <div class="students-avatars">
+                    <img
+                      class="student-avatar student-avatar-1"
+                      src="{{ theme_uri }}/assets/img/ellipse1.png"
+                      alt=""
+                    />
+                    <img
+                      class="student-avatar student-avatar-2"
+                      src="{{ theme_uri }}/assets/img/ellipse2.png"
+                      alt=""
+                    />
+                    <img
+                      class="student-avatar student-avatar-3"
+                      src="{{ theme_uri }}/assets/img/ellipse3.png"
+                      alt=""
+                    />
+
+                    <div class="student-count">
+                      <div class="student-count-circle">
+                        <svg fill="none" viewBox="0 0 36.3884 36.9753">
+                          <circle
+                            cx="18"
+                            cy="18"
+                            r="16"
+                            fill="#FFCE31"
+                            stroke="white"
+                            stroke-width="2"
+                          />
+                        </svg>
+                      </div>
+                      <p class="student-count-text">{{ bundle.bundle_items_count }}+</p>
+                    </div>
+                  </div>
+                  <p>دورات في الباقة</p>
+                </div>
+              </div>
+
+              <!-- Bundle Info -->
+              <div class="course-info">
+                <div class="info-item">
+                  <svg class="info-icon" fill="none" viewBox="0 0 24 24">
+                    <path d="M3 7h18" stroke="#999EB2" stroke-width="1.5" />
+                    <path
+                      d="M4 19.5A2.5 2.5 0 016.5 17H20"
+                      stroke="#999EB2"
+                      stroke-width="1.5"
+                    />
+                  </svg>
+                  <p>{{ bundle.bundle_items_count }} دورة</p>
+                </div>
+
+                <div class="info-divider">
+                  <svg fill="none" viewBox="0 0 32 1">
+                    <line
+                      stroke="white"
+                      stroke-opacity="0.05"
+                      x2="32"
+                      y1="0.5"
+                      y2="0.5"
+                    />
+                  </svg>
+                </div>
+
+                <div class="info-item level">
+                  <svg class="info-icon" fill="none" viewBox="0 0 24 24">
+                    <path
+                      d="M4 13l4-4 4 4 8-8"
+                      stroke="#999EB2"
+                      stroke-width="1.5"
+                    />
+                  </svg>
+                  <p>متقدم</p>
+                </div>
+
+                <div class="info-divider">
+                  <svg fill="none" viewBox="0 0 33 1">
+                    <line
+                      stroke="white"
+                      stroke-opacity="0.05"
+                      x2="33"
+                      y1="0.5"
+                      y2="0.5"
+                    />
+                  </svg>
+                </div>
+
+                <div class="info-item">
+                  <svg class="info-icon" fill="none" viewBox="0 0 24 24">
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="#999EB2"
+                      stroke-width="1.5"
+                    />
+                    <path
+                      d="M12 8V12L14.5 14.5"
+                      stroke="#999EB2"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <p>مفتوح</p>
+                </div>
+              </div>
+
+              <!-- Price Section -->
+              <div class="price-section">
+                {% if bundle.is_free %}
+                  <div class="price-display">
+                    <p class="new-price">مجاني</p>
+                  </div>
+                {% elseif bundle.regular_price or bundle.sale_price %}
+                  {% if bundle.discount_percent > 0 %}
+                    <div class="discount-badge">
+                      <p>خصم {{ bundle.discount_percent }}%</p>
+                    </div>
+                  {% endif %}
+                  <div class="price-display">
+                    {% if bundle.regular_price and bundle.sale_price %}
+                      <p class="new-price">{{ bundle.sale_price|number_format(2, '.', ',') }} جنيه مصري</p>
+                      <p class="old-price">{{ bundle.regular_price|number_format(2, '.', ',') }} جنيه مصري</p>
+                    {% else %}
+                      <p class="new-price">{{ bundle.price|number_format(2, '.', ',') }} جنيه مصري</p>
+                    {% endif %}
+                  </div>
+                {% else %}
+                  <div class="price-display">
+                    <p class="new-price">مجاني</p>
+                  </div>
+                {% endif %}
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="action-buttons">
+                {% if bundle.is_free %}
+                  {# Free bundle - show get it free button #}
+                  <a 
+                    href="{{ bundle.link }}" 
+                    class="learnsimply-buy-now-button buy-button"
+                  >
+                    <span>احصل عليه مجاناً</span>
+                  </a>
+                {% else %}
+                  {# Paid bundle - direct add to cart link #}
+                  <a 
+                    href="{{ site.url }}/?add-to-cart={{ bundle.id }}"
+                    class="cart-button" 
+                    aria-label="أضف إلى السلة"
+                  >
+                    <img class="cart-icon" src="{{ theme_uri }}/assets/img/Cart.png" alt="سلة التسوق" />
+                  </a>
+                  
+                  <a 
+                    href="{{ bundle.link }}" 
+                    class="learnsimply-buy-now-button buy-button"
+                  >
+                    <span>اشتر الآن</span>
+                  </a>
+                {% endif %}
+              </div>
+            </article>
+            {% endfor %}
+          {% else %}
+            <div class="no-bundles-message" style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #999;">
+              <p>لا توجد باقات متاحة حالياً.</p>
+            </div>
+          {% endif %}
+        </div>
+
+        <a href="{{ site.url }}/shop-2/" class="learnsimply-view-all-button">عرض كل الباقات</a>
+      </div>
+    </section>
+    <!-- ===== END: Bundles Section ===== -->
+

@@ -20,10 +20,18 @@ if ( ! class_exists( 'Timber\Timber' ) ) {
 }
 
 // Get Timber context
-$context = Timber::context();
+$context = Timber::get_context();
 
 // Add theme directory URI to context
 $context['theme_uri'] = get_stylesheet_directory_uri();
+
+// Add cart URL for JavaScript redirects
+$cart_page_id = function_exists( 'wc_get_page_id' ) ? wc_get_page_id( 'cart' ) : 0;
+if ( $cart_page_id && $cart_page_id > 0 ) {
+	$context['cart_url'] = get_permalink( $cart_page_id );
+} else {
+	$context['cart_url'] = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : '/cart-1/';
+}
 
 // Get featured courses from Tutor LMS
 $context['courses'] = array();
@@ -217,6 +225,95 @@ if ( class_exists( 'WooCommerce' ) ) {
 			wp_reset_postdata();
 		}
 	}
+}
+
+// Get products with bundles using asnp-product-bundles plugin
+$context['bundles'] = array();
+if ( class_exists( 'WooCommerce' ) && class_exists( 'AsanaPlugins\WooCommerce\ProductBundles\Plugin' ) ) {
+	// Get all products of type 'easy_product_bundle'
+	$args = array(
+		'post_type'      => 'product',
+		'post_status'    => 'publish',
+		'posts_per_page' => 6,
+		'orderby'        => 'date',
+		'order'          => 'DESC',
+		'tax_query'      => array(
+			array(
+				'taxonomy' => 'product_type',
+				'field'    => 'slug',
+				'terms'    => 'easy_product_bundle',
+			),
+		),
+	);
+	
+	$bundles_query = new WP_Query( $args );
+	
+	if ( $bundles_query->have_posts() ) {
+		while ( $bundles_query->have_posts() ) {
+			$bundles_query->the_post();
+			$bundle_product_id = get_the_ID();
+			$product = wc_get_product( $bundle_product_id );
+			
+			// Verify it's actually a bundle product
+			if ( $product && $product->is_type( 'easy_product_bundle' ) ) {
+				global $wpdb;
+				$table_name = $wpdb->prefix . 'asnp_wepb_simple_bundle_items';
+				
+				// Get bundle items count
+				$has_bundles = $wpdb->get_var( $wpdb->prepare(
+					"SELECT COUNT(*) FROM {$table_name} WHERE bundle_id = %d",
+					$bundle_product_id
+				) );
+				
+				if ( $has_bundles > 0 ) {
+					// Get bundle items count
+					$bundle_items_count = intval( $has_bundles );
+					
+					// Get product data
+					$bundle_data = array(
+						'id' => $bundle_product_id,
+						'title' => $product->get_name(),
+						'link' => get_permalink( $bundle_product_id ),
+						'thumbnail' => get_the_post_thumbnail_url( $bundle_product_id, 'full' ) ?: wc_placeholder_img_src(),
+						'bundle_items_count' => $bundle_items_count,
+					);
+					
+					// Get product prices
+					$regular_price = $product->get_regular_price();
+					$sale_price = $product->get_sale_price();
+					$price = $product->get_price();
+					
+					$bundle_data['regular_price'] = $regular_price ? floatval( $regular_price ) : null;
+					$bundle_data['sale_price'] = $sale_price ? floatval( $sale_price ) : null;
+					$bundle_data['price'] = $price ? floatval( $price ) : 0;
+					
+					// Calculate discount percentage
+					if ( $bundle_data['sale_price'] && $bundle_data['regular_price'] && $bundle_data['regular_price'] > 0 ) {
+						$bundle_data['discount_percent'] = round( ( ( $bundle_data['regular_price'] - $bundle_data['sale_price'] ) / $bundle_data['regular_price'] ) * 100 );
+					} else {
+						$bundle_data['discount_percent'] = 0;
+					}
+					
+					// Check if product is free
+					$bundle_data['is_free'] = ( ! $bundle_data['regular_price'] && ! $bundle_data['sale_price'] ) || $bundle_data['price'] == 0;
+					
+					// Get product rating
+					$average_rating = $product->get_average_rating();
+					$rating_count = $product->get_rating_count();
+					$bundle_data['rating_avg'] = $average_rating ? number_format( $average_rating, 1 ) : 0;
+					$bundle_data['rating_count'] = $rating_count;
+					
+					$context['bundles'][] = $bundle_data;
+				}
+			}
+		}
+		wp_reset_postdata();
+	}
+}
+
+// Ensure bundles is always set (even if empty)
+if ( ! isset( $context['bundles'] ) ) {
+	$context['bundles'] = array();
 }
 
 // Render Twig template

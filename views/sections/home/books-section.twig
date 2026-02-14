@@ -2,7 +2,7 @@
     <section id="books" class="learnsimply-books-section">
         <div class="learnsimply-section-container">
             <div class="learnsimply-section-header">
-                <img src="{{ theme_uri }}/assets/icon-books.png" alt="" class="learnsimply-section-icon">
+                <img src="{{ theme_uri }}/assets/img/book.png" alt="" class="learnsimply-section-icon">
                 <h2 class="learnsimply-section-title">الكتب الموجوده</h2>
             </div>
             <p class="learnsimply-section-description">
@@ -168,16 +168,14 @@
                                 <span>احصل عليه مجاناً</span>
                             </a>
                                 {% else %}
-                                    {# Paid book - show cart and buy buttons #}
-                                <button 
-                                    type="button" 
-                                    class="learnsimply-add-cart-button cart-button" 
+                                    {# Paid book - show cart and buy buttons - direct link for add to cart #}
+                                <a 
+                                    href="{{ site.url }}/?add-to-cart={{ book.id }}"
+                                    class="cart-button" 
                                     aria-label="أضف إلى السلة"
-                                    data-product-id="{{ book.id }}"
-                                    data-product-url="{{ book.product_url }}"
                                 >
                             <img class="cart-icon" src="{{ theme_uri }}/assets/img/Cart.png" alt="سلة التسوق" />
-                        </button>
+                        </a>
 
                                 <a 
                                     href="{{ book.product_url }}" 
@@ -197,6 +195,6 @@
                 {% endif %}
         </div>
 
-        <a href="{{ site.url }}/كتب-برمجية/" class="learnsimply-view-all-button">عرض كل الكتب</a>
+        <a href="{{ site.url }}/shop-2/?product_cat=book" class="learnsimply-view-all-button">عرض كل الكتب</a>
     </section>
     <!-- ===== END: Books Section ===== -->

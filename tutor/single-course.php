@@ -31,6 +31,14 @@ $context = Timber::context();
 // Add theme directory URI to context
 $context['theme_uri'] = get_stylesheet_directory_uri();
 
+// Add cart URL for JavaScript redirects
+$cart_page_id = function_exists( 'wc_get_page_id' ) ? wc_get_page_id( 'cart' ) : 0;
+if ( $cart_page_id && $cart_page_id > 0 ) {
+	$context['cart_url'] = get_permalink( $cart_page_id );
+} else {
+	$context['cart_url'] = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : '/cart-1/';
+}
+
 // Get course post using Timber
 $course = Timber::get_post( $course_id );
 $context['course'] = $course;
@@ -222,6 +230,90 @@ $context['course_material_includes'] = get_post_meta( $course_id, '_tutor_course
 $context['course_image'] = get_the_post_thumbnail_url( $course_id, 'full' );
 if ( ! $context['course_image'] ) {
 	$context['course_image'] = $context['theme_uri'] . '/assets/img/DataStructure.png'; // Fallback image
+}
+
+// Get course intro video (if available)
+$context['course_video'] = null;
+$video_info = get_post_meta( $course_id, '_video', true );
+if ( $video_info && is_array( $video_info ) && ! empty( $video_info['source'] ) ) {
+	$video_data = array(
+		'source' => $video_info['source'],
+	);
+	
+	switch ( $video_info['source'] ) {
+		case 'html5':
+			// HTML5 video - get attachment URL
+			if ( ! empty( $video_info['source_video_id'] ) ) {
+				$video_data['url'] = wp_get_attachment_url( $video_info['source_video_id'] );
+				$video_data['type'] = 'video/mp4';
+			}
+			// Get poster image
+			if ( ! empty( $video_info['poster'] ) ) {
+				$video_data['poster'] = wp_get_attachment_url( $video_info['poster'] );
+			}
+			break;
+			
+		case 'external_url':
+			// External URL video
+			if ( ! empty( $video_info['source_external_url'] ) ) {
+				$video_data['url'] = $video_info['source_external_url'];
+				$video_data['type'] = 'video/mp4';
+			}
+			// Get poster image
+			if ( ! empty( $video_info['poster'] ) ) {
+				$video_data['poster'] = wp_get_attachment_url( $video_info['poster'] );
+			}
+			break;
+			
+		case 'youtube':
+			// YouTube video
+			if ( ! empty( $video_info['source_youtube'] ) ) {
+				// Extract video ID from YouTube URL
+				$youtube_url = $video_info['source_youtube'];
+				$video_id = '';
+				
+				// Match various YouTube URL formats
+				if ( preg_match( '/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/', $youtube_url, $matches ) ) {
+					$video_id = $matches[1];
+				}
+				
+				if ( $video_id ) {
+					$video_data['video_id'] = $video_id;
+					$video_data['embed_url'] = 'https://www.youtube.com/embed/' . $video_id;
+				}
+			}
+			break;
+			
+		case 'vimeo':
+			// Vimeo video
+			if ( ! empty( $video_info['source_vimeo'] ) ) {
+				// Extract video ID from Vimeo URL
+				$vimeo_url = $video_info['source_vimeo'];
+				$video_id = '';
+				
+				if ( preg_match( '/vimeo\.com\/(?:video\/)?(\d+)/', $vimeo_url, $matches ) ) {
+					$video_id = $matches[1];
+				}
+				
+				if ( $video_id ) {
+					$video_data['video_id'] = $video_id;
+					$video_data['embed_url'] = 'https://player.vimeo.com/video/' . $video_id;
+				}
+			}
+			break;
+			
+		case 'embedded':
+			// Embedded code
+			if ( ! empty( $video_info['source_embedded'] ) ) {
+				$video_data['embed_code'] = $video_info['source_embedded'];
+			}
+			break;
+	}
+	
+	// Only set video if we have valid data
+	if ( isset( $video_data['url'] ) || isset( $video_data['embed_url'] ) || isset( $video_data['embed_code'] ) ) {
+		$context['course_video'] = $video_data;
+	}
 }
 
 // Get course updated date

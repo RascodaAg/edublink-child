@@ -7,6 +7,62 @@
 
 defined( 'ABSPATH' ) || exit;
 
+// IMPORTANT: This template is ONLY for product archives (shop pages)
+// Exit early if this is NOT a shop archive page (e.g., cart, checkout, single product, regular pages)
+
+// Check URL directly FIRST - most reliable method
+$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
+if ( strpos( $request_uri, '/product/' ) !== false ||
+     strpos( $request_uri, '/cart' ) !== false || 
+     strpos( $request_uri, '/checkout' ) !== false || 
+     strpos( $request_uri, '/my-account' ) !== false ) {
+    // Not a shop archive, let WordPress use the default page template
+    return;
+}
+
+// Check if we're actually on a shop archive page
+if ( ! is_shop() && ! is_product_category() && ! is_product_tag() && ! is_post_type_archive( 'product' ) ) {
+    // Not a shop archive, let WordPress use the default page template
+    // Don't execute any code in this file
+    return;
+}
+
+// Also check if this is a single product page
+if ( is_product() || is_single() ) {
+    // Not a shop archive, let WordPress use the default page template
+    return;
+}
+
+// Check if shop-2 is the shop page and use custom template
+// IMPORTANT: Only apply to shop archive pages, not regular pages
+if ( is_shop() || is_product_category() || is_product_tag() || is_post_type_archive( 'product' ) ) {
+    $woocommerce_shop_page_id = 0;
+    if ( function_exists( 'wc_get_page_id' ) ) {
+        $woocommerce_shop_page_id = wc_get_page_id( 'shop' );
+    }
+
+    $request_uri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
+    $is_shop_2_url = ( strpos( $request_uri, '/shop-2' ) !== false || strpos( $request_uri, '/shop-2/' ) !== false );
+
+    if ( $woocommerce_shop_page_id == 22662 || $is_shop_2_url ) {
+    // Use custom shop-2 template
+    if ( class_exists( 'Timber\Timber' ) ) {
+        $shop_2_template = get_stylesheet_directory() . '/page-shop-2.php';
+        if ( file_exists( $shop_2_template ) ) {
+            // Prevent Elementor
+            add_filter( 'elementor/frontend/print_google_fonts', '__return_false' );
+            add_filter( 'elementor/theme/get_location_templates', '__return_empty_array', 999 );
+            add_filter( 'elementor/theme/get_location_template_id', '__return_false', 999 );
+            add_filter( 'hfe_header_enabled', '__return_false' );
+            add_filter( 'hfe_footer_enabled', '__return_false' );
+            
+            include( $shop_2_template );
+            exit;
+        }
+    }
+}
+
+// Continue with normal archive-product.php template for other shop pages
 get_header();
 ?>
 

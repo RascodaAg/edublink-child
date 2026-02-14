@@ -215,17 +215,15 @@
                   <span>ابدأ التعلم</span>
                 </a>
               {% else %}
-                {# Paid course - show cart and buy buttons #}
+                {# Paid course - show cart and buy buttons - direct link for add to cart #}
               {% if course.product_id %}
-                <button 
-                  type="button" 
-                  class="learnsimply-add-cart-button cart-button" 
+                <a 
+                  href="{{ site.url }}/?add-to-cart={{ course.product_id }}"
+                  class="cart-button" 
                   aria-label="أضف إلى السلة"
-                  data-product-id="{{ course.product_id }}"
-                  data-product-url="{{ course.product_url ?: course.link }}"
                 >
                   <img class="cart-icon" src="{{ theme_uri }}/assets/img/Cart.png" alt="سلة التسوق" />
-                </button>
+                </a>
               {% endif %}
               
               <a 

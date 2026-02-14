@@ -48,8 +48,16 @@
       </nav>
     </div>
 
-    <!-- Left Side: Auth Buttons -->
+    <!-- Left Side: Cart + Auth Buttons -->
     <div class="learnsimply-header-auth-buttons-container">
+      <!-- Cart Button -->
+      <a href="{{ cart_url ?: site.url ~ '/cart-1/' }}" class="learnsimply-header-cart-button" aria-label="السلة">
+        <img class="learnsimply-header-cart-icon" src="{{ theme_uri }}/assets/img/Cart.png" alt="سلة التسوق" />
+        {% if cart_count and cart_count > 0 %}
+          <span class="learnsimply-header-cart-count">{{ cart_count }}</span>
+        {% endif %}
+      </a>
+
       {% if user %}
         <a href="{{ site.url }}/dashboard/" class="learnsimply-header-btn-login">
           <span class="learnsimply-header-btn-text">حسابي</span>

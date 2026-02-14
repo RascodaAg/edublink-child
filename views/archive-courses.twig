@@ -1,353 +1,376 @@
-<!doctype html>
-<html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ archive_title }} - {{ site.name }}</title>
-    <link rel="stylesheet" href="{{ theme_uri }}/assets/global/styles.css" />
-  </head>
-  <body class="learnsimply-homepage-body">
-    
-    {% include 'components/header.twig' %}
+{% extends "layouts/base.twig" %}
 
-    <!-- ===== START: Main Content ===== -->
-    <main class="course-main-content">
-      <div class="container">
-        <!-- Archive Header -->
-        <div class="learnsimply-section-container" style="margin-top: 100px; margin-bottom: 40px;">
-          <div class="learnsimply-section-header">
-            <img
-              src="{{ theme_uri }}/assets/img/Video Library.png"
-              alt=""
-              class="learnsimply-section-icon"
-            />
-            <h1 class="learnsimply-section-title">{{ archive_title }}</h1>
-          </div>
-        </div>
+{% block title %}{{ archive_title }} - {{ site.name }}{% endblock %}
 
-        <!-- Filter Section (Responsive) -->
-        <div class="courses-filter-section" style="background: rgba(10, 15, 26, 0.8); border-radius: 20px; padding: 25px; border: 1px solid rgba(255, 255, 255, 0.1); margin-top: 40px; margin-bottom: 40px;">
-          <h3 class="courses-filter-title" style="font-size: 20px; font-weight: 600; color: #fff; margin-bottom: 20px;">تصفية الدورات</h3>
-          
-          <!-- Search Box -->
-          <div class="filter-search-box" style="margin-bottom: 25px;">
-            <form method="get" action="{{ site.url }}/courses/" class="courses-search-form" style="display: flex; gap: 10px;">
-              <input 
-                type="text" 
-                name="s" 
-                id="course-search-input"
-                placeholder="ابحث عن دورة..." 
-                value="{{ search_query|default('') }}"
-                style="flex: 1; padding: 12px 20px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; color: #fff; font-size: 16px; outline: none; transition: all 0.3s ease;"
-                onfocus="this.style.borderColor='rgba(64, 119, 243, 0.5)'; this.style.background='rgba(255, 255, 255, 0.08)'"
-                onblur="this.style.borderColor='rgba(255, 255, 255, 0.1)'; this.style.background='rgba(255, 255, 255, 0.05)'"
-              />
-              <button 
-                type="submit" 
-                style="padding: 12px 30px; background: #4077F3; border: none; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 500; cursor: pointer; transition: all 0.3s ease; white-space: nowrap;"
-                onmouseover="this.style.background='#3566d9'"
-                onmouseout="this.style.background='#4077F3'"
-              >
-                بحث
-              </button>
-            </form>
-          </div>
+{% block styles %}
+  <link rel="stylesheet" href="{{ theme_uri }}/assets/course_archive/style.css" />
+{% endblock %}
 
-          <!-- Categories Filter (Responsive) -->
-          {% if course_categories and course_categories|length > 0 %}
-          <div class="filter-categories-wrapper" style="display: flex; flex-wrap: wrap; gap: 10px;">
-            <a 
-              href="{{ site.url }}/courses/" 
-              class="filter-category-btn {% if not current_course_category_slug %}active{% endif %}"
-              style="display: inline-block; padding: 10px 20px; background: {% if not current_course_category_slug %}rgba(64, 119, 243, 0.2){% else %}rgba(255, 255, 255, 0.05){% endif %}; border: 1px solid {% if not current_course_category_slug %}rgba(64, 119, 243, 0.5){% else %}rgba(255, 255, 255, 0.1){% endif %}; border-radius: 8px; color: {% if not current_course_category_slug %}#4077F3{% else %}#999EB2{% endif %}; text-decoration: none; font-size: 14px; transition: all 0.3s ease; white-space: nowrap;"
-              onmouseover="if(!this.classList.contains('active')) { this.style.background='rgba(255, 255, 255, 0.08)'; this.style.borderColor='rgba(255, 255, 255, 0.2)'; }"
-              onmouseout="if(!this.classList.contains('active')) { this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 255, 255, 0.1)'; }"
-            >
-              كل الدورات
-            </a>
-            {% for cat in course_categories %}
-              <a 
-                href="{{ cat.link }}" 
-                class="filter-category-btn {% if current_course_category_slug and current_course_category_slug == cat.slug %}active{% endif %}"
-                style="display: inline-block; padding: 10px 20px; background: {% if current_course_category_slug and current_course_category_slug == cat.slug %}rgba(64, 119, 243, 0.2){% else %}rgba(255, 255, 255, 0.05){% endif %}; border: 1px solid {% if current_course_category_slug and current_course_category_slug == cat.slug %}rgba(64, 119, 243, 0.5){% else %}rgba(255, 255, 255, 0.1){% endif %}; border-radius: 8px; color: {% if current_course_category_slug and current_course_category_slug == cat.slug %}#4077F3{% else %}#999EB2{% endif %}; text-decoration: none; font-size: 14px; transition: all 0.3s ease; white-space: nowrap;"
-                onmouseover="if(!this.classList.contains('active')) { this.style.background='rgba(255, 255, 255, 0.08)'; this.style.borderColor='rgba(255, 255, 255, 0.2)'; }"
-                onmouseout="if(!this.classList.contains('active')) { this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 255, 255, 0.1)'; }"
-              >
-                {{ cat.name }} <span style="color: #666; font-size: 12px;">({{ cat.count }})</span>
-              </a>
-            {% endfor %}
-          </div>
-          {% endif %}
-        </div>
+{% block head_extra %}
+  <style>
+    /* Course Info Icons Fix - Using absolute path */
+    .learnsimply-courses-grid .course-info .info-item:first-child .info-icon,
+    .learnsimply-courses-grid .course-info .info-item.level .info-icon,
+    .course-card .course-info .info-item:first-child .info-icon,
+    .course-card .course-info .info-item.level .info-icon {
+      display: none !important;
+    }
 
-        <!-- Courses Grid (Full Width) -->
-        {% if courses|length > 0 %}
-        <div class="learnsimply-courses-grid" style="width: 100%;">
-          {% for course in courses %}
-          <article class="course-card">
-            <!-- Course Image -->
-            <div class="course-image">
-              <a href="{{ course.link }}">
-                <img src="{{ course.thumbnail }}" alt="{{ course.title }}" />
-              </a>
-            </div>
+    .learnsimply-courses-grid .course-info .info-item:first-child::before,
+    .learnsimply-courses-grid .course-info .info-item.level::before,
+    .course-card .course-info .info-item:first-child::before,
+    .course-card .course-info .info-item.level::before {
+      content: "" !important;
+      display: inline-block !important;
+      width: 24px !important;
+      height: 24px !important;
+      background-size: contain !important;
+      background-repeat: no-repeat !important;
+      background-position: center !important;
+      margin-bottom: 6px !important;
+    }
 
-            <!-- Header: Badge + Instructor -->
-            <div class="course-header">
-              <div class="instructor-info">
-                <div class="instructor-text">
-                  {% if course.instructor %}
-                    <p class="name">{{ course.instructor.display_name }}</p>
-                    <p class="title">{{ course.instructor.job_title|default(instructor_title) }}</p>
-                  {% else %}
-                    <p class="name">م. احمد عادل</p>
-                    <p class="title">{{ instructor_title }}</p>
-                  {% endif %}
-                </div>
+    .learnsimply-courses-grid .course-info .info-item:first-child::before,
+    .course-card .course-info .info-item:first-child::before {
+      background-image: url("{{ theme_uri }}/assets/img/Inbox Line.png") !important;
+    }
 
-                <div class="instructor-avatar">
-                  <div class="avatar-glow avatar-glow-1"></div>
-                  <div class="avatar-glow avatar-glow-2"></div>
-                  {% if course.instructor and course.instructor.avatar %}
-                    <img src="{{ course.instructor.avatar }}" alt="Instructor" />
-                  {% else %}
-                    <img src="{{ theme_uri }}/assets/img/card_image.png" alt="Instructor" />
-                  {% endif %}
-                </div>
-              </div>
+    .learnsimply-courses-grid .course-info .info-item.level::before,
+    .course-card .course-info .info-item.level::before {
+      background-image: url("{{ theme_uri }}/assets/img/levele.png") !important;
+    }
+  </style>
+{% endblock %}
 
-              <div class="course-badge">
-                <p>كورس</p>
-              </div>
-            </div>
+{% block main_attributes %}class="course-main-content"{% endblock %}
 
-            <!-- Course Title -->
-            <div class="course-title">
-              <a href="{{ course.link }}"><p>{{ course.title }}</p></a>
-            </div>
-
-            <!-- Review and Students -->
-            <div class="review-students">
-              <div class="review">
-                <svg class="star-icon" fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M12 2l2.9 6.26L21.9 9.27l-5 3.86L18 21l-6-3.16L6 21l1.1-7.87-5-3.86 6.99-0.99L12 2z"
-                    fill="#FFBB54"
-                  />
-                </svg>
-                <p>{{ course.rating_avg }} ({{ course.rating_count }} تقييم)</p>
-              </div>
-
-              <div class="students">
-                <div class="students-avatars">
-                  <img
-                    class="student-avatar student-avatar-1"
-                    src="{{ theme_uri }}/assets/img/ellipse1.png"
-                    alt=""
-                  />
-                  <img
-                    class="student-avatar student-avatar-2"
-                    src="{{ theme_uri }}/assets/img/ellipse2.png"
-                    alt=""
-                  />
-                  <img
-                    class="student-avatar student-avatar-3"
-                    src="{{ theme_uri }}/assets/img/ellipse3.png"
-                    alt=""
-                  />
-
-                  <div class="student-count">
-                    <div class="student-count-circle">
-                      <svg fill="none" viewBox="0 0 36.3884 36.9753">
-                        <circle
-                          cx="18"
-                          cy="18"
-                          r="16"
-                          fill="#FFCE31"
-                          stroke="white"
-                          stroke-width="2"
-                        />
-                      </svg>
-                    </div>
-                    <p class="student-count-text">{{ course.students_count }}+</p>
-                  </div>
-                </div>
-                <p>الطلاب المشتركين</p>
-              </div>
-            </div>
-
-            <!-- Course Info -->
-            <div class="course-info">
-              <div class="info-item">
-                <svg class="info-icon" fill="none" viewBox="0 0 24 24">
-                  <path d="M3 7h18" stroke="#999EB2" stroke-width="1.5" />
-                  <path
-                    d="M4 19.5A2.5 2.5 0 016.5 17H20"
-                    stroke="#999EB2"
-                    stroke-width="1.5"
-                  />
-                </svg>
-                <p>{{ course.lesson_count }} محتوى</p>
-              </div>
-
-              <div class="info-divider">
-                <svg fill="none" viewBox="0 0 32 1">
-                  <line
-                    stroke="white"
-                    stroke-opacity="0.05"
-                    x2="32"
-                    y1="0.5"
-                    y2="0.5"
-                  />
-                </svg>
-              </div>
-
-              <div class="info-item level">
-                <svg class="info-icon" fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M4 13l4-4 4 4 8-8"
-                    stroke="#999EB2"
-                    stroke-width="1.5"
-                  />
-                </svg>
-                <p>{{ course.level }}</p>
-              </div>
-
-              <div class="info-divider">
-                <svg fill="none" viewBox="0 0 33 1">
-                  <line
-                    stroke="white"
-                    stroke-opacity="0.05"
-                    x2="33"
-                    y1="0.5"
-                    y2="0.5"
-                  />
-                </svg>
-              </div>
-
-              <div class="info-item">
-                <svg class="info-icon" fill="none" viewBox="0 0 24 24">
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="#999EB2"
-                    stroke-width="1.5"
-                  />
-                  <path
-                    d="M12 8V12L14.5 14.5"
-                    stroke="#999EB2"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                <p>{{ course.duration|default('40 ساعة') }}</p>
-              </div>
-            </div>
-
-            <!-- Price Section -->
-            <div class="price-section">
-              {% if course.is_free %}
-                <div class="price-display">
-                  <p class="new-price">مجاني</p>
-                </div>
-              {% elseif course.regular_price or course.sale_price %}
-                {% if course.discount_percent > 0 %}
-                  <div class="discount-badge">
-                    <p>خصم {{ course.discount_percent }}%</p>
-                  </div>
-                {% endif %}
-                <div class="price-display">
-                  {% if course.regular_price and course.sale_price %}
-                    <p class="new-price">{{ course.sale_price|number_format(2, '.', ',') }} جنيه مصري</p>
-                    <p class="old-price">{{ course.regular_price|number_format(2, '.', ',') }} جنيه مصري</p>
-                  {% else %}
-                    <p class="new-price">{{ course.price|number_format(2, '.', ',') }} جنيه مصري</p>
-                  {% endif %}
-                </div>
-              {% else %}
-                <div class="price-display">
-                  <p class="new-price">مجاني</p>
-                </div>
-              {% endif %}
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="action-buttons">
-              {% if course.is_free %}
-                {# Free course - show enroll/start learning button #}
-                <a 
-                  href="{{ course.link }}" 
-                  class="learnsimply-buy-now-button buy-button"
-                >
-                  <span>ابدأ التعلم</span>
-                </a>
-              {% else %}
-                {# Paid course - show cart and buy buttons #}
-              {% if course.product_id %}
-                <button 
-                  type="button" 
-                  class="learnsimply-add-cart-button cart-button" 
-                  aria-label="أضف إلى السلة"
-                  data-product-id="{{ course.product_id }}"
-                  data-product-url="{{ course.product_url ?: course.link }}"
-                >
-                  <img class="cart-icon" src="{{ theme_uri }}/assets/img/Cart.png" alt="سلة التسوق" />
-                </button>
-              {% endif %}
-              
-              <a 
-                href="{{ course.product_url ?: course.link }}" 
-                class="learnsimply-buy-now-button buy-button"
-              >
-                <span>اشتر الآن</span>
-              </a>
-              {% endif %}
-            </div>
-          </article>
-          {% endfor %}
-        </div>
-
-        <!-- Pagination -->
-        {% if pagination %}
-        <div class="learnsimply-pagination" style="margin-top: 60px; margin-bottom: 60px; text-align: center; display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap;">
-          {% if pagination.prev %}
-            <a href="{{ pagination.prev.link }}" class="learnsimply-pagination-link learnsimply-pagination-prev" style="padding: 10px 20px; background: rgba(10, 15, 26, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; color: #fff; text-decoration: none; transition: all 0.3s ease;">
-              السابق
-            </a>
-          {% endif %}
-          
-          {% for page in pagination.pages %}
-            {% if page.link %}
-              <a href="{{ page.link }}" class="learnsimply-pagination-link {% if page.current %}learnsimply-pagination-current{% endif %}" style="padding: 10px 15px; background: {% if page.current %}rgba(64, 119, 243, 0.2){% else %}rgba(10, 15, 26, 0.8){% endif %}; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; color: {% if page.current %}#4077F3{% else %}#fff{% endif %}; text-decoration: none; transition: all 0.3s ease; min-width: 40px; text-align: center;">
-                {{ page.title }}
-              </a>
-            {% else %}
-              <span class="learnsimply-pagination-link learnsimply-pagination-dots" style="padding: 10px 5px; color: #999EB2;">{{ page.title }}</span>
-            {% endif %}
-          {% endfor %}
-          
-          {% if pagination.next %}
-            <a href="{{ pagination.next.link }}" class="learnsimply-pagination-link learnsimply-pagination-next" style="padding: 10px 20px; background: rgba(10, 15, 26, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; color: #fff; text-decoration: none; transition: all 0.3s ease;">
-              التالي
-            </a>
-          {% endif %}
-        </div>
-        {% endif %}
-
-        {% else %}
-        <div class="learnsimply-no-courses" style="text-align: center; padding: 60px 20px;">
-          <p style="font-size: 18px; color: #999EB2;">لا توجد دورات متاحة حالياً.</p>
-        </div>
-        {% endif %}
+{% block content %}
+  <div class="container">
+    <!-- Archive Header -->
+    <div class="learnsimply-section-container" style="margin-top: 100px; margin-bottom: 40px;">
+      <div class="learnsimply-section-header">
+        <img
+          src="{{ theme_uri }}/assets/img/Video Library.png"
+          alt=""
+          class="learnsimply-section-icon"
+        />
+        <h1 class="learnsimply-section-title">{{ archive_title }}</h1>
       </div>
-    </main>
-    <!-- ===== END: Main Content ===== -->
+    </div>
 
-    {% include 'components/footer.twig' %}
+    <!-- Filter Section (Responsive) -->
+    <div class="courses-filter-section" style="background: rgba(10, 15, 26, 0.8); border-radius: 20px; padding: 25px; border: 1px solid rgba(255, 255, 255, 0.1); margin-top: 40px; margin-bottom: 40px;">
+      <h3 class="courses-filter-title" style="font-size: 20px; font-weight: 600; color: #fff; margin-bottom: 20px;">تصفية الدورات</h3>
+      
+      <!-- Search Box -->
+      <div class="filter-search-box" style="margin-bottom: 25px;">
+        <form method="get" action="{{ site.url }}/courses/" class="courses-search-form" style="display: flex; gap: 10px;">
+          <input 
+            type="text" 
+            name="s" 
+            id="course-search-input"
+            placeholder="ابحث عن دورة..." 
+            value="{{ search_query|default('') }}"
+            style="flex: 1; padding: 12px 20px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; color: #fff; font-size: 16px; outline: none; transition: all 0.3s ease;"
+            onfocus="this.style.borderColor='rgba(64, 119, 243, 0.5)'; this.style.background='rgba(255, 255, 255, 0.08)'"
+            onblur="this.style.borderColor='rgba(255, 255, 255, 0.1)'; this.style.background='rgba(255, 255, 255, 0.05)'"
+          />
+          <button 
+            type="submit" 
+            style="padding: 12px 30px; background: #4077F3; border: none; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 500; cursor: pointer; transition: all 0.3s ease; white-space: nowrap;"
+            onmouseover="this.style.background='#3566d9'"
+            onmouseout="this.style.background='#4077F3'"
+          >
+            بحث
+          </button>
+        </form>
+      </div>
 
-    <script src="{{ theme_uri }}/assets/global/script.js"></script>
-  </body>
-</html>
+      <!-- Categories Filter (Responsive) -->
+      {% if course_categories and course_categories|length > 0 %}
+      <div class="filter-categories-wrapper" style="display: flex; flex-wrap: wrap; gap: 10px;">
+        <a 
+          href="{{ site.url }}/courses/" 
+          class="filter-category-btn {% if not current_course_category_slug %}active{% endif %}"
+          style="display: inline-block; padding: 10px 20px; background: {% if not current_course_category_slug %}rgba(64, 119, 243, 0.2){% else %}rgba(255, 255, 255, 0.05){% endif %}; border: 1px solid {% if not current_course_category_slug %}rgba(64, 119, 243, 0.5){% else %}rgba(255, 255, 255, 0.1){% endif %}; border-radius: 8px; color: {% if not current_course_category_slug %}#4077F3{% else %}#999EB2{% endif %}; text-decoration: none; font-size: 14px; transition: all 0.3s ease; white-space: nowrap;"
+          onmouseover="if(!this.classList.contains('active')) { this.style.background='rgba(255, 255, 255, 0.08)'; this.style.borderColor='rgba(255, 255, 255, 0.2)'; }"
+          onmouseout="if(!this.classList.contains('active')) { this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 255, 255, 0.1)'; }"
+        >
+          كل الدورات
+        </a>
+        {% for cat in course_categories %}
+          <a 
+            href="{{ cat.link }}" 
+            class="filter-category-btn {% if current_course_category_slug and current_course_category_slug == cat.slug %}active{% endif %}"
+            style="display: inline-block; padding: 10px 20px; background: {% if current_course_category_slug and current_course_category_slug == cat.slug %}rgba(64, 119, 243, 0.2){% else %}rgba(255, 255, 255, 0.05){% endif %}; border: 1px solid {% if current_course_category_slug and current_course_category_slug == cat.slug %}rgba(64, 119, 243, 0.5){% else %}rgba(255, 255, 255, 0.1){% endif %}; border-radius: 8px; color: {% if current_course_category_slug and current_course_category_slug == cat.slug %}#4077F3{% else %}#999EB2{% endif %}; text-decoration: none; font-size: 14px; transition: all 0.3s ease; white-space: nowrap;"
+            onmouseover="if(!this.classList.contains('active')) { this.style.background='rgba(255, 255, 255, 0.08)'; this.style.borderColor='rgba(255, 255, 255, 0.2)'; }"
+            onmouseout="if(!this.classList.contains('active')) { this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 255, 255, 0.1)'; }"
+          >
+            {{ cat.name }} <span style="color: #666; font-size: 12px;">({{ cat.count }})</span>
+          </a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
 
+    <!-- Courses Grid (Full Width) -->
+    {% if courses|length > 0 %}
+    <div class="learnsimply-courses-grid" style="width: 100%;">
+      {% for course in courses %}
+      <article class="course-card">
+        <!-- Course Image -->
+        <div class="course-image">
+          <a href="{{ course.link }}">
+            <img src="{{ course.thumbnail }}" alt="{{ course.title }}" />
+          </a>
+        </div>
+
+        <!-- Header: Badge + Instructor -->
+        <div class="course-header">
+          <div class="instructor-info">
+            <div class="instructor-text">
+              {% if course.instructor %}
+                <p class="name">{{ course.instructor.display_name }}</p>
+                <p class="title">{{ course.instructor.job_title|default(instructor_title) }}</p>
+              {% else %}
+                <p class="name">م. احمد عادل</p>
+                <p class="title">{{ instructor_title }}</p>
+              {% endif %}
+            </div>
+
+            <div class="instructor-avatar">
+              <div class="avatar-glow avatar-glow-1"></div>
+              <div class="avatar-glow avatar-glow-2"></div>
+              {% if course.instructor and course.instructor.avatar %}
+                <img src="{{ course.instructor.avatar }}" alt="Instructor" />
+              {% else %}
+                <img src="{{ theme_uri }}/assets/img/card_image.png" alt="Instructor" />
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="course-badge">
+            <p>كورس</p>
+          </div>
+        </div>
+
+        <!-- Course Title -->
+        <div class="course-title">
+          <a href="{{ course.link }}"><p>{{ course.title }}</p></a>
+        </div>
+
+        <!-- Review and Students -->
+        <div class="review-students">
+          <div class="review">
+            <svg class="star-icon" fill="none" viewBox="0 0 24 24">
+              <path
+                d="M12 2l2.9 6.26L21.9 9.27l-5 3.86L18 21l-6-3.16L6 21l1.1-7.87-5-3.86 6.99-0.99L12 2z"
+                fill="#FFBB54"
+              />
+            </svg>
+            <p>{{ course.rating_avg }} ({{ course.rating_count }} تقييم)</p>
+          </div>
+
+          <div class="students">
+            <div class="students-avatars">
+              <img
+                class="student-avatar student-avatar-1"
+                src="{{ theme_uri }}/assets/img/ellipse1.png"
+                alt=""
+              />
+              <img
+                class="student-avatar student-avatar-2"
+                src="{{ theme_uri }}/assets/img/ellipse2.png"
+                alt=""
+              />
+              <img
+                class="student-avatar student-avatar-3"
+                src="{{ theme_uri }}/assets/img/ellipse3.png"
+                alt=""
+              />
+
+              <div class="student-count">
+                <div class="student-count-circle">
+                  <svg fill="none" viewBox="0 0 36.3884 36.9753">
+                    <circle
+                      cx="18"
+                      cy="18"
+                      r="16"
+                      fill="#FFCE31"
+                      stroke="white"
+                      stroke-width="2"
+                    />
+                  </svg>
+                </div>
+                <p class="student-count-text">{{ course.students_count }}+</p>
+              </div>
+            </div>
+            <p>الطلاب المشتركين</p>
+          </div>
+        </div>
+
+        <!-- Course Info -->
+        <div class="course-info">
+          <div class="info-item">
+            <svg class="info-icon" fill="none" viewBox="0 0 24 24">
+              <path d="M3 7h18" stroke="#999EB2" stroke-width="1.5" />
+              <path
+                d="M4 19.5A2.5 2.5 0 016.5 17H20"
+                stroke="#999EB2"
+                stroke-width="1.5"
+              />
+            </svg>
+            <p>{{ course.lesson_count }} محتوى</p>
+          </div>
+
+          <div class="info-divider">
+            <svg fill="none" viewBox="0 0 32 1">
+              <line
+                stroke="white"
+                stroke-opacity="0.05"
+                x2="32"
+                y1="0.5"
+                y2="0.5"
+              />
+            </svg>
+          </div>
+
+          <div class="info-item level">
+            <svg class="info-icon" fill="none" viewBox="0 0 24 24">
+              <path
+                d="M4 13l4-4 4 4 8-8"
+                stroke="#999EB2"
+                stroke-width="1.5"
+              />
+            </svg>
+            <p>{{ course.level }}</p>
+          </div>
+
+          <div class="info-divider">
+            <svg fill="none" viewBox="0 0 33 1">
+              <line
+                stroke="white"
+                stroke-opacity="0.05"
+                x2="33"
+                y1="0.5"
+                y2="0.5"
+              />
+            </svg>
+          </div>
+
+          <div class="info-item">
+            <svg class="info-icon" fill="none" viewBox="0 0 24 24">
+              <circle
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="#999EB2"
+                stroke-width="1.5"
+              />
+              <path
+                d="M12 8V12L14.5 14.5"
+                stroke="#999EB2"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <p>{{ course.duration|default('40 ساعة') }}</p>
+          </div>
+        </div>
+
+        <!-- Price Section -->
+        <div class="price-section">
+          {% if course.is_free %}
+            <div class="price-display">
+              <p class="new-price">مجاني</p>
+            </div>
+          {% elseif course.regular_price or course.sale_price %}
+            {% if course.discount_percent > 0 %}
+              <div class="discount-badge">
+                <p>خصم {{ course.discount_percent }}%</p>
+              </div>
+            {% endif %}
+            <div class="price-display">
+              {% if course.regular_price and course.sale_price %}
+                <p class="new-price">{{ course.sale_price|number_format(2, '.', ',') }} جنيه مصري</p>
+                <p class="old-price">{{ course.regular_price|number_format(2, '.', ',') }} جنيه مصري</p>
+              {% else %}
+                <p class="new-price">{{ course.price|number_format(2, '.', ',') }} جنيه مصري</p>
+              {% endif %}
+            </div>
+          {% else %}
+            <div class="price-display">
+              <p class="new-price">مجاني</p>
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          {% if course.is_free %}
+            {# Free course - show enroll/start learning button #}
+            <a 
+              href="{{ course.link }}" 
+              class="learnsimply-buy-now-button buy-button"
+            >
+              <span>ابدأ التعلم</span>
+            </a>
+          {% else %}
+            {# Paid course - show cart and buy buttons - direct link for add to cart #}
+          {% if course.product_id %}
+            <a 
+              href="{{ site.url }}/?add-to-cart={{ course.product_id }}"
+              class="cart-button" 
+              aria-label="أضف إلى السلة"
+            >
+              <img class="cart-icon" src="{{ theme_uri }}/assets/img/Cart.png" alt="سلة التسوق" />
+            </a>
+          {% endif %}
+          
+          <a 
+            href="{{ course.product_url ?: course.link }}" 
+            class="learnsimply-buy-now-button buy-button"
+          >
+            <span>اشتر الآن</span>
+          </a>
+          {% endif %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if pagination %}
+    <div class="learnsimply-pagination" style="margin-top: 60px; margin-bottom: 60px; text-align: center; display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap;">
+      {% if pagination.prev %}
+        <a href="{{ pagination.prev.link }}" class="learnsimply-pagination-link learnsimply-pagination-prev" style="padding: 10px 20px; background: rgba(10, 15, 26, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; color: #fff; text-decoration: none; transition: all 0.3s ease;">
+          السابق
+        </a>
+      {% endif %}
+      
+      {% for page in pagination.pages %}
+        {% if page.link %}
+          <a href="{{ page.link }}" class="learnsimply-pagination-link {% if page.current %}learnsimply-pagination-current{% endif %}" style="padding: 10px 15px; background: {% if page.current %}rgba(64, 119, 243, 0.2){% else %}rgba(10, 15, 26, 0.8){% endif %}; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; color: {% if page.current %}#4077F3{% else %}#fff{% endif %}; text-decoration: none; transition: all 0.3s ease; min-width: 40px; text-align: center;">
+            {{ page.title }}
+          </a>
+        {% else %}
+          <span class="learnsimply-pagination-link learnsimply-pagination-dots" style="padding: 10px 5px; color: #999EB2;">{{ page.title }}</span>
+        {% endif %}
+      {% endfor %}
+      
+      {% if pagination.next %}
+        <a href="{{ pagination.next.link }}" class="learnsimply-pagination-link learnsimply-pagination-next" style="padding: 10px 20px; background: rgba(10, 15, 26, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; color: #fff; text-decoration: none; transition: all 0.3s ease;">
+          التالي
+        </a>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    {% else %}
+    <div class="learnsimply-no-courses" style="text-align: center; padding: 60px 20px;">
+      <p style="font-size: 18px; color: #999EB2;">لا توجد دورات متاحة حالياً.</p>
+    </div>
+    {% endif %}
+  </div>
+{% endblock %}

@@ -60,53 +60,20 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 
 	// Add to Cart functionality for WooCommerce products
+	// No AJAX - let the link work naturally, PHP redirect will handle it
 	const addToCartButtons = document.querySelectorAll(
 		".add-to-cart-button"
 	);
 	addToCartButtons.forEach((button) => {
+		// Just add loading state, don't prevent default
 		button.addEventListener("click", function (e) {
-			e.preventDefault();
-			const productId = this.getAttribute("data-product-id");
-			if (!productId) return;
-
-			// Use WooCommerce AJAX add to cart
-			if (typeof wc_add_to_cart_params !== "undefined") {
-				const data = {
-					action: "woocommerce_add_to_cart",
-					product_id: productId,
-					quantity: 1,
-				};
-
-				fetch(wc_add_to_cart_params.wc_ajax_url.toString().replace("%%endpoint%%", "add_to_cart"), {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-					},
-					body: new URLSearchParams(data),
-				})
-					.then((response) => response.json())
-					.then((data) => {
-						if (data.error && data.product_url) {
-							window.location = data.product_url;
-							return;
-						}
-						// Trigger cart update event
-						document.body.dispatchEvent(
-							new CustomEvent("added_to_cart", {
-								detail: {
-									fragments: data.fragments,
-									cart_hash: data.cart_hash,
-								},
-							})
-						);
-					})
-					.catch((error) => {
-						console.error("Error adding to cart:", error);
-					});
-			} else {
-				// Fallback to regular link
-				window.location.href = this.href;
-			}
+			// Show loading state
+			const originalText = this.textContent;
+			this.textContent = "جاري الإضافة...";
+			this.disabled = true;
+			
+			// Let the link work naturally - PHP redirect will handle the redirect
+			// No preventDefault, no AJAX - simple and reliable
 		});
 	});
 });

@@ -296,6 +296,53 @@
   flex-shrink: 0;
 }
 
+/* Header Cart Button */
+.learnsimply-header-cart-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.learnsimply-header-cart-button:hover {
+  background: rgba(160, 100, 255, 0.15);
+  border-color: rgba(160, 100, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.learnsimply-header-cart-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.learnsimply-header-cart-count {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  background: linear-gradient(135deg, #a064ff, #8b5cf6);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(160, 100, 255, 0.4);
+}
+
 /* Mobile Menu Toggle */
 .learnsimply-header-mobile-toggle {
   display: none;
@@ -513,6 +560,25 @@
 
   .learnsimply-header-logo-text {
     font-size: 17px;
+  }
+
+  .learnsimply-header-cart-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .learnsimply-header-cart-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .learnsimply-header-cart-count {
+    min-width: 18px;
+    height: 18px;
+    font-size: 10px;
+    line-height: 18px;
+    top: -3px;
+    right: -3px;
   }
 }
 

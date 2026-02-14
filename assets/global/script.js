@@ -1,41 +1,7 @@
 /**
- * Learnsimply Homepage - Interactive Functionality
+ * Learnsimply Global Scripts
  * Pure Vanilla JavaScript - No Libraries
  */
-
-console.log("🚀 Script loaded successfully!");
-
-// ===== GLOBAL FAQ FUNCTION =====
-window.toggleFaq = function (button) {
-  console.log("FAQ button clicked!", button);
-
-  const faqItem = button.closest(".faq-accordion-item");
-
-  if (!faqItem) {
-    console.error("Could not find FAQ item");
-    return;
-  }
-
-  const isActive = faqItem.classList.contains("active");
-  console.log("Currently active:", isActive);
-
-  // Close all other FAQ items
-  document.querySelectorAll(".faq-accordion-item").forEach((item) => {
-    if (item !== faqItem) {
-      item.classList.remove("active");
-    }
-  });
-
-  // Toggle current FAQ item
-  faqItem.classList.toggle("active");
-
-  console.log(
-    "FAQ item toggled. New state:",
-    faqItem.classList.contains("active"),
-  );
-};
-
-console.log("🚀 FAQ script loaded successfully!");
 
 (function () {
   "use strict";
@@ -86,29 +52,32 @@ console.log("🚀 FAQ script loaded successfully!");
     if (!menuItems.length) return;
 
     menuItems.forEach((menuItem) => {
-      menuItem.addEventListener("click", function () {
+      menuItem.addEventListener("click", function (e) {
         const target = this.getAttribute("data-target");
 
-        // Remove active state from all menu items
-        menuItems.forEach((item) => {
-          item.classList.remove("learnsimply-header-menu-item-active");
-          const menuText = item.querySelector(".learnsimply-header-menu-text");
-          if (menuText) {
-            menuText.classList.remove("learnsimply-header-menu-text-active");
-          }
-        });
-
-        // Add active state to clicked item
-        this.classList.add("learnsimply-header-menu-item-active");
-        const clickedMenuText = this.querySelector(
-          ".learnsimply-header-menu-text",
-        );
-        if (clickedMenuText) {
-          clickedMenuText.classList.add("learnsimply-header-menu-text-active");
-        }
-
-        // Smooth scroll to target section
+        // Only prevent default if it's a hash link for smooth scroll
         if (target && target.startsWith("#")) {
+          e.preventDefault();
+          
+          // Remove active state from all menu items
+          menuItems.forEach((item) => {
+            item.classList.remove("learnsimply-header-menu-item-active");
+            const menuText = item.querySelector(".learnsimply-header-menu-text");
+            if (menuText) {
+              menuText.classList.remove("learnsimply-header-menu-text-active");
+            }
+          });
+
+          // Add active state to clicked item
+          this.classList.add("learnsimply-header-menu-item-active");
+          const clickedMenuText = this.querySelector(
+            ".learnsimply-header-menu-text",
+          );
+          if (clickedMenuText) {
+            clickedMenuText.classList.add("learnsimply-header-menu-text-active");
+          }
+
+          // Smooth scroll to target section
           const targetElement = document.querySelector(target);
           if (targetElement) {
             smoothScrollTo(targetElement);
@@ -119,62 +88,6 @@ console.log("🚀 FAQ script loaded successfully!");
   }
 
   /**
-   * Initialize hero section buttons
-   */
-  function initHeroSectionButtons() {
-    const btnBrowseCourses = document.querySelector(
-      ".learnsimply-button-light",
-    );
-    const btnBrowseBooks = document.querySelector(".learnsimply-button-dark");
-
-    if (btnBrowseCourses) {
-      btnBrowseCourses.addEventListener("click", function (event) {
-        event.preventDefault();
-        // WordPress/Twig integration point
-        console.log("Browse Courses button clicked");
-        // window.location.href = '/courses';
-      });
-    }
-
-    if (btnBrowseBooks) {
-      btnBrowseBooks.addEventListener("click", function (event) {
-        event.preventDefault();
-        // WordPress/Twig integration point
-        console.log("Browse Books button clicked");
-        // window.location.href = '/books';
-      });
-    }
-  }
-
-  /**
-   * Initialize auth buttons functionality
-   */
-  function initHeaderAuthButtons() {
-    const loginButton = document.querySelector(".learnsimply-header-btn-login");
-    const signupButton = document.querySelector(
-      ".learnsimply-header-btn-signup",
-    );
-
-    if (loginButton) {
-      loginButton.addEventListener("click", function (event) {
-        event.preventDefault();
-        // WordPress/Twig integration point
-        console.log("Login button clicked");
-        // window.location.href = '/login';
-      });
-    }
-
-    if (signupButton) {
-      signupButton.addEventListener("click", function (event) {
-        event.preventDefault();
-        // WordPress/Twig integration point
-        console.log("Signup button clicked");
-        // window.location.href = '/register';
-      });
-    }
-  }
-
-  /**
    * Update active navigation on scroll
    */
   function updateHeaderNavigationOnScroll() {
@@ -182,6 +95,8 @@ console.log("🚀 FAQ script loaded successfully!");
     const menuItems = document.querySelectorAll(
       ".learnsimply-header-menu-item",
     );
+
+    if (!sections.length || !menuItems.length) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -225,217 +140,97 @@ console.log("🚀 FAQ script loaded successfully!");
     sections.forEach((section) => observer.observe(section));
   }
 
-  /**
-   * Backwards-compatible wrapper used in original static project
-   * Simply delegates to our header navigation initializer.
-   */
-  function HeaderNavigation() {
-    initHeaderNavigation();
-  }
-
-  /**
-   * Backwards-compatible no-op for original smooth scroll helper.
-   * Our smooth scroll logic is already inside initHeaderNavigation.
-   */
-  function initNavigationSmoothScroll() {
-    // Smooth scrolling is handled inside initHeaderNavigation via data-target attributes.
-  }
-
-  /**
-   * Backwards-compatible wrapper mapping to our scroll-based header updater.
-   */
-  function updateActiveNavigationOnScroll() {
-    updateHeaderNavigationOnScroll();
-  }
-
   // ===== FAQ ACCORDION FUNCTIONALITY =====
 
   /**
-   * Initialize FAQ accordion
+   * Global FAQ toggle function (used in Twig templates via onclick)
+   * This is the primary method for FAQ toggling
+   */
+  window.toggleFaq = function (button) {
+    if (!button) return;
+    
+    const faqItem = button.closest(".faq-accordion-item");
+
+    if (!faqItem) {
+      console.error("Could not find FAQ item");
+      return;
+    }
+
+    // Close all other FAQ items
+    document.querySelectorAll(".faq-accordion-item").forEach((item) => {
+      if (item !== faqItem) {
+        item.classList.remove("active");
+      }
+    });
+
+    // Toggle current FAQ item
+    faqItem.classList.toggle("active");
+  };
+
+  /**
+   * Initialize FAQ accordion using event delegation
+   * This works as a fallback for FAQ items that don't have onclick="toggleFaq(this)"
+   * Items with onclick will use the global toggleFaq function instead
    */
   function initFaqAccordion() {
-    const faqQuestions = document.querySelectorAll(".learnsimply-faq-question");
+    // Use event delegation but only for items without onclick
+    document.addEventListener("click", function (e) {
+      const question = e.target.closest(".faq-question");
+      
+      // Skip if the question has onclick handler (it will use toggleFaq)
+      if (question && question.hasAttribute("onclick")) {
+        return;
+      }
+      
+      // Also support old class names for backwards compatibility
+      const oldQuestion = e.target.closest(".learnsimply-faq-question");
+      if (oldQuestion) {
+        const oldFaqItem = oldQuestion.closest(".learnsimply-faq-item");
+        if (oldFaqItem) {
+          // Close all other FAQ items
+          document.querySelectorAll(".learnsimply-faq-item").forEach((item) => {
+            if (item !== oldFaqItem) {
+              item.classList.remove("learnsimply-faq-item-active");
+            }
+          });
+          // Toggle current FAQ item
+          oldFaqItem.classList.toggle("learnsimply-faq-item-active");
+        }
+        return;
+      }
+      
+      if (question) {
+        const faqItem = question.closest(".faq-accordion-item");
 
-    faqQuestions.forEach((question) => {
-      question.addEventListener("click", function () {
-        const faqItem = this.closest(".learnsimply-faq-item");
-        const isActive = faqItem.classList.contains(
-          "learnsimply-faq-item-active",
-        );
+        if (!faqItem) return;
 
         // Close all other FAQ items
-        document.querySelectorAll(".learnsimply-faq-item").forEach((item) => {
+        document.querySelectorAll(".faq-accordion-item").forEach((item) => {
           if (item !== faqItem) {
-            item.classList.remove("learnsimply-faq-item-active");
+            item.classList.remove("active");
           }
         });
 
         // Toggle current FAQ item
-        if (isActive) {
-          faqItem.classList.remove("learnsimply-faq-item-active");
-        } else {
-          faqItem.classList.add("learnsimply-faq-item-active");
-        }
-      });
+        faqItem.classList.toggle("active");
+      }
     });
   }
-
-  /**
-   * Initialize new FAQ accordion
-   */
-  function initNewFaqAccordion() {
-    // Small delay to ensure DOM is fully ready
-    setTimeout(() => {
-      console.log("🚀 Initializing new FAQ accordion...");
-
-      // Add click handlers to FAQ questions using event delegation
-      document.addEventListener("click", function (e) {
-        if (e.target.closest(".faq-question")) {
-          console.log("✅ FAQ question clicked!");
-          e.preventDefault();
-          e.stopPropagation();
-
-          const question = e.target.closest(".faq-question");
-          const faqItem = question.closest(".faq-accordion-item");
-
-          console.log(
-            "📝 Question text:",
-            question.querySelector(".faq-question-text").textContent.trim(),
-          );
-
-          if (!faqItem) {
-            console.error("❌ Could not find faq-accordion-item parent");
-            return;
-          }
-
-          const isActive = faqItem.classList.contains("active");
-          console.log("🔍 Is currently active:", isActive);
-
-          // Close all other FAQ items
-          document.querySelectorAll(".faq-accordion-item").forEach((item) => {
-            if (item !== faqItem) {
-              item.classList.remove("active");
-            }
-          });
-
-          // Toggle current FAQ item
-          if (isActive) {
-            faqItem.classList.remove("active");
-            console.log("⬇️ Removed active class from current item");
-          } else {
-            faqItem.classList.add("active");
-            console.log("⬆️ Added active class to current item");
-          }
-        }
-      });
-
-      console.log("✨ New FAQ accordion initialized with event delegation");
-    }, 100);
-  }
-  // ===== NEW FAQ ACCORDION FUNCTIONALITY =====
 
   // ===== TESTIMONIALS SLIDER FUNCTIONALITY =====
 
   /**
-   * Initialize testimonials slider
+   * Initialize new testimonials grid slider
    */
-  function initTestimonialsSlider() {
-    const slider = document.querySelector(".learnsimply-testimonials-slider");
-    const prevButton = document.querySelector(".learnsimply-arrow-prev");
-    const nextButton = document.querySelector(".learnsimply-arrow-next");
-
-    if (!slider || !prevButton || !nextButton) return;
-
-    const cardWidth = 492.667 + 24; // Card width + gap
-    let currentPosition = 0;
-
-    function updateSliderPosition() {
-      slider.scrollTo({
-        left: currentPosition,
-        behavior: "smooth",
-      });
-    }
-
-    function updateButtonStates() {
-      const maxScroll = slider.scrollWidth - slider.clientWidth;
-
-      prevButton.style.opacity = currentPosition <= 0 ? "0.5" : "1";
-      prevButton.style.pointerEvents = currentPosition <= 0 ? "none" : "auto";
-
-      nextButton.style.opacity = currentPosition >= maxScroll ? "0.5" : "1";
-      nextButton.style.pointerEvents =
-        currentPosition >= maxScroll ? "none" : "auto";
-    }
-
-    prevButton.addEventListener("click", function () {
-      currentPosition = Math.max(0, currentPosition - cardWidth);
-      updateSliderPosition();
-      updateButtonStates();
-    });
-
-    nextButton.addEventListener("click", function () {
-      const maxScroll = slider.scrollWidth - slider.clientWidth;
-      currentPosition = Math.min(maxScroll, currentPosition + cardWidth);
-      updateSliderPosition();
-      updateButtonStates();
-    });
-
-    // Update button states on slider scroll
-    slider.addEventListener(
-      "scroll",
-      debounce(function () {
-        currentPosition = slider.scrollLeft;
-        updateButtonStates();
-      }, 100),
-    );
-
-    // Initial button state
-    updateButtonStates();
-
-    // Handle touch/mouse drag scrolling
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    slider.addEventListener("mousedown", (e) => {
-      isDown = true;
-      slider.style.cursor = "grabbing";
-      startX = e.pageX - slider.offsetLeft;
-      scrollLeft = slider.scrollLeft;
-    });
-
-    slider.addEventListener("mouseleave", () => {
-      isDown = false;
-      slider.style.cursor = "grab";
-    });
-
-    slider.addEventListener("mouseup", () => {
-      isDown = false;
-      slider.style.cursor = "grab";
-      currentPosition = slider.scrollLeft;
-      updateButtonStates();
-    });
-
-    slider.addEventListener("mousemove", (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - slider.offsetLeft;
-      const walk = (x - startX) * 2;
-      slider.scrollLeft = scrollLeft - walk;
-    });
-  }
-
-  // ===== NEW TESTIMONIALS GRID SLIDER =====
   function initNewTestimonialsSlider() {
-    console.log("🚀 initNewTestimonialsSlider starting");
     const grid = document.getElementById("testimonialsGrid");
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
+    
     if (!grid || !prevBtn || !nextBtn) return;
     
-    // Skip if already initialized by page-specific script (home/script.js or about-me/script.js)
+    // Skip if already initialized by page-specific script
     if (grid.dataset.sliderInitialized === 'true') {
-      console.log("🚀 Testimonials slider already initialized by page-specific script");
       return;
     }
 
@@ -472,13 +267,11 @@ console.log("🚀 FAQ script loaded successfully!");
     }
 
     prevBtn.addEventListener("click", function () {
-      console.log("🔹 testimonials prevBtn clicked");
       prevSlide();
       restartAuto();
     });
 
     nextBtn.addEventListener("click", function () {
-      console.log("🔹 testimonials nextBtn clicked");
       nextSlide();
       restartAuto();
     });
@@ -521,17 +314,10 @@ console.log("🚀 FAQ script loaded successfully!");
     const navMenu = document.querySelector(
       ".learnsimply-header-navigation-menu",
     );
-    const authButtons = document.querySelector(
-      ".learnsimply-header-auth-buttons-container",
-    );
-
-    console.log("Mobile toggle elements:", mobileToggle, navMenu, authButtons);
 
     if (mobileToggle && navMenu) {
-      console.log("Attaching event listener to toggle");
       mobileToggle.addEventListener("click", function (e) {
         e.stopPropagation();
-        console.log("Toggle clicked");
         this.classList.toggle("active");
         navMenu.classList.toggle("active");
       });
@@ -542,7 +328,6 @@ console.log("🚀 FAQ script loaded successfully!");
       );
       menuItems.forEach(function (item) {
         item.addEventListener("click", function () {
-          console.log("Menu item clicked");
           mobileToggle.classList.remove("active");
           navMenu.classList.remove("active");
         });
@@ -554,7 +339,6 @@ console.log("🚀 FAQ script loaded successfully!");
           mobileToggle.contains(event.target) || navMenu.contains(event.target);
 
         if (!isClickInside && navMenu.classList.contains("active")) {
-          console.log("Clicked outside, closing menu");
           mobileToggle.classList.remove("active");
           navMenu.classList.remove("active");
         }
@@ -570,8 +354,6 @@ console.log("🚀 FAQ script loaded successfully!");
           }
         }, 250),
       );
-    } else {
-      console.log("Some elements not found");
     }
   })();
 
@@ -609,42 +391,6 @@ console.log("🚀 FAQ script loaded successfully!");
     toggleScrollButton();
   }
 
-  // ===== CARD ANIMATIONS =====
-
-  /**
-   * Add intersection observer for card animations
-   */
-  function initCardAnimations() {
-    const cards = document.querySelectorAll(
-      ".learnsimply-course-card, .learnsimply-book-card, .learnsimply-feature-card, .learnsimply-testimonial-card",
-    );
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry, index) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              entry.target.style.opacity = "1";
-              entry.target.style.transform = "translateY(0)";
-            }, index * 100);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
-      },
-    );
-
-    cards.forEach((card) => {
-      card.style.opacity = "0";
-      card.style.transform = "translateY(20px)";
-      card.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-      observer.observe(card);
-    });
-  }
-
   // ===== HEADER SCROLL EFFECT =====
 
   /**
@@ -670,197 +416,10 @@ console.log("🚀 FAQ script loaded successfully!");
     window.addEventListener("scroll", debounce(updateHeaderStyle, 50));
   }
 
-  // ===== BUTTON RIPPLE EFFECT =====
+  // ===== MARQUEE ANIMATION =====
 
   /**
-   * Add ripple effect to buttons on click
-   */
-  function initButtonRippleEffect() {
-    const buttons = document.querySelectorAll(
-      ".learnsimply-login-button, .learnsimply-cta-primary-btn, .learnsimply-buy-now-button, .learnsimply-primary-cta-btn",
-    );
-
-    buttons.forEach((button) => {
-      button.addEventListener("click", function (e) {
-        const rect = this.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        const ripple = document.createElement("span");
-        ripple.style.position = "absolute";
-        ripple.style.left = x + "px";
-        ripple.style.top = y + "px";
-        ripple.style.width = "0";
-        ripple.style.height = "0";
-        ripple.style.borderRadius = "50%";
-        ripple.style.background = "rgba(255, 255, 255, 0.5)";
-        ripple.style.transform = "translate(-50%, -50%)";
-        ripple.style.animation = "ripple-animation 0.6s ease-out";
-
-        this.style.position = "relative";
-        this.style.overflow = "hidden";
-        this.appendChild(ripple);
-
-        setTimeout(() => ripple.remove(), 600);
-      });
-    });
-
-    // Add ripple animation to page
-    const style = document.createElement("style");
-    style.textContent = `
-            @keyframes ripple-animation {
-                to {
-                    width: 200px;
-                    height: 200px;
-                    opacity: 0;
-                }
-            }
-        `;
-    document.head.appendChild(style);
-  }
-
-  // ===== STATS COUNTER ANIMATION =====
-
-  /**
-   * Animate stats numbers on scroll into view
-   */
-  function initStatsCounter() {
-    const statNumbers = document.querySelectorAll(".learnsimply-stat-number");
-
-    function animateValue(element, start, end, duration) {
-      const range = end - start;
-      const increment = range / (duration / 16);
-      let current = start;
-
-      const timer = setInterval(() => {
-        current += increment;
-        if (
-          (increment > 0 && current >= end) ||
-          (increment < 0 && current <= end)
-        ) {
-          element.textContent = end.toLocaleString("ar-EG");
-          clearInterval(timer);
-        } else {
-          element.textContent = Math.floor(current).toLocaleString("ar-EG");
-        }
-      }, 16);
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const targetText = entry.target.textContent.replace(/[^0-9]/g, "");
-            const targetNumber = parseInt(targetText, 10);
-
-            if (!isNaN(targetNumber)) {
-              animateValue(entry.target, 0, targetNumber, 2000);
-              observer.unobserve(entry.target);
-            }
-          }
-        });
-      },
-      {
-        threshold: 0.5,
-      },
-    );
-
-    statNumbers.forEach((stat) => observer.observe(stat));
-  }
-
-  // ===== ADD TO CART FUNCTIONALITY =====
-
-  /**
-   * Handle add to cart button clicks
-   */
-  function initAddToCart() {
-    const addCartButtons = document.querySelectorAll(
-      ".learnsimply-add-cart-button",
-    );
-
-    addCartButtons.forEach((button) => {
-      button.addEventListener("click", function (e) {
-        e.preventDefault();
-
-        // Add visual feedback
-        const originalContent = this.innerHTML;
-        this.innerHTML = "✓";
-        this.style.background = "#18A963";
-
-        setTimeout(() => {
-          this.innerHTML = originalContent;
-          this.style.background = "";
-        }, 1500);
-
-        // Here you would typically send data to a cart system
-        console.log("Item added to cart");
-      });
-    });
-  }
-
-  // ===== BUY NOW FUNCTIONALITY =====
-
-  /**
-   * Handle buy now button clicks
-   */
-  function initBuyNow() {
-    const buyButtons = document.querySelectorAll(".learnsimply-buy-now-button");
-
-    buyButtons.forEach((button) => {
-      button.addEventListener("click", function (e) {
-        e.preventDefault();
-
-        // Here you would typically redirect to checkout
-        console.log("Proceeding to checkout");
-      });
-    });
-  }
-
-  // ===== LAZY LOAD IMAGES =====
-
-  /**
-   * Lazy load images as they come into viewport
-   */
-  function initLazyLoading() {
-    const images = document.querySelectorAll("img[data-src]");
-
-    const imageObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const img = entry.target;
-            img.src = img.dataset.src;
-            img.removeAttribute("data-src");
-            imageObserver.unobserve(img);
-          }
-        });
-      },
-      {
-        rootMargin: "50px 0px",
-      },
-    );
-
-    images.forEach((img) => imageObserver.observe(img));
-  }
-
-  // ===== BANNER ANIMATION =====
-
-  /**
-   * Duplicate banner content for seamless scrolling
-   */
-  function initBannerAnimation() {
-    const bannerContent = document.querySelector(".learnsimply-banner-content");
-
-    if (!bannerContent) return;
-
-    // Clone banner content for seamless loop
-    const clone = bannerContent.cloneNode(true);
-    bannerContent.parentNode.appendChild(clone);
-  }
-
-  /**
-   * Match marquee speed and behavior from the reference HTML project.
-   * Measures one track width and sets CSS variables used by the marquee animation.
+   * Setup marquee animation with dynamic speed calculation
    */
   function setupMarquee() {
     const content = document.querySelector(".marquee-content");
@@ -870,7 +429,7 @@ console.log("🚀 FAQ script loaded successfully!");
     function recalc() {
       // width of one track (including gaps)
       const trackWidth = track.getBoundingClientRect().width;
-      // desired speed in pixels per second (same as reference project)
+      // desired speed in pixels per second
       const speed = 120; // px/s
       const duration = Math.max(8, Math.round(trackWidth / speed));
 
@@ -889,80 +448,6 @@ console.log("🚀 FAQ script loaded successfully!");
     });
   }
 
-  // ===== FORM VALIDATION (if forms exist) =====
-
-  /**
-   * Basic form validation
-   */
-  function initFormValidation() {
-    const forms = document.querySelectorAll("form");
-
-    forms.forEach((form) => {
-      form.addEventListener("submit", function (e) {
-        const inputs = this.querySelectorAll(
-          "input[required], textarea[required]",
-        );
-        let isValid = true;
-
-        inputs.forEach((input) => {
-          if (!input.value.trim()) {
-            isValid = false;
-            input.style.borderColor = "#F96A7B";
-          } else {
-            input.style.borderColor = "";
-          }
-        });
-
-        if (!isValid) {
-          e.preventDefault();
-          alert("الرجاء ملء جميع الحقول المطلوبة");
-        }
-      });
-    });
-  }
-
-  // ===== KEYBOARD ACCESSIBILITY =====
-
-  /**
-   * Enhance keyboard navigation
-   */
-  function initKeyboardAccessibility() {
-    // Allow Enter key to trigger button clicks
-    const buttons = document.querySelectorAll(
-      "button, .learnsimply-nav-link, .learnsimply-faq-question",
-    );
-
-    buttons.forEach((button) => {
-      button.setAttribute("tabindex", "0");
-
-      button.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          this.click();
-        }
-      });
-    });
-  }
-
-  // Replace availability SVG icons with `Archive Check.png`
-  function initArchiveCheckIcons() {
-    // Replace any SVG with class .info-icon that pairs with a "+40 متوفر" label
-    document.querySelectorAll('.book-info .info-item').forEach((item) => {
-      const label = item.querySelector('p');
-      if (!label) return;
-      if (label.textContent.trim() !== '+40 متوفر') return;
-
-      const svg = item.querySelector('svg.info-icon');
-      if (svg) {
-        const img = document.createElement('img');
-        img.className = 'info-icon';
-        img.src = 'img/Archive Check.png';
-        img.alt = 'متوفر';
-        svg.replaceWith(img);
-      }
-    });
-  }
-
   // ===== INITIALIZE ALL FUNCTIONALITY =====
 
   /**
@@ -975,30 +460,13 @@ console.log("🚀 FAQ script loaded successfully!");
       return;
     }
 
-    console.log("Initializing Learnsimply Homepage...");
-    HeaderNavigation();
-    initHeaderAuthButtons();
-    initHeroSectionButtons();
-    initNavigationSmoothScroll();
-    updateActiveNavigationOnScroll();
+    initHeaderNavigation();
+    updateHeaderNavigationOnScroll();
     initFaqAccordion();
-    initTestimonialsSlider();
     initNewTestimonialsSlider();
     initScrollToTop();
-    initCardAnimations();
     initHeaderScrollEffect();
-    initButtonRippleEffect();
-    initStatsCounter();
-    initAddToCart();
-    initBuyNow();
-    initLazyLoading();
-    initArchiveCheckIcons();
     setupMarquee();
-    initBannerAnimation();
-    initFormValidation();
-    initKeyboardAccessibility();
-
-    console.log("Learnsimply Homepage initialized successfully!");
   }
 
   // Start initialization

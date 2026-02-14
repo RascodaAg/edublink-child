@@ -41,6 +41,14 @@ $context = Timber::context();
 // Add theme directory URI to context
 $context['theme_uri'] = get_stylesheet_directory_uri();
 
+// Add cart URL for JavaScript redirects
+$cart_page_id = function_exists( 'wc_get_page_id' ) ? wc_get_page_id( 'cart' ) : 0;
+if ( $cart_page_id && $cart_page_id > 0 ) {
+	$context['cart_url'] = get_permalink( $cart_page_id );
+} else {
+	$context['cart_url'] = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : '/cart-1/';
+}
+
 // Get product post using Timber
 $product_post = Timber::get_post( get_the_ID() );
 $context['product'] = $product_post;
@@ -243,9 +251,10 @@ if ( function_exists( 'tutor_utils' ) ) {
 $context['has_bundles'] = false;
 $context['bundle_items'] = array();
 $context['bundle_items_count'] = 0;
+$context['bundle_items_json'] = '';
 
 // Check if product type is bundle or has bundle items in database
-if ( $product->get_type() === 'bundle' || class_exists( 'AsanaPlugins\WooCommerce\ProductBundles\Plugin' ) ) {
+if ( $product->get_type() === 'bundle' || $product->get_type() === 'easy_product_bundle' || class_exists( 'AsanaPlugins\WooCommerce\ProductBundles\Plugin' ) ) {
 	global $wpdb;
 	$bundle_items = $wpdb->get_results( $wpdb->prepare(
 		"SELECT product_id, quantity FROM {$wpdb->prefix}asnp_wepb_simple_bundle_items WHERE bundle_id = %d",
@@ -256,8 +265,11 @@ if ( $product->get_type() === 'bundle' || class_exists( 'AsanaPlugins\WooCommerc
 		$context['has_bundles'] = true;
 		$context['bundle_items_count'] = count( $bundle_items );
 		
+		// Build bundle items JSON for add to cart form (required by bundle plugin)
+		$bundle_items_for_json = array();
+		
 		// Get bundle items details
-		foreach ( $bundle_items as $item ) {
+		foreach ( $bundle_items as $index => $item ) {
 			$bundle_product = wc_get_product( $item->product_id );
 			if ( $bundle_product && $bundle_product->is_visible() ) {
 				$bundle_item_data = array(
@@ -279,7 +291,20 @@ if ( $product->get_type() === 'bundle' || class_exists( 'AsanaPlugins\WooCommerc
 				}
 				
 				$context['bundle_items'][] = $bundle_item_data;
+				
+				// Add to JSON array for bundle plugin
+				// Format: array of {id: product_id, qty: quantity}
+				$bundle_items_for_json[] = array(
+					'id' => absint( $item->product_id ),
+					'qty' => absint( $item->quantity ),
+				);
 			}
+		}
+		
+		// Create JSON string for bundle plugin
+		// Format expected by bundle plugin: JSON array of {id, qty} objects
+		if ( ! empty( $bundle_items_for_json ) ) {
+			$context['bundle_items_json'] = wp_json_encode( $bundle_items_for_json );
 		}
 	}
 }
