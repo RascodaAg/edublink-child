@@ -3,33 +3,33 @@
 {% block title %}نبذه عني - اتعلم ببساطة{% endblock %}
 
 {% block styles %}
-  <link rel="stylesheet" href="{{ theme_uri }}/assets/about-me/style.css" />
+    <link rel="stylesheet" href="{{ theme_uri }}/assets/about-me/style.css" />
 {% endblock %}
 
 {% block content %}
-  {% include "sections/about-me/about-section.twig" %}
-  {% include "sections/about-me/story-section.twig" %}
-  {% include "sections/shared/partners-section.twig" %}
-  {% include "sections/about-me/contact-section.twig" %}
-  {% include "sections/shared/testimonials-section.twig" %}
-  {% include "sections/shared/faq-section.twig" %}
+    {% include "sections/about-me/about-section.twig" %}
+    {% include "sections/about-me/story-section.twig" %}
+    {% include "sections/shared/partners-section.twig" %}
+    {% include "sections/about-me/contact-section.twig" %}
+    {% include "sections/shared/testimonials-section.twig" %}
+    {% include "sections/shared/faq-section.twig" %}
 {% endblock %}
 
 {% block body_extra %}
-  <!-- Floating Scroll to Top Button -->
-  <button class="learnsimply-scroll-to-top" aria-label="الرجوع للأعلى">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <path
-        d="M12 19V5M5 12l7-7 7 7"
-        stroke="white"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-    </svg>
-  </button>
+    <!-- Floating Scroll to Top Button -->
+    <button class="learnsimply-scroll-to-top" aria-label="الرجوع للأعلى">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M12 19V5M5 12l7-7 7 7"
+          stroke="white"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </button>
 {% endblock %}
 
 {% block scripts %}
-  <script src="{{ theme_uri }}/assets/about-me/script.js"></script>
+    <script src="{{ theme_uri }}/assets/about-me/script.js"></script>
 {% endblock %}

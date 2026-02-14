@@ -112,3 +112,43 @@ function enrollCourse() {
 	}
 }
 
+// Load More Reviews functionality
+document.addEventListener("DOMContentLoaded", function () {
+	const loadMoreBtn = document.getElementById("load-more-reviews");
+	if (loadMoreBtn) {
+		let showingAll = false;
+		
+		loadMoreBtn.addEventListener("click", function () {
+			const hiddenReviews = document.querySelectorAll(".review-card.hidden-review");
+			
+			if (!showingAll) {
+				// Show all reviews
+				hiddenReviews.forEach((review, index) => {
+					setTimeout(() => {
+						review.classList.add("show-review");
+					}, index * 100); // Stagger animation
+				});
+				
+				// Update button text
+				this.innerHTML = '<span>إخفاء التقييمات</span>';
+				this.classList.add("hide-reviews");
+				showingAll = true;
+			} else {
+				// Hide reviews
+				hiddenReviews.forEach((review) => {
+					review.classList.remove("show-review");
+				});
+				
+				// Update button text
+				const count = hiddenReviews.length;
+				this.innerHTML = '<span>عرض المزيد من التقييمات</span><span class="reviews-count">(' + count + ' تقييم إضافي)</span>';
+				this.classList.remove("hide-reviews");
+				showingAll = false;
+				
+				// Scroll back to reviews section
+				document.querySelector(".reviews-section")?.scrollIntoView({ behavior: "smooth", block: "start" });
+			}
+		});
+	}
+});
+

@@ -572,9 +572,9 @@
           </div>
 
           <!-- Review Cards -->
-          <div class="review-cards">
-            {% for review in course_reviews|slice(0, 2) %}
-            <div class="review-card">
+          <div class="review-cards" id="reviews-container">
+            {% for review in course_reviews %}
+            <div class="review-card {% if loop.index > 2 %}hidden-review{% endif %}">
               <div class="review-card-content">
                 <div class="review-header">
                   <div class="review-header-inner">
@@ -603,6 +603,15 @@
             </div>
             {% endfor %}
           </div>
+          
+          {% if course_reviews|length > 2 %}
+          <div class="reviews-load-more-wrapper">
+            <button type="button" class="reviews-load-more-btn" id="load-more-reviews">
+              <span>عرض المزيد من التقييمات</span>
+              <span class="reviews-count">({{ course_reviews|length - 2 }} تقييم إضافي)</span>
+            </button>
+          </div>
+          {% endif %}
         </div>
         {% endif %}
       </div>

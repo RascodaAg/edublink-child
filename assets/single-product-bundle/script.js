@@ -19,8 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			submitBtn.classList.add("is-loading");
 			submitBtn.disabled = true;
-		});
-	});
+      });
+    });
 
 	// Custom star rating behavior for review form (hover + click to select)
 	const starWrappers = document.querySelectorAll(

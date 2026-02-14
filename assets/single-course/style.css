@@ -3276,4 +3276,67 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
 }
 
 /* ===== END: 404 Error Page Styles ===== */
- 
+
+/* ===== START: Reviews Load More Styles ===== */
+.hidden-review {
+  display: none;
+}
+
+.reviews-load-more-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.reviews-load-more-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.reviews-load-more-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+}
+
+.reviews-load-more-btn .reviews-count {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.reviews-load-more-btn.hide-reviews {
+  background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+  box-shadow: 0 4px 15px rgba(100, 116, 139, 0.3);
+}
+
+.reviews-load-more-btn.hide-reviews:hover {
+  box-shadow: 0 6px 20px rgba(100, 116, 139, 0.4);
+}
+
+/* Animation for showing reviews */
+.review-card.show-review {
+  display: block;
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* ===== END: Reviews Load More Styles ===== */
