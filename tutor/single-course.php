@@ -23,6 +23,7 @@ if ( ! function_exists( 'tutor_utils' ) ) {
 	exit;
 }
 
+
 $course_id = get_the_ID();
 
 // Get Timber context
