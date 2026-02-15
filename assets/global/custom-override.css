@@ -22,3 +22,7 @@
        background: #4482ff !important;
     border-end-end-radius: 30px !important;
 }
+
+#promo-bar{
+   background: red !important;
+}
