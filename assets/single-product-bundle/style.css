@@ -350,11 +350,10 @@
 
 /* ===== Add Review Section (global styles) ===== */
 .add-review-section {
-  margin-top: 40px;
-  margin-bottom: 32px;
   border-radius: 15px;
   border: 1px solid rgba(255, 255, 255, 0.05);
   background: rgba(255, 255, 255, 0.05);
+      max-width: 1030px;
 }
 
 .add-review-section .card-content {
@@ -10503,6 +10502,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
   max-width: 1030px;
   gap: 20px;
   direction: rtl;
+  max-width: 1030px;
 }
 
 /* الجانب الأيمن - معلومات المدرب */
