@@ -24,18 +24,27 @@
                 </a>
               </div>
 
-              <!-- Header: Badge + Bundle Info -->
+              <!-- Header: Badge + Instructor Info -->
               <div class="course-header">
                 <div class="instructor-info">
                   <div class="instructor-text">
-                    <p class="name">باقة متكاملة</p>
-                    <p class="title">عدة دورات معاً</p>
+                    {% if bundle.author %}
+                      <p class="name">{{ bundle.author_name }}</p>
+                      <p class="title">{{ instructor_title }}</p>
+                    {% else %}
+                      <p class="name">م. احمد عادل</p>
+                      <p class="title">{{ instructor_title }}</p>
+                    {% endif %}
                   </div>
 
                   <div class="instructor-avatar">
                     <div class="avatar-glow avatar-glow-1"></div>
                     <div class="avatar-glow avatar-glow-2"></div>
-                    <img src="{{ theme_uri }}/assets/img/card_image.png" alt="باقة" />
+                    {% if bundle.author_avatar %}
+                      <img src="{{ bundle.author_avatar }}" alt="{{ bundle.author_name }}" />
+                    {% else %}
+                      <img src="{{ theme_uri }}/assets/img/card_image.png" alt="المدرب" />
+                    {% endif %}
                   </div>
                 </div>
 
@@ -233,7 +242,7 @@
           {% endif %}
         </div>
 
-        <a href="{{ site.url }}/shop-2/" class="learnsimply-view-all-button">عرض كل الباقات</a>
+        <a href="{{ site.url }}/shop-2/?product_cat=bundle" class="learnsimply-view-all-button">عرض كل الباقات</a>
       </div>
     </section>
     <!-- ===== END: Bundles Section ===== -->

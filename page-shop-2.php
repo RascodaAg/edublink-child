@@ -53,13 +53,24 @@ if ( class_exists( 'WooCommerce' ) ) {
 	
 	// Add category filter if specified
 	if ( ! empty( $product_cat ) ) {
-		$args['tax_query'] = array(
-			array(
-				'taxonomy' => 'product_cat',
-				'field'    => 'slug',
-				'terms'    => $product_cat,
-			),
-		);
+		// Bundle products use product_type taxonomy, not product_cat
+		if ( $product_cat === 'bundle' ) {
+			$args['tax_query'] = array(
+				array(
+					'taxonomy' => 'product_type',
+					'field'    => 'slug',
+					'terms'    => 'easy_product_bundle',
+				),
+			);
+		} else {
+			$args['tax_query'] = array(
+				array(
+					'taxonomy' => 'product_cat',
+					'field'    => 'slug',
+					'terms'    => $product_cat,
+				),
+			);
+		}
 	}
 	
 	$products_query = new WP_Query( $args );
@@ -118,6 +129,18 @@ if ( class_exists( 'WooCommerce' ) ) {
 					}
 				}
 				
+				// Get bundle-specific data if it's a bundle
+				if ( $product_cat === 'bundle' && $product->is_type( 'easy_product_bundle' ) ) {
+					global $wpdb;
+					$table_name = $wpdb->prefix . 'asnp_wepb_simple_bundle_items';
+					$bundle_items_count = $wpdb->get_var( $wpdb->prepare(
+						"SELECT COUNT(*) FROM {$table_name} WHERE bundle_id = %d",
+						$product_id
+					) );
+					$product_data['bundle_items_count'] = intval( $bundle_items_count );
+					$product_data['is_bundle'] = true;
+				}
+				
 				// Get product author (if exists)
 				$author_id = get_post_meta( $product_id, '_product_author', true );
 				if ( $author_id ) {
@@ -146,6 +169,9 @@ if ( ! empty( $search_term ) ) {
 } elseif ( $product_cat === 'book' ) {
 	$context['page_title'] = 'الكتب الموجودة';
 	$context['page_description'] = 'كتب تعليمية تساعدك تفهم البرمجة وتطبّق المفاهيم خطوة بخطوة.';
+} elseif ( $product_cat === 'bundle' ) {
+	$context['page_title'] = 'الباقات المميزة';
+	$context['page_description'] = 'باقات متكاملة تجمع عدة دورات معاً بأسعار مميزة.';
 } else {
 	$context['page_title'] = 'المتجر';
 	$context['page_description'] = 'جميع المنتجات المتاحة';

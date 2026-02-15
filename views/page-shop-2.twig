@@ -72,16 +72,10 @@
                             <div class="instructor-text">
                                 {% if product.author %}
                                     <p class="name">{{ product.author.display_name }}</p>
-                                    <p class="title">
-                                        {% if product.author.user_meta.description %}
-                                            {{ product.author.user_meta.description }}
-                                        {% else %}
-                                            مؤلف
-                                        {% endif %}
-                                    </p>
+                                    <p class="title">{{ instructor_title }}</p>
                                 {% else %}
-                                    <p class="name">مؤلف</p>
-                                    <p class="title">كاتب</p>
+                                    <p class="name">م. احمد عادل</p>
+                                    <p class="title">{{ instructor_title }}</p>
                                 {% endif %}
                             </div>
 
@@ -125,7 +119,7 @@
                                 {% if product.author and product.author.avatar %}
                                     <img src="{{ product.author.avatar }}" alt="{{ product.author.display_name }}" />
                                 {% else %}
-                                    <img src="{{ theme_uri }}/assets/img/card_image.png" alt="مؤلف" />
+                                    <img src="{{ theme_uri }}/assets/img/card_image.png" alt="المدرب" />
                                 {% endif %}
                             </div>
                         </div>

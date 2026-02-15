@@ -303,6 +303,19 @@ if ( class_exists( 'WooCommerce' ) && class_exists( 'AsanaPlugins\WooCommerce\Pr
 					$bundle_data['rating_avg'] = $average_rating ? number_format( $average_rating, 1 ) : 0;
 					$bundle_data['rating_count'] = $rating_count;
 					
+					// Get bundle author/instructor
+					$author_id = get_post_field( 'post_author', $bundle_product_id );
+					if ( $author_id ) {
+						$author = Timber::get_user( $author_id );
+						$bundle_data['author'] = $author;
+						$bundle_data['author_name'] = $author ? $author->display_name : '';
+						$bundle_data['author_avatar'] = $author ? get_avatar_url( $author_id, array( 'size' => 40 ) ) : '';
+					} else {
+						$bundle_data['author'] = null;
+						$bundle_data['author_name'] = '';
+						$bundle_data['author_avatar'] = '';
+					}
+					
 					$context['bundles'][] = $bundle_data;
 				}
 			}
