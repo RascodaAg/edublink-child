@@ -1,21 +1,1286 @@
 /**
- * Dashboard Page Custom Styles
- * This file contains CSS overrides for the dashboard page
- * Path: /dashboard/
+ * Dashboard Page — Dark Theme Redesign
+ * LearnSimply (beta.learrnsimply.com)
+ * 
+ * Matches the site's dark visual identity:
+ *   --learnsimply-dark-bg:    #0a0f1a
+ *   --learnsimply-card-bg:    #141924
+ *   --learnsimply-primary:    #4077f3
+ *   --learnsimply-text-white: #ffffff
+ *   --learnsimply-text-gray:  #999eb2
+ *
+ * Pages covered:
+ *   لوحة التحكم | ملفي الشخصي | الدورات الملتحق بها | التقييمات
+ *   اختباراتي | قائمتي المفضلة | تاريخ الطلب | سؤال وجواب
+ *   الإعدادات | تسجيل الخروج
  */
 
-/* Add your custom dashboard styles here */
-/* These styles will override the default theme styles */
-
-/**
- * Tutor LMS Dashboard main wrapper
- * <div class="tutor-wrap tutor-wrap-parent tutor-dashboard tutor-frontend-dashboard ...">
- */
+/* ==========================================================================
+   0. CSS VARIABLES (dashboard-scoped)
+   ========================================================================== */
 .tutor-wrap.tutor-dashboard {
-    background: #ffffff !important;
+    --db-bg:          #0a0f1a;
+    --db-card:        #141924;
+    --db-card-alt:    #1a2232;
+    --db-glass:       rgba(255, 255, 255, 0.04);
+    --db-glass-border:rgba(255, 255, 255, 0.08);
+    --db-glass-hover: rgba(255, 255, 255, 0.07);
+    --db-blue:        #4077f3;
+    --db-blue-soft:   rgba(64, 119, 243, 0.12);
+    --db-blue-active: rgba(64, 119, 243, 0.18);
+    --db-white:       #ffffff;
+    --db-gray:        #999eb2;
+    --db-gray-dim:    #6c7278;
+    --db-green:       #18a963;
+    --db-orange:      #ff8904;
+    --db-red:         #f96a7b;
+    --db-purple:      #c27aff;
+    --db-cyan:        #00d5be;
+    --db-border:      rgba(255, 255, 255, 0.08);
+    --db-radius:      16px;
+    --db-radius-lg:   20px;
+    --db-radius-sm:   10px;
+    --db-font:        "Graphik Arabic", "Cairo", "IBM Plex Sans Arabic", sans-serif;
+    --db-transition:  all 0.3s ease;
 }
 
-/* Example: change inner content background as well */
+
+/* ==========================================================================
+   1. OUTER WRAPPER & BODY
+   ========================================================================== */
+body.tutor-screen-frontend-dashboard,
+body.tutor-screen-frontend-dashboard .site-content,
+body.tutor-screen-frontend-dashboard .entry-content {
+    background-color: var(--db-bg) !important;
+}
+
+.tutor-wrap.tutor-dashboard {
+    background: var(--db-bg) !important;
+    color: var(--db-white) !important;
+    font-family: var(--db-font) !important;
+    min-height: 100vh;
+    padding-bottom: 80px !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ==========================================================================
+   2. DASHBOARD HEADER (avatar + greeting + stats)
+   ========================================================================== */
+.tutor-wrap.tutor-dashboard .tutor-frontend-dashboard-header {
+    background: var(--db-card) !important;
+    border: 1px solid var(--db-border) !important;
+    border-radius: var(--db-radius-lg) !important;
+    padding: 28px 32px !important;
+    margin-bottom: 28px !important;
+    margin-top: 20px !important;
+}
+
+/* Avatar */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-header-avatar img,
+.tutor-wrap.tutor-dashboard .tutor-dashboard-header-avatar .tutor-avatar {
+    border-radius: 50% !important;
+    border: 3px solid var(--db-blue) !important;
+    box-shadow: 0 0 20px rgba(64, 119, 243, 0.25) !important;
+    width: 72px !important;
+    height: 72px !important;
+    object-fit: cover !important;
+}
+
+/* User name & greetings */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-header-display-name,
+.tutor-wrap.tutor-dashboard .tutor-dashboard-header-username {
+    color: var(--db-white) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-dashboard-header-greetings {
+    color: var(--db-gray) !important;
+    font-size: 14px !important;
+}
+
+/* Stats area */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-header-stats,
+.tutor-wrap.tutor-dashboard .tutor-dashboard-header-ratings {
+    color: var(--db-gray) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-dashboard-header-ratings .tutor-ratings-stars {
+    color: var(--db-orange) !important;
+}
+
+/* Right side buttons (become instructor, etc.) */
+.tutor-wrap.tutor-dashboard .tutor-header-right-side .tutor-btn {
+    background: var(--db-blue) !important;
+    color: var(--db-white) !important;
+    border: none !important;
+    border-radius: var(--db-radius-sm) !important;
+    padding: 10px 20px !important;
+    font-family: var(--db-font) !important;
+    font-weight: 500 !important;
+    transition: var(--db-transition) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-header-right-side .tutor-btn:hover {
+    background: #3366d9 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 16px rgba(64, 119, 243, 0.35) !important;
+}
+
+
+/* ==========================================================================
+   3. SIDEBAR NAVIGATION (glassmorphism)
+   ========================================================================== */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-left-menu {
+    position: sticky;
+    top: 100px;
+    align-self: flex-start;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-dashboard-permalinks {
+    background: var(--db-glass) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid var(--db-glass-border) !important;
+    border-radius: var(--db-radius-lg) !important;
+    padding: 12px 8px !important;
+    list-style: none !important;
+    margin: 0 !important;
+    overflow: hidden;
+}
+
+/* Divider lines */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-divider {
+    height: 1px !important;
+    background: var(--db-border) !important;
+    margin: 8px 12px !important;
+    border: none !important;
+    list-style: none !important;
+}
+
+/* Section headers */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-divider-header {
+    color: var(--db-gray-dim) !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.2px !important;
+    padding: 12px 16px 6px !important;
+    list-style: none !important;
+}
+
+/* Nav items */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-item {
+    list-style: none !important;
+    margin: 2px 0 !important;
+    border-radius: var(--db-radius-sm) !important;
+    transition: var(--db-transition) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-item a,
+.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-item-link {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 12px 16px !important;
+    color: var(--db-gray) !important;
+    text-decoration: none !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    border-radius: var(--db-radius-sm) !important;
+    transition: var(--db-transition) !important;
+    border-right: 3px solid transparent !important;
+    border-left: none !important;
+}
+
+/* Icon styling */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-item-icon {
+    font-size: 20px !important;
+    width: 24px !important;
+    text-align: center !important;
+    flex-shrink: 0 !important;
+    color: var(--db-gray-dim) !important;
+    transition: var(--db-transition) !important;
+}
+
+/* Hover */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-item:hover a,
+.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-item:hover .tutor-dashboard-menu-item-link {
+    background: var(--db-blue-soft) !important;
+    color: var(--db-white) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-item:hover .tutor-dashboard-menu-item-icon {
+    color: var(--db-blue) !important;
+}
+
+/* Active state */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-item.active a,
+.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-item.active .tutor-dashboard-menu-item-link {
+    background: var(--db-blue-active) !important;
+    color: var(--db-white) !important;
+    border-right-color: var(--db-blue) !important;
+    font-weight: 600 !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-item.active .tutor-dashboard-menu-item-icon {
+    color: var(--db-blue) !important;
+}
+
+/* Logout item special styling */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-logout a,
+.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-logout .tutor-dashboard-menu-item-link {
+    color: var(--db-red) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-logout .tutor-dashboard-menu-item-icon {
+    color: var(--db-red) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-logout:hover a {
+    background: rgba(249, 106, 123, 0.12) !important;
+}
+
+
+/* ==========================================================================
+   4. MAIN CONTENT AREA
+   ========================================================================== */
 .tutor-wrap.tutor-dashboard .tutor-dashboard-content {
-    background: rgba(255, 255, 255, 0.6) !important;
+    background: var(--db-card) !important;
+    border: 1px solid var(--db-border) !important;
+    border-radius: var(--db-radius-lg) !important;
+    padding: 28px !important;
+    min-height: 500px;
+    color: var(--db-white) !important;
+}
+
+/* Page titles */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-title,
+.tutor-wrap.tutor-dashboard .tutor-dashboard-content .tutor-fs-5.tutor-fw-medium {
+    color: var(--db-white) !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    padding-bottom: 16px !important;
+    margin-bottom: 24px !important;
+    border-bottom: 1px solid var(--db-border) !important;
+}
+
+
+/* ==========================================================================
+   5. DASHBOARD HOME — STAT CARDS
+   ========================================================================== */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-content-inner .tutor-card,
+.tutor-wrap.tutor-dashboard .tutor-card {
+    background: var(--db-card-alt) !important;
+    border: 1px solid var(--db-border) !important;
+    border-radius: var(--db-radius) !important;
+    color: var(--db-white) !important;
+    transition: var(--db-transition) !important;
+    overflow: hidden;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-card:hover {
+    border-color: rgba(64, 119, 243, 0.3) !important;
+    box-shadow: 0 4px 24px rgba(64, 119, 243, 0.12) !important;
+    transform: translateY(-2px) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-card .tutor-card-body {
+    padding: 20px 24px !important;
+}
+
+/* Stat icons in cards */
+.tutor-wrap.tutor-dashboard .tutor-card .tutor-round-box,
+.tutor-wrap.tutor-dashboard .tutor-card .tutor-icon-book-open,
+.tutor-wrap.tutor-dashboard .tutor-card .tutor-icon-mortarboard-o,
+.tutor-wrap.tutor-dashboard .tutor-card .tutor-icon-trophy,
+.tutor-wrap.tutor-dashboard .tutor-card [class*="tutor-icon-"] {
+    color: var(--db-blue) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-card .tutor-round-box {
+    background: var(--db-blue-soft) !important;
+    border-radius: 12px !important;
+    width: 48px !important;
+    height: 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Stat numbers */
+.tutor-wrap.tutor-dashboard .tutor-card .tutor-fs-4,
+.tutor-wrap.tutor-dashboard .tutor-card .tutor-color-black {
+    color: var(--db-white) !important;
+    font-weight: 700 !important;
+}
+
+/* Stat labels */
+.tutor-wrap.tutor-dashboard .tutor-card .tutor-fs-7,
+.tutor-wrap.tutor-dashboard .tutor-card .tutor-color-secondary {
+    color: var(--db-gray) !important;
+}
+
+/* Course progress cards */
+.tutor-wrap.tutor-dashboard .tutor-frontend-dashboard-course-progress .tutor-card {
+    background: var(--db-card-alt) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-progress-bar {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-radius: 20px !important;
+    overflow: hidden;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-progress-value,
+.tutor-wrap.tutor-dashboard .tutor-progress-bar .tutor-progress-filled {
+    background: linear-gradient(90deg, var(--db-blue), var(--db-cyan)) !important;
+    border-radius: 20px !important;
+}
+
+
+/* ==========================================================================
+   6. ENROLLED COURSES / WISHLIST — COURSE GRID CARDS
+   ========================================================================== */
+.tutor-wrap.tutor-dashboard .tutor-course-card,
+.tutor-wrap.tutor-dashboard .tutor-grid .tutor-card,
+.tutor-wrap.tutor-dashboard .tutor-mycourse-wrap {
+    background: var(--db-card-alt) !important;
+    border: 1px solid var(--db-border) !important;
+    border-radius: var(--db-radius) !important;
+    overflow: hidden !important;
+    transition: var(--db-transition) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-course-card:hover,
+.tutor-wrap.tutor-dashboard .tutor-grid .tutor-card:hover {
+    border-color: var(--db-blue) !important;
+    box-shadow: 0 8px 32px rgba(64, 119, 243, 0.15) !important;
+    transform: translateY(-3px) !important;
+}
+
+/* Course card thumbnail */
+.tutor-wrap.tutor-dashboard .tutor-course-card .tutor-course-thumbnail,
+.tutor-wrap.tutor-dashboard .tutor-course-card .tutor-ratio {
+    border-radius: var(--db-radius) var(--db-radius) 0 0 !important;
+    overflow: hidden !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-course-card .tutor-ratio img {
+    transition: transform 0.4s ease !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-course-card:hover .tutor-ratio img {
+    transform: scale(1.05) !important;
+}
+
+/* Course card text */
+.tutor-wrap.tutor-dashboard .tutor-course-card .tutor-course-name a,
+.tutor-wrap.tutor-dashboard .tutor-course-card .tutor-course-name,
+.tutor-wrap.tutor-dashboard .tutor-course-card h3,
+.tutor-wrap.tutor-dashboard .tutor-course-card h4 {
+    color: var(--db-white) !important;
+    font-weight: 600 !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-course-card .tutor-meta,
+.tutor-wrap.tutor-dashboard .tutor-course-card .tutor-course-meta,
+.tutor-wrap.tutor-dashboard .tutor-course-card .tutor-color-secondary,
+.tutor-wrap.tutor-dashboard .tutor-course-card .tutor-color-muted {
+    color: var(--db-gray) !important;
+}
+
+/* Course card footer/info area */
+.tutor-wrap.tutor-dashboard .tutor-course-card .tutor-card-footer,
+.tutor-wrap.tutor-dashboard .tutor-course-card .tutor-course-card-footer {
+    border-top: 1px solid var(--db-border) !important;
+    background: transparent !important;
+}
+
+/* Wishlist remove button */
+.tutor-wrap.tutor-dashboard .tutor-course-card .tutor-course-wishlist-btn,
+.tutor-wrap.tutor-dashboard .tutor-mycourse-wrap .tutor-course-wishlist-btn {
+    color: var(--db-red) !important;
+    background: rgba(249, 106, 123, 0.12) !important;
+    border-radius: 50% !important;
+    width: 36px !important;
+    height: 36px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: var(--db-transition) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-course-card .tutor-course-wishlist-btn:hover {
+    background: rgba(249, 106, 123, 0.25) !important;
+}
+
+
+/* ==========================================================================
+   7. NAV TABS (enrolled courses, reviews, settings sub-tabs)
+   ========================================================================== */
+.tutor-wrap.tutor-dashboard .tutor-nav,
+.tutor-wrap.tutor-dashboard ul.tutor-nav {
+    border-bottom: 1px solid var(--db-border) !important;
+    margin-bottom: 24px !important;
+    gap: 0 !important;
+    background: transparent !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-nav .tutor-nav-item {
+    list-style: none !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-nav .tutor-nav-link {
+    color: var(--db-gray) !important;
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 2px solid transparent !important;
+    padding: 12px 20px !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    transition: var(--db-transition) !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-nav .tutor-nav-link:hover {
+    color: var(--db-white) !important;
+    background: var(--db-glass) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-nav .tutor-nav-link.is-active,
+.tutor-wrap.tutor-dashboard .tutor-nav .tutor-nav-link.active {
+    color: var(--db-blue) !important;
+    border-bottom-color: var(--db-blue) !important;
+    font-weight: 600 !important;
+    background: transparent !important;
+}
+
+
+/* ==========================================================================
+   8. TABLES (reviews, order history, quiz attempts)
+   ========================================================================== */
+.tutor-wrap.tutor-dashboard .tutor-table-responsive {
+    border-radius: var(--db-radius) !important;
+    overflow: hidden !important;
+    border: 1px solid var(--db-border) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-table,
+.tutor-wrap.tutor-dashboard table.tutor-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    background: transparent !important;
+    color: var(--db-white) !important;
+}
+
+/* Table header */
+.tutor-wrap.tutor-dashboard .tutor-table thead tr,
+.tutor-wrap.tutor-dashboard .tutor-table thead th {
+    background: var(--db-card-alt) !important;
+    color: var(--db-gray) !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    padding: 14px 16px !important;
+    border-bottom: 1px solid var(--db-border) !important;
+    text-align: right !important;
+}
+
+/* Table body */
+.tutor-wrap.tutor-dashboard .tutor-table tbody td {
+    padding: 14px 16px !important;
+    border-bottom: 1px solid var(--db-border) !important;
+    color: var(--db-white) !important;
+    font-size: 14px !important;
+    vertical-align: middle !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-table tbody tr {
+    background: transparent !important;
+    transition: var(--db-transition) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-table tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.02) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-table tbody tr:hover {
+    background: var(--db-blue-soft) !important;
+}
+
+/* Table links */
+.tutor-wrap.tutor-dashboard .tutor-table a {
+    color: var(--db-blue) !important;
+    text-decoration: none !important;
+    transition: var(--db-transition) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-table a:hover {
+    color: #5a93ff !important;
+    text-decoration: underline !important;
+}
+
+
+/* ==========================================================================
+   9. PROFILE PAGE
+   ========================================================================== */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-profile-data {
+    color: var(--db-white) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-dashboard-profile-data .tutor-color-black,
+.tutor-wrap.tutor-dashboard .tutor-dashboard-profile-data .tutor-fs-5,
+.tutor-wrap.tutor-dashboard .tutor-dashboard-profile-data .tutor-fw-medium,
+.tutor-wrap.tutor-dashboard .tutor-dashboard-profile-data h3,
+.tutor-wrap.tutor-dashboard .tutor-dashboard-profile-data h4 {
+    color: var(--db-white) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-dashboard-profile-data .tutor-color-secondary,
+.tutor-wrap.tutor-dashboard .tutor-dashboard-profile-data .tutor-color-muted,
+.tutor-wrap.tutor-dashboard .tutor-dashboard-profile-data p {
+    color: var(--db-gray) !important;
+}
+
+/* Profile info rows */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-profile-data .tutor-row {
+    border-bottom: 1px solid var(--db-border) !important;
+    padding-bottom: 16px !important;
+    margin-bottom: 16px !important;
+}
+
+/* Profile completion card */
+.tutor-wrap.tutor-dashboard .tutor-profile-completion {
+    background: var(--db-card-alt) !important;
+    border: 1px solid var(--db-border) !important;
+    border-radius: var(--db-radius) !important;
+    padding: 20px !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-profile-completion .tutor-icon-circle-mark-line {
+    color: var(--db-green) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-profile-completion .tutor-icon-circle-times-line {
+    color: var(--db-red) !important;
+}
+
+
+/* ==========================================================================
+   10. SETTINGS PAGE — FORMS
+   ========================================================================== */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-setting,
+.tutor-wrap.tutor-dashboard .tutor-dashboard-content form {
+    color: var(--db-white) !important;
+}
+
+/* Labels */
+.tutor-wrap.tutor-dashboard label,
+.tutor-wrap.tutor-dashboard .tutor-form-label {
+    color: var(--db-gray) !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    margin-bottom: 6px !important;
+    display: block !important;
+}
+
+/* Input fields */
+.tutor-wrap.tutor-dashboard input[type="text"],
+.tutor-wrap.tutor-dashboard input[type="email"],
+.tutor-wrap.tutor-dashboard input[type="password"],
+.tutor-wrap.tutor-dashboard input[type="url"],
+.tutor-wrap.tutor-dashboard input[type="tel"],
+.tutor-wrap.tutor-dashboard input[type="number"],
+.tutor-wrap.tutor-dashboard input[type="date"],
+.tutor-wrap.tutor-dashboard input[type="search"],
+.tutor-wrap.tutor-dashboard textarea,
+.tutor-wrap.tutor-dashboard select,
+.tutor-wrap.tutor-dashboard .tutor-form-control {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid var(--db-border) !important;
+    border-radius: var(--db-radius-sm) !important;
+    color: var(--db-white) !important;
+    padding: 12px 16px !important;
+    font-size: 14px !important;
+    font-family: var(--db-font) !important;
+    transition: var(--db-transition) !important;
+    width: 100% !important;
+    outline: none !important;
+}
+
+.tutor-wrap.tutor-dashboard input:focus,
+.tutor-wrap.tutor-dashboard textarea:focus,
+.tutor-wrap.tutor-dashboard select:focus,
+.tutor-wrap.tutor-dashboard .tutor-form-control:focus {
+    border-color: var(--db-blue) !important;
+    box-shadow: 0 0 0 3px rgba(64, 119, 243, 0.2) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.tutor-wrap.tutor-dashboard input::placeholder,
+.tutor-wrap.tutor-dashboard textarea::placeholder {
+    color: var(--db-gray-dim) !important;
+    opacity: 1 !important;
+}
+
+/* Select arrows */
+.tutor-wrap.tutor-dashboard select {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23999eb2' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: left 14px center !important;
+    padding-left: 36px !important;
+}
+
+/* File upload area */
+.tutor-wrap.tutor-dashboard .tutor-thumbnail-uploader,
+.tutor-wrap.tutor-dashboard .tutor-profile-photo-upload {
+    border: 2px dashed var(--db-border) !important;
+    border-radius: var(--db-radius) !important;
+    background: var(--db-glass) !important;
+    transition: var(--db-transition) !important;
+    padding: 24px !important;
+    text-align: center !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-thumbnail-uploader:hover,
+.tutor-wrap.tutor-dashboard .tutor-profile-photo-upload:hover {
+    border-color: var(--db-blue) !important;
+    background: var(--db-blue-soft) !important;
+}
+
+/* Checkboxes, radios */
+.tutor-wrap.tutor-dashboard input[type="checkbox"],
+.tutor-wrap.tutor-dashboard input[type="radio"] {
+    width: auto !important;
+    accent-color: var(--db-blue) !important;
+}
+
+
+/* ==========================================================================
+   11. BUTTONS (global inside dashboard)
+   ========================================================================== */
+.tutor-wrap.tutor-dashboard .tutor-btn,
+.tutor-wrap.tutor-dashboard .tutor-btn-primary,
+.tutor-wrap.tutor-dashboard button[type="submit"],
+.tutor-wrap.tutor-dashboard input[type="submit"] {
+    background: var(--db-blue) !important;
+    color: var(--db-white) !important;
+    border: none !important;
+    border-radius: var(--db-radius-sm) !important;
+    padding: 12px 28px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    font-family: var(--db-font) !important;
+    cursor: pointer !important;
+    transition: var(--db-transition) !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    width: auto !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-btn:hover,
+.tutor-wrap.tutor-dashboard .tutor-btn-primary:hover,
+.tutor-wrap.tutor-dashboard button[type="submit"]:hover,
+.tutor-wrap.tutor-dashboard input[type="submit"]:hover {
+    background: #3366d9 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 16px rgba(64, 119, 243, 0.35) !important;
+}
+
+/* Secondary / outline buttons */
+.tutor-wrap.tutor-dashboard .tutor-btn-outline-primary,
+.tutor-wrap.tutor-dashboard .tutor-btn-secondary {
+    background: transparent !important;
+    color: var(--db-blue) !important;
+    border: 1px solid var(--db-blue) !important;
+    border-radius: var(--db-radius-sm) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-btn-outline-primary:hover,
+.tutor-wrap.tutor-dashboard .tutor-btn-secondary:hover {
+    background: var(--db-blue-soft) !important;
+    color: var(--db-white) !important;
+}
+
+/* Danger / delete buttons */
+.tutor-wrap.tutor-dashboard .tutor-btn-danger,
+.tutor-wrap.tutor-dashboard .tutor-btn-delete {
+    background: var(--db-red) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-btn-danger:hover,
+.tutor-wrap.tutor-dashboard .tutor-btn-delete:hover {
+    background: #e74c5c !important;
+}
+
+/* Disabled buttons */
+.tutor-wrap.tutor-dashboard .tutor-btn:disabled,
+.tutor-wrap.tutor-dashboard .tutor-btn[disabled] {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+
+/* ==========================================================================
+   12. Q&A PAGE
+   ========================================================================== */
+.tutor-wrap.tutor-dashboard .tutor-frontend-dashboard-qna-header {
+    color: var(--db-white) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-qna-single-question,
+.tutor-wrap.tutor-dashboard .tutor-qna-question-wrap {
+    background: var(--db-card-alt) !important;
+    border: 1px solid var(--db-border) !important;
+    border-radius: var(--db-radius) !important;
+    padding: 20px !important;
+    margin-bottom: 12px !important;
+    transition: var(--db-transition) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-qna-single-question:hover {
+    border-color: rgba(64, 119, 243, 0.2) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-qna-question-wrap .tutor-qna-question-user,
+.tutor-wrap.tutor-dashboard .tutor-qna-question-wrap .tutor-qna-question-body {
+    color: var(--db-white) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-qna-question-wrap .tutor-qna-question-meta,
+.tutor-wrap.tutor-dashboard .tutor-qna-question-wrap .tutor-qna-time {
+    color: var(--db-gray) !important;
+    font-size: 12px !important;
+}
+
+/* Q&A reply form */
+.tutor-wrap.tutor-dashboard .tutor-qna-reply-editor textarea {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid var(--db-border) !important;
+    color: var(--db-white) !important;
+    border-radius: var(--db-radius-sm) !important;
+}
+
+
+/* ==========================================================================
+   13. QUIZ ATTEMPTS PAGE
+   ========================================================================== */
+.tutor-wrap.tutor-dashboard .tutor-quiz-attempt-info {
+    color: var(--db-white) !important;
+}
+
+/* Result badges */
+.tutor-wrap.tutor-dashboard .tutor-badge-success,
+.tutor-wrap.tutor-dashboard .tutor-text-success {
+    color: var(--db-green) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-badge-danger,
+.tutor-wrap.tutor-dashboard .tutor-text-danger {
+    color: var(--db-red) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-badge-warning,
+.tutor-wrap.tutor-dashboard .tutor-text-warning {
+    color: var(--db-orange) !important;
+}
+
+/* Badge pills */
+.tutor-wrap.tutor-dashboard .tutor-badge,
+.tutor-wrap.tutor-dashboard span.tutor-badge {
+    border-radius: 20px !important;
+    padding: 4px 12px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-badge-success {
+    background: rgba(24, 169, 99, 0.15) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-badge-danger {
+    background: rgba(249, 106, 123, 0.15) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-badge-warning {
+    background: rgba(255, 137, 4, 0.15) !important;
+}
+
+
+/* ==========================================================================
+   14. ORDER HISTORY / PURCHASE HISTORY
+   ========================================================================== */
+.tutor-wrap.tutor-dashboard .tutor-purchase-history {
+    color: var(--db-white) !important;
+}
+
+/* Download / receipt icons */
+.tutor-wrap.tutor-dashboard .tutor-purchase-history .tutor-icon-receipt-line,
+.tutor-wrap.tutor-dashboard .tutor-purchase-history .tutor-btn {
+    color: var(--db-blue) !important;
+}
+
+
+/* ==========================================================================
+   15. REVIEWS PAGE
+   ========================================================================== */
+.tutor-wrap.tutor-dashboard .tutor-reviews-list .tutor-review-item,
+.tutor-wrap.tutor-dashboard .table-reviews tbody tr {
+    transition: var(--db-transition) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-reviews-list .tutor-review-item:hover,
+.tutor-wrap.tutor-dashboard .table-reviews tbody tr:hover {
+    background: var(--db-blue-soft) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-ratings-stars .tutor-icon-star-line,
+.tutor-wrap.tutor-dashboard .tutor-ratings-stars .tutor-icon-star-bold,
+.tutor-wrap.tutor-dashboard .tutor-ratings-stars i {
+    color: var(--db-orange) !important;
+}
+
+
+/* ==========================================================================
+   16. PAGINATION
+   ========================================================================== */
+.tutor-wrap.tutor-dashboard .tutor-pagination {
+    margin-top: 24px !important;
+    display: flex !important;
+    justify-content: center !important;
+    gap: 6px !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-pagination .page-numbers,
+.tutor-wrap.tutor-dashboard .tutor-pagination a,
+.tutor-wrap.tutor-dashboard .tutor-pagination span {
+    background: var(--db-glass) !important;
+    color: var(--db-gray) !important;
+    border: 1px solid var(--db-border) !important;
+    border-radius: 8px !important;
+    padding: 8px 14px !important;
+    font-size: 14px !important;
+    transition: var(--db-transition) !important;
+    text-decoration: none !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-pagination .current,
+.tutor-wrap.tutor-dashboard .tutor-pagination .page-numbers.current {
+    background: var(--db-blue) !important;
+    color: var(--db-white) !important;
+    border-color: var(--db-blue) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-pagination a:hover {
+    background: var(--db-blue-soft) !important;
+    color: var(--db-white) !important;
+    border-color: var(--db-blue) !important;
+}
+
+
+/* ==========================================================================
+   17. EMPTY STATES
+   ========================================================================== */
+.tutor-wrap.tutor-dashboard .tutor-empty-state,
+.tutor-wrap.tutor-dashboard .tutor-no-data-found {
+    text-align: center !important;
+    padding: 60px 24px !important;
+    color: var(--db-gray) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-empty-state img,
+.tutor-wrap.tutor-dashboard .tutor-no-data-found img {
+    opacity: 0.5 !important;
+    max-width: 180px !important;
+    margin-bottom: 20px !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-empty-state p {
+    color: var(--db-gray) !important;
+    font-size: 15px !important;
+}
+
+
+/* ==========================================================================
+   18. ALERTS & NOTICES
+   ========================================================================== */
+.tutor-wrap.tutor-dashboard .tutor-alert,
+.tutor-wrap.tutor-dashboard .tutor-primary-alert {
+    background: var(--db-blue-soft) !important;
+    border: 1px solid rgba(64, 119, 243, 0.2) !important;
+    color: var(--db-white) !important;
+    border-radius: var(--db-radius-sm) !important;
+    padding: 14px 18px !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-alert-success {
+    background: rgba(24, 169, 99, 0.12) !important;
+    border-color: rgba(24, 169, 99, 0.25) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-alert-danger,
+.tutor-wrap.tutor-dashboard .tutor-alert-warning {
+    background: rgba(249, 106, 123, 0.12) !important;
+    border-color: rgba(249, 106, 123, 0.25) !important;
+}
+
+
+/* ==========================================================================
+   19. MODALS / POPUPS
+   ========================================================================== */
+.tutor-wrap.tutor-dashboard .tutor-modal .tutor-modal-content,
+.tutor-wrap.tutor-dashboard .tutor-modal-wrap .tutor-modal-content {
+    background: var(--db-card) !important;
+    border: 1px solid var(--db-border) !important;
+    border-radius: var(--db-radius-lg) !important;
+    color: var(--db-white) !important;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-modal .tutor-modal-header {
+    border-bottom: 1px solid var(--db-border) !important;
+    color: var(--db-white) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-modal .tutor-modal-footer {
+    border-top: 1px solid var(--db-border) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-modal .tutor-modal-close {
+    color: var(--db-gray) !important;
+    transition: var(--db-transition) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-modal .tutor-modal-close:hover {
+    color: var(--db-white) !important;
+}
+
+/* Modal backdrop */
+.tutor-modal-overlay,
+.tutor-wrap.tutor-dashboard ~ .tutor-modal-overlay {
+    background: rgba(10, 15, 26, 0.75) !important;
+    backdrop-filter: blur(4px) !important;
+}
+
+
+/* ==========================================================================
+   20. TOOLTIPS
+   ========================================================================== */
+.tutor-wrap.tutor-dashboard .tooltip,
+.tutor-wrap.tutor-dashboard [data-tooltip]::after {
+    background: var(--db-card-alt) !important;
+    color: var(--db-white) !important;
+    border: 1px solid var(--db-border) !important;
+    border-radius: 8px !important;
+    font-size: 12px !important;
+    padding: 6px 10px !important;
+}
+
+
+/* ==========================================================================
+   21. MOBILE FOOTER NAV
+   ========================================================================== */
+#tutor-dashboard-footer-mobile {
+    background: var(--db-card) !important;
+    border-top: 1px solid var(--db-border) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+}
+
+#tutor-dashboard-footer-mobile a {
+    color: var(--db-gray) !important;
+    font-size: 12px !important;
+    transition: var(--db-transition) !important;
+}
+
+#tutor-dashboard-footer-mobile a.active {
+    color: var(--db-blue) !important;
+}
+
+#tutor-dashboard-footer-mobile a i,
+#tutor-dashboard-footer-mobile a [class*="tutor-icon-"] {
+    font-size: 20px !important;
+}
+
+
+/* ==========================================================================
+   22. SCROLLBAR (dark themed)
+   ========================================================================== */
+.tutor-wrap.tutor-dashboard ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.tutor-wrap.tutor-dashboard ::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.tutor-wrap.tutor-dashboard ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+}
+
+.tutor-wrap.tutor-dashboard ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+
+/* ==========================================================================
+   23. GENERIC TEXT COLOR OVERRIDES
+   Force all Tutor LMS text-color utility classes to use white/gray
+   ========================================================================== */
+.tutor-wrap.tutor-dashboard .tutor-color-black,
+.tutor-wrap.tutor-dashboard .tutor-color-dark {
+    color: var(--db-white) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-color-secondary,
+.tutor-wrap.tutor-dashboard .tutor-color-muted,
+.tutor-wrap.tutor-dashboard .tutor-color-subdued {
+    color: var(--db-gray) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-color-primary {
+    color: var(--db-blue) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-color-success {
+    color: var(--db-green) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-color-danger {
+    color: var(--db-red) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-color-warning {
+    color: var(--db-orange) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-color-white {
+    color: var(--db-white) !important;
+}
+
+/* Background utility overrides */
+.tutor-wrap.tutor-dashboard .tutor-bg-white {
+    background-color: var(--db-card) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-bg-light {
+    background-color: var(--db-card-alt) !important;
+}
+
+
+/* ==========================================================================
+   24. LINK STYLES
+   ========================================================================== */
+.tutor-wrap.tutor-dashboard a {
+    color: var(--db-blue) !important;
+    transition: var(--db-transition) !important;
+}
+
+.tutor-wrap.tutor-dashboard a:hover {
+    color: #5a93ff !important;
+}
+
+/* Keep sidebar link colors managed by their own section */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-item a {
+    color: var(--db-gray) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-item.active a {
+    color: var(--db-white) !important;
+}
+
+
+/* ==========================================================================
+   25. BORDER & SHADOW UTILITY OVERRIDES
+   ========================================================================== */
+.tutor-wrap.tutor-dashboard .tutor-border-top,
+.tutor-wrap.tutor-dashboard .tutor-border-bottom {
+    border-color: var(--db-border) !important;
+}
+
+.tutor-wrap.tutor-dashboard hr {
+    border-color: var(--db-border) !important;
+    opacity: 1 !important;
+}
+
+
+/* ==========================================================================
+   26. LOADING / SKELETON STATES
+   ========================================================================== */
+.tutor-wrap.tutor-dashboard .tutor-placeholder-area {
+    background: var(--db-card-alt) !important;
+    border-radius: var(--db-radius) !important;
+    animation: db-pulse 1.5s ease-in-out infinite !important;
+}
+
+@keyframes db-pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+}
+
+
+/* ==========================================================================
+   27. DROPDOWN MENUS (priority nav "more" dropdown)
+   ========================================================================== */
+.tutor-wrap.tutor-dashboard .tutor-nav-more-item .tutor-dropdown-menu,
+.tutor-wrap.tutor-dashboard .tutor-dropdown-menu {
+    background: var(--db-card) !important;
+    border: 1px solid var(--db-border) !important;
+    border-radius: var(--db-radius-sm) !important;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4) !important;
+    padding: 6px !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-dropdown-menu .tutor-dropdown-item,
+.tutor-wrap.tutor-dashboard .tutor-dropdown-menu a {
+    color: var(--db-gray) !important;
+    padding: 10px 14px !important;
+    border-radius: 6px !important;
+    transition: var(--db-transition) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-dropdown-menu .tutor-dropdown-item:hover,
+.tutor-wrap.tutor-dashboard .tutor-dropdown-menu a:hover {
+    background: var(--db-blue-soft) !important;
+    color: var(--db-white) !important;
+}
+
+
+/* ==========================================================================
+   28. RESPONSIVE ADJUSTMENTS
+   ========================================================================== */
+
+/* Tablet */
+@media (max-width: 991px) {
+    .tutor-wrap.tutor-dashboard .tutor-frontend-dashboard-header {
+        padding: 20px !important;
+    }
+    
+    .tutor-wrap.tutor-dashboard .tutor-dashboard-content {
+        padding: 20px !important;
+    }
+    
+    .tutor-wrap.tutor-dashboard .tutor-dashboard-left-menu {
+        position: static;
+    }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+    .tutor-wrap.tutor-dashboard .tutor-frontend-dashboard-header {
+        padding: 16px !important;
+        border-radius: var(--db-radius) !important;
+        flex-direction: column !important;
+        text-align: center !important;
+    }
+    
+    .tutor-wrap.tutor-dashboard .tutor-dashboard-header-avatar img,
+    .tutor-wrap.tutor-dashboard .tutor-dashboard-header-avatar .tutor-avatar {
+        width: 60px !important;
+        height: 60px !important;
+    }
+    
+    .tutor-wrap.tutor-dashboard .tutor-dashboard-content {
+        padding: 16px !important;
+        border-radius: var(--db-radius) !important;
+    }
+    
+    .tutor-wrap.tutor-dashboard .tutor-dashboard-permalinks {
+        border-radius: var(--db-radius) !important;
+        margin-bottom: 16px !important;
+    }
+    
+    /* Stacked course grid */
+    .tutor-wrap.tutor-dashboard .tutor-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Tables become scrollable */
+    .tutor-wrap.tutor-dashboard .tutor-table-responsive {
+        overflow-x: auto !important;
+    }
+    
+    .tutor-wrap.tutor-dashboard .tutor-table {
+        min-width: 600px !important;
+    }
+    
+    /* Nav tabs scroll horizontally */
+    .tutor-wrap.tutor-dashboard .tutor-nav {
+        overflow-x: auto !important;
+        flex-wrap: nowrap !important;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    .tutor-wrap.tutor-dashboard .tutor-dashboard-content {
+        padding: 12px !important;
+    }
+    
+    .tutor-wrap.tutor-dashboard .tutor-card .tutor-card-body {
+        padding: 14px !important;
+    }
+    
+    .tutor-wrap.tutor-dashboard .tutor-btn,
+    .tutor-wrap.tutor-dashboard .tutor-btn-primary {
+        padding: 10px 20px !important;
+        font-size: 13px !important;
+    }
+}
+
+
+/* ==========================================================================
+   29. ANIMATION — MOUNT TRANSITIONS
+   ========================================================================== */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-content-inner,
+.tutor-wrap.tutor-dashboard .tutor-dashboard-content > * {
+    animation: dbFadeIn 0.35s ease-out;
+}
+
+@keyframes dbFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ==========================================================================
+   30. ICON OVERRIDE — ensure Remix Icons render properly
+   ========================================================================== */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-item-icon[class*="ri-"] {
+    font-family: "remixicon" !important;
+    font-style: normal !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Fallback: hide broken tutor-icon spans that haven't been replaced yet */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-item-icon[class*="tutor-icon-"]:not([class*="ri-"]) {
+    font-size: 0 !important;
+    width: 24px !important;
+    height: 20px !important;
+}
+
+/* Once replaced by JS, show properly */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-item-icon.ri-icon-replaced {
+    font-size: 20px !important;
 }
