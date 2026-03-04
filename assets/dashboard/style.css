@@ -301,9 +301,66 @@ body.tutor-screen-frontend-dashboard .entry-content {
     color: var(--db-gray) !important;
 }
 
+/* Dashboard content-inner — force transparent so content bg shows, not Tutor LMS white */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-content-inner {
+    background: transparent !important;
+}
+
+/* Course progress section outer wrapper */
+.tutor-wrap.tutor-dashboard .tutor-frontend-dashboard-course-progress {
+    background: transparent !important;
+}
+
 /* Course progress cards */
-.tutor-wrap.tutor-dashboard .tutor-frontend-dashboard-course-progress .tutor-card {
+.tutor-wrap.tutor-dashboard .tutor-frontend-dashboard-course-progress .tutor-card,
+.tutor-wrap.tutor-dashboard .tutor-course-progress-item {
     background: var(--db-card-alt) !important;
+    border: 1px solid var(--db-border) !important;
+    border-radius: var(--db-radius) !important;
+}
+
+/* Course progress item — text overrides */
+.tutor-wrap.tutor-dashboard .tutor-course-progress-item .tutor-course-progress-item-title,
+.tutor-wrap.tutor-dashboard .tutor-course-progress-item .tutor-color-black,
+.tutor-wrap.tutor-dashboard .tutor-course-progress-item .tutor-fw-medium {
+    color: var(--db-white) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-course-progress-item .tutor-color-muted,
+.tutor-wrap.tutor-dashboard .tutor-course-progress-item .tutor-color-secondary {
+    color: var(--db-gray) !important;
+}
+
+/* Course progress item card body */
+.tutor-wrap.tutor-dashboard .tutor-course-progress-item .tutor-card-body {
+    background: transparent !important;
+    color: var(--db-white) !important;
+}
+
+/* Profile completion card */
+.tutor-wrap.tutor-dashboard .tutor-profile-completion {
+    background: var(--db-card-alt) !important;
+    border: 1px solid var(--db-border) !important;
+}
+
+.tutor-wrap.tutor-dashboard .tutor-profile-completion .tutor-color-black,
+.tutor-wrap.tutor-dashboard .tutor-profile-completion .tutor-fw-medium {
+    color: var(--db-white) !important;
+}
+
+/* My Courses section (instructor) — heading + table wrapper */
+.tutor-wrap.tutor-dashboard .popular-courses-heading-dashboard {
+    color: var(--db-white) !important;
+}
+
+.tutor-wrap.tutor-dashboard .popular-courses-heading-dashboard span,
+.tutor-wrap.tutor-dashboard .popular-courses-heading-dashboard .tutor-color-black {
+    color: var(--db-white) !important;
+}
+
+.tutor-wrap.tutor-dashboard .progress-percentage,
+.tutor-wrap.tutor-dashboard .progress-percentage .tutor-color-black {
+    color: var(--db-white) !important;
 }
 
 .tutor-wrap.tutor-dashboard .tutor-progress-bar {
