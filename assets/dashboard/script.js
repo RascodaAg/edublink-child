@@ -1,14 +1,15 @@
 /**
- * Dashboard — Remix Icon Replacement & Enhancements
+ * Dashboard — Remix Icon Injection & Enhancements
  * LearnSimply (beta.learrnsimply.com)
  *
- * Replaces broken Tutor LMS tutor-icon-* sidebar icons with
- * modern Remix Icons (remixicon.com) loaded via CDN.
+ * Injects Remix Icons into the Tutor LMS sidebar navigation.
+ * Uses a guaranteed-injection strategy (removes any broken existing
+ * icon spans and always creates fresh <i> elements), with 4 retry
+ * timers to handle Tutor LMS AJAX-rendered pages.
  *
  * Also enhances:
  *  - Stat card icons on the dashboard home
  *  - Mobile footer nav icons
- *  - Star rating icons
  */
 
 (function ($) {
@@ -19,11 +20,11 @@
        Maps <li> class suffix → Remix Icon class
        ====================================================================== */
     var sidebarIconMap = {
-        'index':             'ri-dashboard-line',
+        'index':             'ri-dashboard-3-line',
         'my-profile':        'ri-user-3-line',
         'enrolled-courses':  'ri-book-open-line',
         'my-courses':        'ri-graduation-cap-line',
-        'reviews':           'ri-star-line',
+        'reviews':           'ri-star-half-line',
         'my-quiz-attempts':  'ri-file-list-3-line',
         'wishlist':          'ri-heart-3-line',
         'purchase_history':  'ri-receipt-line',
@@ -98,17 +99,20 @@
     };
 
     /* ======================================================================
-       3. REPLACE SIDEBAR NAV ICONS
+       3. REPLACE SIDEBAR NAV ICONS — guaranteed injection strategy
+       Always removes any existing broken icon element and injects a fresh
+       <i> tag, so icons appear regardless of Tutor LMS rendering quirks.
+       Marks processed <li> with data-ri="done" to avoid duplicates.
        ====================================================================== */
     function replaceSidebarIcons() {
-        var $menuItems = $('.tutor-dashboard-permalinks .tutor-dashboard-menu-item');
+        var $menuItems = $('.tutor-dashboard-permalinks .tutor-dashboard-menu-item:not([data-ri="done"])');
+        if (!$menuItems.length) return;
 
         $menuItems.each(function () {
             var $li = $(this);
             var classList = ($li.attr('class') || '').split(/\s+/);
             var slug = '';
 
-            // Extract slug from class like "tutor-dashboard-menu-{slug}"
             for (var i = 0; i < classList.length; i++) {
                 var match = classList[i].match(/^tutor-dashboard-menu-(.+)$/);
                 if (match && match[1] !== 'item' && match[1] !== 'divider' && match[1] !== 'divider-header') {
@@ -120,26 +124,21 @@
             if (!slug || !sidebarIconMap[slug]) return;
 
             var remixClass = sidebarIconMap[slug];
-            var $iconSpan = $li.find('.tutor-dashboard-menu-item-icon');
+            var $link = $li.find('a, .tutor-dashboard-menu-item-link').first();
+            if (!$link.length) return;
 
-            if ($iconSpan.length) {
-                // Replace the icon element entirely
-                var $newIcon = $('<i></i>')
-                    .addClass(remixClass)
-                    .addClass('tutor-dashboard-menu-item-icon')
-                    .addClass('ri-icon-replaced');
-                $iconSpan.replaceWith($newIcon);
-            } else {
-                // No icon span exists — prepend one inside the <a> link
-                var $link = $li.find('a, .tutor-dashboard-menu-item-link').first();
-                if ($link.length) {
-                    var $newIcon = $('<i></i>')
-                        .addClass(remixClass)
-                        .addClass('tutor-dashboard-menu-item-icon')
-                        .addClass('ri-icon-replaced');
-                    $link.prepend($newIcon);
-                }
-            }
+            // Always remove existing icon elements (broken or not)
+            $link.find('.tutor-dashboard-menu-item-icon, [class*="tutor-icon-"], [class*="ri-"]').remove();
+
+            // Inject a fresh Remix Icon <i> at the start of the link
+            var $icon = $('<i></i>')
+                .addClass(remixClass)
+                .addClass('tutor-dashboard-menu-item-icon')
+                .addClass('ri-icon-replaced')
+                .attr('aria-hidden', 'true');
+
+            $link.prepend($icon);
+            $li.attr('data-ri', 'done');
         });
     }
 
@@ -147,12 +146,10 @@
        4. REPLACE ALL OTHER TUTOR-ICON-* ELEMENTS
        ====================================================================== */
     function replaceGenericIcons() {
-        // Find all elements with tutor-icon-* classes inside the dashboard
         var $dashboard = $('.tutor-wrap.tutor-dashboard');
         if (!$dashboard.length) return;
 
-        // Don't re-replace sidebar icons (already handled)
-        var $icons = $dashboard.find('[class*="tutor-icon-"]').not('.ri-icon-replaced').not('.tutor-dashboard-menu-item-icon');
+        var $icons = $dashboard.find('[class*="tutor-icon-"]:not(.ri-icon-replaced):not(.tutor-dashboard-menu-item-icon)');
 
         $icons.each(function () {
             var $el = $(this);
@@ -161,16 +158,8 @@
             for (var i = 0; i < classList.length; i++) {
                 if (statIconMap[classList[i]]) {
                     var remixClass = statIconMap[classList[i]];
-                    // Remove the old tutor-icon class, add remix class
                     $el.removeClass(classList[i]).addClass(remixClass).addClass('ri-icon-replaced');
-                    // Ensure correct font-family
-                    $el.css({
-                        'font-family': 'remixicon',
-                        'font-style': 'normal',
-                        '-webkit-font-smoothing': 'antialiased',
-                        '-moz-osx-font-smoothing': 'grayscale'
-                    });
-                    break; // one replacement per element
+                    break;
                 }
             }
         });
@@ -184,14 +173,14 @@
         if (!$footer.length) return;
 
         var mobileMap = {
-            'tutor-icon-dashboard':     'ri-dashboard-line',
+            'tutor-icon-dashboard':     'ri-dashboard-3-line',
             'tutor-icon-book-open':     'ri-book-open-line',
             'tutor-icon-question':      'ri-question-answer-line',
             'tutor-icon-quiz-attempt':  'ri-file-list-3-line',
             'tutor-icon-hamburger-o':   'ri-menu-line'
         };
 
-        $footer.find('[class*="tutor-icon-"]').each(function () {
+        $footer.find('[class*="tutor-icon-"]:not(.ri-icon-replaced)').each(function () {
             var $el = $(this);
             var classList = ($el.attr('class') || '').split(/\s+/);
             for (var i = 0; i < classList.length; i++) {
@@ -207,8 +196,8 @@
        6. ENHANCE — ADD SMOOTH SCROLL TO TOP ON NAV CLICK
        ====================================================================== */
     function enhanceSidebarNav() {
-        $('.tutor-dashboard-permalinks .tutor-dashboard-menu-item a').on('click', function () {
-            // Scroll content area to top when switching pages
+        // Use event delegation so it works after AJAX re-renders
+        $(document).off('click.lsNav').on('click.lsNav', '.tutor-dashboard-permalinks .tutor-dashboard-menu-item a', function () {
             if (window.innerWidth <= 991) {
                 $('html, body').animate({ scrollTop: 0 }, 300);
             }
@@ -216,33 +205,46 @@
     }
 
     /* ======================================================================
-       7. INIT — RUN ON DOM READY
+       7. RUN ALL — fires sidebar + generic + mobile in one shot
+       ====================================================================== */
+    function runAll() {
+        if (!$('.tutor-wrap.tutor-dashboard').length) return;
+        replaceSidebarIcons();
+        replaceGenericIcons();
+        replaceMobileFooterIcons();
+    }
+
+    /* ======================================================================
+       8. INIT — 4 retry timers + MutationObserver for AJAX content
        ====================================================================== */
     $(document).ready(function () {
-        // Verify we're on the dashboard
         if (!$('.tutor-wrap.tutor-dashboard').length) return;
 
-        // Wait a tiny bit for Tutor LMS to finish rendering dynamic content
-        setTimeout(function () {
-            replaceSidebarIcons();
-            replaceGenericIcons();
-            replaceMobileFooterIcons();
-            enhanceSidebarNav();
-        }, 100);
+        enhanceSidebarNav();
 
-        // Also observe for AJAX-loaded content (Tutor LMS uses AJAX for some pages)
-        if (typeof MutationObserver !== 'undefined') {
-            var contentArea = document.querySelector('.tutor-dashboard-content');
-            if (contentArea) {
-                var observer = new MutationObserver(function (mutations) {
-                    // Re-run generic icon replacements when content changes
-                    replaceGenericIcons();
-                });
-                observer.observe(contentArea, {
-                    childList: true,
-                    subtree: true
-                });
-            }
+        // Fire immediately, then retry at 300ms, 800ms, 2000ms
+        // to catch icons rendered late by Tutor LMS JS
+        runAll();
+        setTimeout(runAll, 300);
+        setTimeout(runAll, 800);
+        setTimeout(runAll, 2000);
+
+        // Observe the sidebar for DOM changes (Tutor replaces it on AJAX nav)
+        var sidebar = document.querySelector('.tutor-dashboard-permalinks, .tutor-dashboard-left-menu');
+        if (sidebar && typeof MutationObserver !== 'undefined') {
+            new MutationObserver(function () {
+                // Reset done markers so icons get re-injected on the new nodes
+                $('.tutor-dashboard-menu-item[data-ri="done"]').removeAttr('data-ri');
+                setTimeout(runAll, 50);
+            }).observe(sidebar, { childList: true, subtree: true });
+        }
+
+        // Also observe content area for AJAX sub-page changes
+        var contentArea = document.querySelector('.tutor-dashboard-content');
+        if (contentArea && typeof MutationObserver !== 'undefined') {
+            new MutationObserver(function () {
+                replaceGenericIcons();
+            }).observe(contentArea, { childList: true, subtree: true });
         }
     });
 

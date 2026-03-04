@@ -1264,23 +1264,54 @@ body.tutor-screen-frontend-dashboard .entry-content {
 
 
 /* ==========================================================================
-   30. ICON OVERRIDE — ensure Remix Icons render properly
+   30. ICON OVERRIDE — Remix Icons rendering for sidebar nav icons
    ========================================================================== */
-.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-item-icon[class*="ri-"] {
+
+/* All <i> Remix Icon elements inside the sidebar */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-item-icon.ri-icon-replaced {
+    font-family: "remixicon" !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-size: 19px !important;
+    line-height: 1 !important;
+    width: 22px !important;
+    height: 22px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: var(--db-gray-dim);
+    transition: var(--db-transition) !important;
+    speak: never;
+}
+
+/* Color the active icon blue */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-item.active .tutor-dashboard-menu-item-icon.ri-icon-replaced {
+    color: var(--db-blue) !important;
+}
+
+/* Color icon on hover */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-item:hover .tutor-dashboard-menu-item-icon.ri-icon-replaced {
+    color: var(--db-blue) !important;
+}
+
+/* Logout icon stays red */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-logout .tutor-dashboard-menu-item-icon.ri-icon-replaced {
+    color: var(--db-red) !important;
+}
+
+/* Hide all broken tutor-icon-* spans (both before and after JS runs) */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-item-icon[class*="tutor-icon-"],
+.tutor-wrap.tutor-dashboard .tutor-dashboard-permalinks [class*="tutor-icon-"]:not(.ri-icon-replaced) {
+    display: none !important;
+}
+
+/* Generic Remix Icons anywhere inside dashboard (stat cards, etc.) */
+.tutor-wrap.tutor-dashboard [class*="ri-"].ri-icon-replaced {
     font-family: "remixicon" !important;
     font-style: normal !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
-
-/* Fallback: hide broken tutor-icon spans that haven't been replaced yet */
-.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-item-icon[class*="tutor-icon-"]:not([class*="ri-"]) {
-    font-size: 0 !important;
-    width: 24px !important;
-    height: 20px !important;
-}
-
-/* Once replaced by JS, show properly */
-.tutor-wrap.tutor-dashboard .tutor-dashboard-menu-item-icon.ri-icon-replaced {
-    font-size: 20px !important;
 }
