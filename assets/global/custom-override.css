@@ -19,7 +19,8 @@
 */
 
 .coupon-col-end{
-       background: #4482ff !important;
+       background: transparent !important;
+       /* removed blue accent which conflicted with button styling */
     border-end-end-radius: 30px !important;
 }
 
