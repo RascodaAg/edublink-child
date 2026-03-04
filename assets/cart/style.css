@@ -250,7 +250,8 @@ body.woocommerce-cart,
 /* elementor cart page wrapper flex container + order swap */
 .elementor-21 .elementor-element.elementor-element-6831e288 {
   display: flex !important;
-  align-items: center !important;
+  align-items: center !important; /* keep centering, but we'll force child heights */
+  height: auto !important;
 }
 .elementor-21 .elementor-element.elementor-element-6831e288 .coupon-col-start {
   order: 2 !important; /* place input on right */
@@ -269,13 +270,16 @@ body.woocommerce-cart,
   margin-right: 8px !important;
   flex: 1 1 auto !important;
   width: auto !important;
+  height: 44px !important;
+  line-height: 1.2 !important;
 }
 
 /* if button is adjacent give some left margin to keep distance and match input height */
 .elementor-21 .elementor-element.elementor-element-6831e288 .coupon-col-end .button {
   margin-left: 8px !important;
   padding: 12px 24px !important;
-  height: auto !important;
+  height: 44px !important;
+  line-height: 1.2 !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
