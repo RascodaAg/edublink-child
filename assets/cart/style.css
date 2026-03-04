@@ -233,16 +233,13 @@ body.woocommerce-cart,
 
 /* make coupon form card match the dark card background (no pure white)
    and avoid any light overlay behind the button */
+/* this earlier rule is superseded by later more complete block but kept for
+   safe margin and padding in case order changes */
 .woocommerce-cart table.shop_table .coupon {
   background: #141924 !important;
-  /* spacing around and within card */
   margin-top: 20px !important;
   padding: 6px 8px !important;
   gap: 8px !important;
-  display: inline-flex; /* ensure gap works in desktop layout */
-  align-items: stretch;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
 }
 
 /* force the coupon input to have transparent background */
@@ -381,11 +378,14 @@ body.woocommerce-cart,
 .woocommerce-cart table.shop_table .coupon {
   display: inline-flex;
   align-items: stretch;
-  gap: 0;
+  gap: 8px !important;
   flex-wrap: nowrap;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #141924 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
   border-radius: 14px;
+  margin-top: 20px !important;
+  padding: 6px 8px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
   overflow: hidden;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
@@ -407,7 +407,8 @@ body.woocommerce-cart,
   padding: 12px 18px !important;
   font-size: 14px !important;
   outline: none !important;
-  width: 200px !important;
+  flex: 1 1 auto !important;
+  width: auto !important;
   transition: none !important;
 }
 
