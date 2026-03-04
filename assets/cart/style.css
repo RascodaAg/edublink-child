@@ -247,6 +247,24 @@ body.woocommerce-cart,
   background: transparent !important;
 }
 
+/* elementor cart page input matching button styling and spacing */
+.elementor-21 .elementor-element.elementor-element-6831e288 .coupon-col-start .input-text {
+  /* mirror apply button gradient */
+  background: linear-gradient(135deg, #4077f3 0%, #3568d4 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 12px 18px !important;
+  border-radius: 14px 0 0 14px !important;
+  /* ensure it's not flush against button */
+  margin-right: 8px !important;
+  width: auto !important;
+}
+
+/* if button is adjacent give some left margin to keep distance */
+.elementor-21 .elementor-element.elementor-element-6831e288 .coupon-col-end .button {
+  margin-left: 8px !important;
+}
+
 /* ─── Product thumbnail ─── */
 .woocommerce-cart table.shop_table td.product-thumbnail {
   width: 110px !important;
@@ -1237,4 +1255,25 @@ body.woocommerce-cart,
     border-width: 2px 2px 2px 2px;
     border-radius: 4px 4px 4px 4px;
     padding: 15px 15px 15px 15px;
+}
+
+
+.elementor-21 .elementor-element.elementor-element-6831e288 .wpr-cart-section {
+    background-color: #141924 !important;
+    border-style: solid;
+    /* border-color: #EDEDED; */
+    border-width: 2px 2px 2px 2px;
+    border-radius: 4px 4px 4px 4px;
+    padding: 15px 15px 15px 15px;
+    margin-top: 10px;
+    border: none;
+}
+.elementor-21 .elementor-element.elementor-element-6831e288 .input-text {
+    /* color: #333333; */
+    border-color: #EDEDED;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-radius: 5px 5px 5px 5px;
+    padding: 0px 0px 0px 0px;
+    background-color: currentcolor;
 }
