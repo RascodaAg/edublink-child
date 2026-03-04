@@ -1207,3 +1207,11 @@ body.woocommerce-cart,
   }
 }
 
+.elementor-21 .elementor-element.elementor-element-6831e288 .wpr-cart-section {
+    background-color: #141924 !important;
+    border-style: solid;
+    /* border-color: #EDEDED; */
+    border-width: 2px 2px 2px 2px;
+    border-radius: 4px 4px 4px 4px;
+    padding: 15px 15px 15px 15px;
+}
