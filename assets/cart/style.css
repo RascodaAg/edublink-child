@@ -247,6 +247,18 @@ body.woocommerce-cart,
   background: transparent !important;
 }
 
+/* elementor cart page wrapper flex container + order swap */
+.elementor-21 .elementor-element.elementor-element-6831e288 {
+  display: flex !important;
+  align-items: center !important;
+}
+.elementor-21 .elementor-element.elementor-element-6831e288 .coupon-col-start {
+  order: 2 !important; /* place input on right */
+}
+.elementor-21 .elementor-element.elementor-element-6831e288 .coupon-col-end {
+  order: 1 !important; /* button becomes first (left) */
+}
+
 /* elementor cart page input matching button styling and spacing */
 .elementor-21 .elementor-element.elementor-element-6831e288 .coupon-col-start .input-text {
   /* mirror apply button gradient */
