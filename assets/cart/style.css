@@ -1370,3 +1370,97 @@ body.woocommerce-cart,
 .tutor-divider tutor-radius-12 tutor-overflow-hidden {
     border: none !important;
 }
+
+/* ==========================================================================
+   7. CHECKOUT PAGE — dark mode override
+   ========================================================================== */
+
+body.woocommerce-checkout,
+.woocommerce-checkout .woocommerce {
+    background: var(--db-bg) !important;
+    color: var(--db-white) !important;
+}
+
+.woocommerce-checkout form.checkout,
+.woocommerce-checkout .col2-set,
+.woocommerce-checkout .woocommerce-billing-fields,
+.woocommerce-checkout .woocommerce-shipping-fields,
+.woocommerce-checkout .woocommerce-additional-fields,
+.woocommerce-checkout .woocommerce-checkout-payment,
+.woocommerce-checkout .woocommerce-checkout-review-order {
+    background: var(--db-card) !important;
+    border: 1px solid var(--db-border) !important;
+    border-radius: var(--db-radius) !important;
+    padding: 24px !important;
+}
+
+.woocommerce-checkout label,
+.woocommerce-checkout .woocommerce-validate-required,
+.woocommerce-checkout .form-row label {
+    color: var(--db-white) !important;
+}
+
+.woocommerce-checkout input.input-text,
+.woocommerce-checkout select,
+.woocommerce-checkout textarea,
+.woocommerce-checkout .woocommerce-input-wrapper input,
+.woocommerce-checkout .woocommerce-input-wrapper select,
+.woocommerce-checkout .woocommerce-input-wrapper textarea {
+    background: rgba(255,255,255,0.06) !important;
+    border: 1px solid var(--db-border) !important;
+    color: var(--db-white) !important;
+    border-radius: var(--db-radius-sm) !important;
+}
+
+.woocommerce-checkout input.input-text::placeholder,
+.woocommerce-checkout select::placeholder,
+.woocommerce-checkout textarea::placeholder {
+    color: rgba(255,255,255,0.5) !important;
+}
+
+.woocommerce-checkout .woocommerce-checkout-review-order table {
+    background: transparent !important;
+    color: var(--db-white) !important;
+}
+
+.woocommerce-checkout .woocommerce-checkout-review-order table thead th {
+    background: var(--db-card-alt) !important;
+    color: var(--db-gray) !important;
+    border-bottom: 1px solid var(--db-border) !important;
+}
+
+.woocommerce-checkout .woocommerce-checkout-review-order table tbody tr {
+    background: transparent !important;
+}
+
+.woocommerce-checkout .woocommerce-checkout-review-order table tbody tr:nth-child(even) {
+    background: rgba(255,255,255,0.02) !important;
+}
+
+.woocommerce-checkout .woocommerce-checkout-review-order table tbody tr:hover {
+    background: var(--db-blue-soft) !important;
+}
+
+.woocommerce-checkout .woocommerce-checkout-review-order table td,
+.woocommerce-checkout .woocommerce-checkout-review-order table th {
+    color: var(--db-white) !important;
+}
+
+.woocommerce-checkout #payment .button,
+.woocommerce-checkout .button.alt {
+    background: linear-gradient(135deg, #4077f3 0%, #3568d4 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: var(--db-radius) !important;
+    padding: 15px 24px !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 18px rgba(64, 119, 243, 0.22) !important;
+}
+
+.woocommerce-checkout #payment .button:hover,
+.woocommerce-checkout .button.alt:hover {
+    background: linear-gradient(135deg, #3568d4 0%, #2a57bf 100%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 28px rgba(64, 119, 243, 0.32) !important;
+}
