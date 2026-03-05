@@ -132,6 +132,9 @@ body .page-content {
     backdrop-filter: blur(20px) !important;
     -webkit-backdrop-filter: blur(20px) !important;
     overflow: hidden !important;
+    /* Flex column so ::after with order:-1 appears before form children */
+    display: flex !important;
+    flex-direction: column !important;
 }
 
 /* Card corner glow accent */
