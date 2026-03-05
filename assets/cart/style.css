@@ -157,7 +157,8 @@ body.woocommerce-cart,
 .woocommerce-cart table.shop_table,
 .woocommerce-cart table.woocommerce-cart-form__contents {
   background: #141924 !important;
-  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  /* remove light white border around the table */
+  border: none !important;
   border-radius: 20px !important;
   border-collapse: separate !important;
   border-spacing: 0 !important;
@@ -188,7 +189,8 @@ body.woocommerce-cart,
   text-transform: none !important;
   letter-spacing: 0.4px !important;
   padding: 16px 24px !important;
-  border-bottom: 1px solid rgba(64, 119, 243, 0.08) !important;
+  /* remove header border line */
+  border-bottom: none !important;
   text-align: right !important;
   white-space: nowrap !important;
 }
@@ -586,7 +588,8 @@ body.woocommerce-cart,
 
 .woocommerce-cart .cart_totals {
   background: #141924 !important;
-  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  /* remove the pale border around the totals card */
+  border: none !important;
   border-radius: 20px !important;
   padding: 28px 32px 32px !important;
   width: 100% !important;
