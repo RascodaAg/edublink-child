@@ -165,6 +165,20 @@ body .page-content {
     order: -1 !important;
 }
 
+/* Login heading — same style, different text */
+.tutor-login-wrap::after {
+    content: "تسجيل الدخول" !important;
+    display: block !important;
+    text-align: center !important;
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    color: var(--sp-white) !important;
+    margin-bottom: 6px !important;
+    font-family: var(--sp-font) !important;
+    line-height: 1.4 !important;
+    order: -1 !important;
+}
+
 /* Subtitle text via a separate pseudo or JS — skip for now,
    we'll add a subtle helper text via the form group margin */
 

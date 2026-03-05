@@ -971,7 +971,7 @@ function edublink_child_load_page_assets() {
 	if ( ! empty( $page_type ) && is_dir( $assets_dir . '/' . $page_type ) ) {
 		$css_file = $assets_dir . '/' . $page_type . '/style.css';
 		$js_file = $assets_dir . '/' . $page_type . '/script.js';
-		
+
 		if ( file_exists( $css_file ) ) {
 			// Load with high priority and no dependencies to ensure it loads last and can override everything
 			// Using empty array for dependencies ensures it loads after all other styles
@@ -981,6 +981,14 @@ function edublink_child_load_page_assets() {
 			wp_enqueue_script( 'edublink-' . $page_type . '-script', $assets_uri . '/' . $page_type . '/script.js', array( 'jquery' ), filemtime( $js_file ), true );
 		}
 
+	}
+
+	// Also load signup styles on dashboard page when user is NOT logged in (login form)
+	if ( $page_type === 'dashboard' && ! is_user_logged_in() ) {
+		$signup_css = $assets_dir . '/signup/style.css';
+		if ( file_exists( $signup_css ) ) {
+			wp_enqueue_style( 'edublink-signup-style', $assets_uri . '/signup/style.css', array(), filemtime( $signup_css ) );
+		}
 	}
 }
 add_action( 'wp_enqueue_scripts', 'edublink_child_load_page_assets', 999 );
@@ -1051,6 +1059,14 @@ function edublink_child_add_page_css_late() {
 		$css_file = $assets_dir . '/' . $page_type . '/style.css';
 		if ( file_exists( $css_file ) ) {
 			echo '<link rel="stylesheet" id="edublink-' . esc_attr( $page_type ) . '-style-late" href="' . esc_url( $assets_uri . '/' . $page_type . '/style.css?v=' . filemtime( $css_file ) ) . '" type="text/css" media="all" />' . "\n";
+		}
+	}
+
+	// Also load signup styles late on dashboard page when user is NOT logged in (login form)
+	if ( $page_type === 'dashboard' && ! is_user_logged_in() ) {
+		$signup_css = $assets_dir . '/signup/style.css';
+		if ( file_exists( $signup_css ) ) {
+			echo '<link rel="stylesheet" id="edublink-signup-style-late" href="' . esc_url( $assets_uri . '/signup/style.css?v=' . filemtime( $signup_css ) ) . '" type="text/css" media="all" />' . "\n";
 		}
 	}
 
