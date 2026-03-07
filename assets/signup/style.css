@@ -393,7 +393,7 @@ body .page-content {
 #tutor-registration-form .tutor-btn,
 #tutor-registration-form .tutor-btn-primary,
 #tutor-registration-form button[type="submit"],
-.tutor-login-wrap .tutor-btn,
+.tutor-login-wrap .tutor-btn:not(.tutor-btn-ghost),
 .tutor-login-wrap .tutor-btn-primary,
 .tutor-login-wrap button[type="submit"],
 .tutor-login-wrap input[type="submit"] {
@@ -425,7 +425,7 @@ body .page-content {
 /* Hover shimmer */
 #tutor-registration-form .tutor-btn:hover,
 #tutor-registration-form button[type="submit"]:hover,
-.tutor-login-wrap .tutor-btn:hover,
+.tutor-login-wrap .tutor-btn:not(.tutor-btn-ghost):hover,
 .tutor-login-wrap button[type="submit"]:hover {
     background: var(--sp-blue-light) !important;
     box-shadow: 0 6px 24px var(--sp-blue-glow) !important;
@@ -434,7 +434,7 @@ body .page-content {
 
 #tutor-registration-form .tutor-btn:active,
 #tutor-registration-form button[type="submit"]:active,
-.tutor-login-wrap .tutor-btn:active,
+.tutor-login-wrap .tutor-btn:not(.tutor-btn-ghost):active,
 .tutor-login-wrap button[type="submit"]:active {
     transform: translateY(0) !important;
     box-shadow: 0 2px 8px var(--sp-blue-glow) !important;
@@ -443,7 +443,7 @@ body .page-content {
 /* Loading state */
 #tutor-registration-form .tutor-btn.is-loading,
 #tutor-registration-form button[type="submit"]:disabled,
-.tutor-login-wrap .tutor-btn.is-loading {
+.tutor-login-wrap .tutor-btn:not(.tutor-btn-ghost).is-loading {
     opacity: 0.7 !important;
     cursor: not-allowed !important;
     transform: none !important;
@@ -726,6 +726,7 @@ body .page-content {
 /* ==========================================================================
    17. HEADINGS & TEXT (form titles)
    ========================================================================== */
+/* "أهلاً بك مرة أخرى!" — subtitle, visually smaller than the main heading (22px) */
 #tutor-registration-wrap h1,
 #tutor-registration-wrap h2,
 #tutor-registration-wrap h3,
@@ -735,9 +736,10 @@ body .page-content {
 .tutor-login-wrap .tutor-fs-4,
 .tutor-login-wrap .tutor-fs-5 {
     color: var(--sp-gray) !important;
-    font-size: 15px !important;
-    font-weight: 500 !important;
-    margin-bottom: 16px !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    margin-bottom: 20px !important;
+    margin-top: -4px !important;
     text-align: center !important;
     line-height: 1.4 !important;
 }
