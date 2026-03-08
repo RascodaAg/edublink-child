@@ -329,32 +329,49 @@ li[class*="course-lesson"] a {
     border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
-/* Content headings */
+/* Content headings and strong text */
 .tutor-course-spotlight-content h1,
 .tutor-course-spotlight-content h2,
 .tutor-course-spotlight-content h3,
 .tutor-course-spotlight-content h4,
 .tutor-course-spotlight-content h5,
 .tutor-course-spotlight-content h6,
+.tutor-course-spotlight-content strong,
 .tutor-lesson-content h1,
 .tutor-lesson-content h2,
 .tutor-lesson-content h3,
 .tutor-lesson-content h4,
 .tutor-lesson-content h5,
 .tutor-lesson-content h6,
+.tutor-lesson-content strong,
 .tutor-lesson-content-area .tutor-color-black,
 .tutor-lesson-content-area .tutor-fs-5,
 .tutor-lesson-content-area .tutor-fs-6,
-.tutor-lesson-content-area .tutor-fw-medium {
+.tutor-lesson-content-area .tutor-fw-medium,
+.tutor-lesson-content-area strong,
+.tutor-lesson-content-area h1,
+.tutor-lesson-content-area h2,
+.tutor-lesson-content-area h3,
+.tutor-lesson-content-area h4,
+.tutor-lesson-content-area h5,
+.tutor-lesson-content-area h6 {
     color: #ffffff !important;
 }
 
-/* Content body text */
+/* Content body text (make lighter for better contrast) */
 .tutor-course-spotlight-content p,
+.tutor-course-spotlight-content li,
+.tutor-course-spotlight-content span:not([class^="tutor-icon-"]):not(.tutor-nav-link),
+.tutor-course-spotlight-content div:not([class]),
 .tutor-lesson-content p,
+.tutor-lesson-content li,
+.tutor-lesson-content span:not([class^="tutor-icon-"]):not(.tutor-nav-link),
+.tutor-lesson-content div:not([class]),
 .tutor-lesson-content-area p,
-.tutor-lesson-content-area span:not([class^="tutor-icon-"]):not(.tutor-nav-link) {
-    color: #999eb2;
+.tutor-lesson-content-area li,
+.tutor-lesson-content-area span:not([class^="tutor-icon-"]):not(.tutor-nav-link),
+.tutor-lesson-content-area div:not([class]) {
+    color: #e2e6f0 !important;
 }
 
 /* Buttons in content */
@@ -367,7 +384,7 @@ li[class*="course-lesson"] a {
 
 /* General tutor area text fallback */
 .tutor-wrap {
-    color: #999eb2;
+    color: #e2e6f0;
 }
 
 /* --- TABS (Overview / Q&A) --- */
