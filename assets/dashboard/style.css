@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Dashboard Page — Dark Theme Redesign
  * LearnSimply (beta.learrnsimply.com)
  * 
@@ -40,7 +40,7 @@
     --db-radius:      16px;
     --db-radius-lg:   20px;
     --db-radius-sm:   10px;
-    --db-font:        "Graphik Arabic", sans-serif;
+    --db-font:        "Graphik Arabic";
     --db-transition:  all 0.3s ease;
 }
 

@@ -1,4 +1,4 @@
-/* =============================================================
+﻿/* =============================================================
    Cart Page — Premium Dark Theme
    LearnSimply — #0a0f1a bg, #141924 cards, #4077f3 accent
    ============================================================= */
@@ -34,7 +34,7 @@ body.woocommerce-cart,
 .woocommerce-cart .page-content,
 .woocommerce-cart .page-content * {
   color: #d0d4e0 !important;
-  font-family: "Graphik Arabic", "IBM Plex Sans Arabic", sans-serif !important;
+  font-family: "Graphik Arabic" !important;
   box-sizing: border-box;
 }
 

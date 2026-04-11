@@ -1,4 +1,4 @@
-/*
+﻿/*
 Theme Name: EduBlink Child
 Theme URI: https://edublink.co/
 Template: edublink
@@ -18,11 +18,11 @@ Tags: custom-design
 
 /* Force Graphik Arabic font across entire site */
 * {
-	font-family: "Graphik Arabic", sans-serif !important;
+	font-family: "Graphik Arabic" !important;
 }
 
 body, html {
-	font-family: "Graphik Arabic", sans-serif !important;
+	font-family: "Graphik Arabic" !important;
 }
 
 /* ============================================

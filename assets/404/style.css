@@ -1,4 +1,4 @@
-/**
+﻿/**
  * 404 Error Page Styles
  * 
  * Custom styles for the 404 error page
@@ -94,7 +94,7 @@
 }
 
 .error-badge-text {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "Graphik Arabic";
   font-size: 16px;
   line-height: 24px;
   color: white;
@@ -135,7 +135,7 @@
 }
 
 .error-badge-text-2 {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "Graphik Arabic";
   font-size: 16px;
   line-height: 24px;
   color: white;
@@ -148,7 +148,7 @@
   left: 50%;
   top: 48px;
   transform: translateX(-50%);
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "Graphik Arabic";
   font-size: 236px;
   line-height: 256px;
   color: #4077f3;
@@ -167,7 +167,7 @@
 }
 
 .error-404-title {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "Graphik Arabic";
   font-size: 56px;
   line-height: 64px;
   color: white;
@@ -178,7 +178,7 @@
 }
 
 .error-404-description {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "Graphik Arabic";
   font-size: 20px;
   line-height: normal;
   color: white;
@@ -192,7 +192,7 @@
   color: #132346;
   padding: 12px 24px;
   border-radius: 16px;
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "Graphik Arabic";
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
