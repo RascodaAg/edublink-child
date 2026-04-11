@@ -10,7 +10,22 @@ defined( 'ABSPATH' ) || exit;
 
 $shop_url = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/shop-2/' );
 
+// Inline style block to override any WooCommerce/theme layout constraints
 ?>
+<style>
+body.woocommerce-cart .woocommerce,
+body.woocommerce-cart .entry-content,
+body.woocommerce-cart .page-content {
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	justify-content: center !important;
+	min-height: calc(100vh - 160px) !important;
+	max-width: 100% !important;
+	width: 100% !important;
+	padding: 40px 20px !important;
+}
+</style>
 <div class="ls-empty-cart">
 	<div class="ls-empty-cart__inner">
 

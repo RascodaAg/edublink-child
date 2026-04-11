@@ -745,15 +745,27 @@ body.woocommerce-cart,
    6. EMPTY CART STATE — Custom template
 ───────────────────────────────── */
 
+/* Force woocommerce wrapper to be full-width centered column when empty */
+body.woocommerce-cart .woocommerce:has(.ls-empty-cart),
+body.woocommerce-cart .entry-content:has(.ls-empty-cart),
+body.woocommerce-cart .page-content:has(.ls-empty-cart) {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: calc(100vh - 160px) !important;
+  max-width: 100% !important;
+  padding: 40px 20px !important;
+}
+
 /* Full-page centered wrapper */
 .woocommerce-cart .ls-empty-cart,
 .ls-empty-cart {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  min-height: 60vh !important;
   width: 100% !important;
-  padding: 60px 20px !important;
+  padding: 20px !important;
   box-sizing: border-box !important;
 }
 
@@ -764,12 +776,12 @@ body.woocommerce-cart,
   justify-content: center !important;
   text-align: center !important;
   gap: 20px !important;
-  max-width: 440px !important;
+  max-width: 560px !important;
   width: 100% !important;
   background: #141924 !important;
   border: 1px solid rgba(255, 255, 255, 0.07) !important;
   border-radius: 24px !important;
-  padding: 56px 40px !important;
+  padding: 64px 48px !important;
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25) !important;
 }
 
