@@ -443,6 +443,12 @@ li[class*="course-lesson"] a {
     color: white;
 }
 
+/* Hide HoliThemes Click to Chat plugin button (duplicate WhatsApp icon) */
+#ht-ctc-chat,
+.ht-ctc-chat {
+    display: none !important;
+}
+
 /* Page: كتب-برمجية (ID: 28021) -> Make all text white */
 .page-id-28021,
 .page-id-28021 *,
