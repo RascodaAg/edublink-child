@@ -1,5 +1,5 @@
-/* ===== Google Fonts Import ===== */
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Cairo:wght@300;400;500;600;700;800&display=swap');
+﻿/* ===== Google Fonts Import ===== */
+/* Google Fonts: Cairo and IBM Plex Sans Arabic removed — site uses Graphik Arabic (self-hosted) */
 
 /* ===== ROOT VARIABLES ===== */
 :root {
@@ -20,8 +20,7 @@
   --learnsimply-yellow: #ffbb54;
 
   --learnsimply-font-primary:
-    "Graphik Arabic", "Cairo", "IBM Plex Sans Arabic", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
+    "Graphik Arabic", sans-serif;
   --learnsimply-font-code: "Consolas", "Courier New", monospace;
 
   /* ─── Dark-base design tokens (used on checkout, dashboard, cart) ─── */
@@ -46,7 +45,7 @@
   --db-radius:      20px;
   --db-radius-lg:   24px;
   --db-radius-sm:   10px;
-  --db-font:        "Graphik Arabic", "Cairo", "IBM Plex Sans Arabic", sans-serif;
+  --db-font:        "Graphik Arabic", sans-serif;
   --db-transition:  all 0.3s ease;
 
   --learnsimply-transition: all 0.3s ease;
@@ -58,7 +57,7 @@
 
 /* Ensure stat numbers use the site's primary Arabic font (override any other rules) */
 .stat-number {
-  font-family: var(--learnsimply-font-primary, "Cairo") !important;
+  font-family: var(--learnsimply-font-primary, "Graphik Arabic") !important;
 }
 
 /* ===== RESET & BASE STYLES ===== */
@@ -217,7 +216,7 @@ table, th, td, tr,
 
 .learnsimply-header-logo-text {
   color: #fff;
-  font-family: "Cairo";
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 21.605px;
   font-style: normal;
   font-weight: 500;
@@ -259,7 +258,7 @@ table, th, td, tr,
 
 .learnsimply-header-menu-text {
   color: #fff;
-  font-family: "Cairo";
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
@@ -331,7 +330,7 @@ table, th, td, tr,
 .learnsimply-header-btn-text {
   color: var(--Primary-0, #fff);
   text-align: center;
-  font-family: "Cairo";
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -849,7 +848,7 @@ table, th, td, tr,
 
 .badge-text {
   color: var(--primary, #4077f3);
-  font-family: "Cairo";
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -862,7 +861,7 @@ table, th, td, tr,
   align-self: stretch;
   color: #fff;
   text-align: right;
-  font-family: "Cairo";
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 59px;
   font-style: normal;
   font-weight: 500;
@@ -877,7 +876,7 @@ table, th, td, tr,
   align-self: stretch;
   color: #fff;
   text-align: right;
-  font-family: "Cairo";
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 30px;
   font-style: normal;
   font-weight: 400;
@@ -906,7 +905,7 @@ table, th, td, tr,
 
 .check-text {
   color: #fff;
-  font-family: "Cairo";
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -987,7 +986,7 @@ table, th, td, tr,
 .card-title {
   color: #fff;
   text-align: right;
-  font-family: "Cairo";
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 58px;
   font-style: normal;
   font-weight: 500;
@@ -1149,7 +1148,7 @@ table, th, td, tr,
 .button-dark span {
   color: #fff;
   text-align: center;
-  font-family: "Cairo";
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -1191,7 +1190,7 @@ table, th, td, tr,
 
 .button-light span {
   color: #14141e;
-  font-family: "Cairo";
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -1342,7 +1341,7 @@ table, th, td, tr,
 .stat-number {
   color: var(--primary, #4077f3);
   text-align: center;
-  font-family: "Cairo";
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 40px;
   font-style: normal;
   font-weight: 700;
@@ -1372,7 +1371,7 @@ table, th, td, tr,
 .stat-label {
   color: #fff;
   text-align: center;
-  font-family: "Cairo";
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
@@ -1595,7 +1594,7 @@ table, th, td, tr,
 
 .learnsimply-partners-title {
   color: #fff;
-  font-family: "Cairo";
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 27.61px;
   font-style: normal;
   font-weight: 500;
@@ -2851,7 +2850,7 @@ table, th, td, tr,
 .learnsimply-section-title {
   color: #fff;
   text-align: center;
-  font-family: "Cairo";
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 60px;
   font-style: normal;
   font-weight: 700;
@@ -2862,7 +2861,7 @@ table, th, td, tr,
 .learnsimply-section-description {
   color: var(--description-color, #999eb2);
   text-align: center;
-  font-family: "Cairo";
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -3310,7 +3309,7 @@ table, th, td, tr,
 }
 
 .book-badge p {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 1;
@@ -3325,7 +3324,7 @@ table, th, td, tr,
 }
 
 .instructor-text .name {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: normal;
@@ -3334,7 +3333,7 @@ table, th, td, tr,
 }
 
 .instructor-text .title {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: normal;
@@ -3383,7 +3382,7 @@ table, th, td, tr,
 }
 
 .book-title p {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 400;
   font-size: 20px;
   line-height: 32px;
@@ -3437,7 +3436,7 @@ table, th, td, tr,
 }
 
 .info-item p {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 25px;
@@ -3473,7 +3472,7 @@ table, th, td, tr,
 }
 
 .discount-badge p {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 500;
   font-size: 14px;
   line-height: normal;
@@ -3490,7 +3489,7 @@ table, th, td, tr,
 }
 
 .old-price {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: normal;
@@ -3501,7 +3500,7 @@ table, th, td, tr,
 }
 
 .new-price {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 600;
   font-size: 16px;
   line-height: normal;
@@ -3545,7 +3544,7 @@ table, th, td, tr,
 }
 
 .buy-button p {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
@@ -3633,7 +3632,7 @@ table, th, td, tr,
 }
 
 .about-badge-text {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 500;
   font-size: 20px;
   line-height: 1.4;
@@ -3643,7 +3642,7 @@ table, th, td, tr,
 }
 
 .about-section-heading {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 600;
   font-size: 50px;
   line-height: 67px;
@@ -3656,7 +3655,7 @@ table, th, td, tr,
 }
 
 .about-description {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 400;
   font-size: 21px;
   line-height: 30px;
@@ -3727,7 +3726,7 @@ table, th, td, tr,
 }
 
 .about-stat-number {
-  font-family: "Plus Jakarta Sans", "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 700;
   font-size: 48px;
   line-height: 1.5;
@@ -3760,7 +3759,7 @@ table, th, td, tr,
 }
 
 .about-stat-label {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
@@ -3794,7 +3793,7 @@ table, th, td, tr,
 }
 
 .about-cta-button-text {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
@@ -3885,7 +3884,7 @@ table, th, td, tr,
 }
 
 .about-card-title {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 600;
   font-size: 50px;
   line-height: normal;
@@ -3897,7 +3896,7 @@ table, th, td, tr,
 }
 
 .about-card-description {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 400;
   font-size: 20px;
   line-height: 32px;
@@ -3920,7 +3919,7 @@ table, th, td, tr,
 .about-btn {
   padding: 12px 19px;
   border-radius: 10px;
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
@@ -4382,7 +4381,7 @@ table, th, td, tr,
 }
 
 .marquee-text {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 400;
   font-size: 34px;
   line-height: 64px;
@@ -4891,7 +4890,7 @@ table, th, td, tr,
 }
 
 .learnsimply-cert-title-text {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 500;
   color: white;
   line-height: 21.248px;
@@ -6268,7 +6267,7 @@ width: 100%;
 }
 
 .course-badge p {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 1;
@@ -6325,7 +6324,7 @@ width: 100%;
 }
 
 .course-title p {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 400;
   font-size: 20px;
   line-height: 32px;
@@ -6356,7 +6355,7 @@ width: 100%;
 }
 
 .review p {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 2;
@@ -6376,7 +6375,7 @@ width: 100%;
 }
 
 .students p {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
@@ -6472,7 +6471,7 @@ width: 100%;
 }
 
 .info-item p {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 25px;
@@ -6540,7 +6539,7 @@ width: 100%;
 }
 
 .discount-badge p {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 500;
   font-size: 14px;
   line-height: normal;
@@ -6557,7 +6556,7 @@ width: 100%;
 }
 
 .old-price {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: normal;
@@ -6568,7 +6567,7 @@ width: 100%;
 }
 
 .new-price {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 600;
   font-size: 16px;
   line-height: normal;
@@ -6614,7 +6613,7 @@ width: 100%;
 }
 
 .buy-button p {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
@@ -6688,7 +6687,7 @@ width: 100%;
 }
 
 .badge-text {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 500;
   font-size: 20px;
   line-height: 1.4;
@@ -6699,7 +6698,7 @@ width: 100%;
 
 /* Title */
 .section-heading {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 600;
   font-size: 50px;
   line-height: 67px;
@@ -6734,7 +6733,7 @@ width: 100%;
 .stat-number {
   color: var(--primary, #4077f3);
   text-align: center;
-  font-family: "Cairo";
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 40px;
   font-style: normal;
   font-weight: 700;
@@ -6750,7 +6749,7 @@ width: 100%;
 .stat-label {
   color: #fff;
   text-align: center;
-  font-family: "Cairo";
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
@@ -6779,7 +6778,7 @@ width: 100%;
 }
 
 .cta-button-text {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
@@ -6873,7 +6872,7 @@ width: 100%;
 }
 
 .learnsimply-main-title {
-  font-family: "IBM Plex Sans Arabic", "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 700;
   font-size: 60px;
   line-height: 68px;
@@ -6884,7 +6883,7 @@ width: 100%;
 }
 
 .learnsimply-subtitle {
-  font-family: "IBM Plex Sans Arabic", "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 400;
   font-size: 20px;
   line-height: 1.47;
@@ -7131,7 +7130,7 @@ width: 100%;
   background: rgba(255, 255, 255, 0.05);
   padding: 2px 7px;
   border-radius: 4px;
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 12px;
   line-height: 16px;
   color: white;
@@ -9123,7 +9122,7 @@ width: 100%;
 }
 
 .story-date {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-weight: 600;
   font-size: 16px;
   line-height: 22px;
@@ -10292,7 +10291,7 @@ width: 100%;
 }
 
 .contact-card-title {
-  font-family: "Cairo", "IBM Plex Sans Arabic", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 20px;
   font-weight: 600;
   line-height: 32px;
@@ -10301,7 +10300,7 @@ width: 100%;
 }
 
 .contact-card-description {
-  font-family: "Cairo", "IBM Plex Sans Arabic", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 16px;
   line-height: 24px;
   color: #999eb2;
@@ -10353,7 +10352,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
   padding: 12px 24px;
   border-radius: 10px;
   border: none;
-  font-family: "Cairo", "IBM Plex Sans Arabic", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 16px;
   font-weight: 400;
   cursor: pointer;
@@ -12289,7 +12288,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
 }
 
 .error-badge-text {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 16px;
   line-height: 24px;
   color: white;
@@ -12328,7 +12327,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
 }
 
 .error-badge-text-2 {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 16px;
   line-height: 24px;
   color: white;
@@ -12340,7 +12339,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
   left: 50%;
   top: 48px;
   transform: translateX(-50%);
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 236px;
   line-height: 256px;
   color: #4077f3;
@@ -12359,7 +12358,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
 }
 
 .error-404-title {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 56px;
   line-height: 64px;
   color: white;
@@ -12370,7 +12369,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
 }
 
 .error-404-description {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 20px;
   line-height: normal;
   color: white;
@@ -12384,7 +12383,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
   color: var(--colro-text-dark, #132346);
   padding: 12px 24px;
   border-radius: 16px;
-  font-family: "Cairo";
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
@@ -12761,7 +12760,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
 
 .add-review-section .section-title {
   color: #ffffff;
-  font-family: "Cairo", "IBM Plex Sans Arabic", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 22px;
   font-weight: 600;
   line-height: 1.5;
@@ -12780,7 +12779,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
 
 .add-review-section .form-label {
   color: #e5e7eb;
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 14px;
   margin-bottom: 8px;
   display: block;
@@ -12820,7 +12819,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
   border: 1px solid rgba(148, 163, 184, 0.5);
   padding: 12px 14px;
   color: #f9fafb;
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 14px;
   min-height: 100px;
   resize: vertical;
@@ -12837,7 +12836,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
   border: none;
   padding: 12px 28px;
   color: #fff;
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -12856,7 +12855,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
 
 .add-review-section .login-required-message {
   color: #999eb2;
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 16px;
   text-align: center;
   padding: 20px;
@@ -12866,7 +12865,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
   margin-top: 16px;
   padding: 12px 16px;
   border-radius: 8px;
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 14px;
 }
 
@@ -12889,7 +12888,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
 }
 
 .article-description p {
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 14px;
   color: #999eb2;
   line-height: 1.7;
@@ -12934,7 +12933,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: #fff;
-  font-family: "Cairo", sans-serif;
+  font-family: "Graphik Arabic", sans-serif;
   font-size: 14px;
   font-weight: 500;
   text-decoration: none;
