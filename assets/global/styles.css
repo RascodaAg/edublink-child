@@ -409,8 +409,8 @@ table, th, td, tr,
   position: relative;
   width: 48px;
   height: 48px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(64, 119, 243, 0.15);
+  border: 1px solid rgba(64, 119, 243, 0.4);
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -419,8 +419,8 @@ table, th, td, tr,
 }
 
 .learnsimply-header-cart-button:hover {
-  background: rgba(160, 100, 255, 0.15);
-  border-color: rgba(160, 100, 255, 0.3);
+  background: rgba(64, 119, 243, 0.25);
+  border-color: rgba(64, 119, 243, 0.7);
   transform: translateY(-2px);
 }
 
@@ -428,7 +428,7 @@ table, th, td, tr,
   width: 24px;
   height: 24px;
   object-fit: contain;
-  filter: brightness(0) invert(1);
+  filter: brightness(0) saturate(100%) invert(35%) sepia(90%) saturate(800%) hue-rotate(205deg) brightness(105%);
 }
 
 .learnsimply-header-cart-count {
@@ -438,14 +438,14 @@ table, th, td, tr,
   min-width: 20px;
   height: 20px;
   padding: 0 6px;
-  background: linear-gradient(135deg, #a064ff, #8b5cf6);
+  background: linear-gradient(135deg, #4077f3, #2563eb);
   color: #fff;
   font-size: 11px;
   font-weight: 600;
   line-height: 20px;
   text-align: center;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(160, 100, 255, 0.4);
+  box-shadow: 0 2px 8px rgba(64, 119, 243, 0.4);
 }
 
 /* Mobile Menu Toggle */
