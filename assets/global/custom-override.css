@@ -58,6 +58,20 @@ body {
     white-space: pre-wrap;
 }
 
+/* Course card duration: fix color and layout of ساعات/دقائق */
+.tutor-meta-value.tutor-color-secondary {
+    color: inherit !important;
+}
+
+.info-item p {
+    display: inline-flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 2px !important;
+    white-space: nowrap !important;
+}
+
 /* Tutor LMS icons: restore icon font (global styles.css overrides *::before with Graphik Arabic) */
 [class^="tutor-icon-"],
 [class*=" tutor-icon-"],
