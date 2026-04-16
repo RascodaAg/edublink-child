@@ -1351,6 +1351,33 @@ function edublink_child_lesson_sidebar_dark_mode() {
 		border-color: rgba(255,255,255,0.2) !important;
 		background-color: transparent !important;
 	}
+	/* SVG icons with hardcoded fill (Tutor LMS v2+) */
+	.tutor-course-spotlight-sidebar svg,
+	.tutor-course-spotlight-sidebar svg path,
+	.tutor-course-spotlight-sidebar svg rect,
+	.tutor-course-spotlight-sidebar svg circle,
+	.tutor-course-topics-sidebar svg,
+	.tutor-course-topics-sidebar svg path,
+	.tutor-course-topics-sidebar svg rect,
+	.tutor-course-topics-sidebar svg circle {
+		fill: #8893b0 !important;
+	}
+	/* Active / hover lesson SVG icons → primary blue */
+	.tutor-course-topic-item:hover svg,
+	.tutor-course-topic-item:hover svg path,
+	.tutor-course-topic-item.is-active svg,
+	.tutor-course-topic-item.is-active svg path,
+	.tutor-course-lesson-item:hover svg,
+	.tutor-course-lesson-item:hover svg path,
+	.tutor-course-lesson-item.is-active svg,
+	.tutor-course-lesson-item.is-active svg path {
+		fill: #4077f3 !important;
+	}
+	/* Checked/completed circle icon stays blue */
+	.tutor-course-spotlight-sidebar .tutor-form-check-input:checked svg,
+	.tutor-course-spotlight-sidebar .tutor-form-check-input:checked svg path {
+		fill: #ffffff !important;
+	}
 	/* Arrow / chevron icons → white */
 	.tutor-course-spotlight-sidebar [class*="tutor-icon-angle"] {
 		color: #fff !important;

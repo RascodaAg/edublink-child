@@ -278,7 +278,34 @@ li[class*="course-lesson"] a {
 .tutor-course-lesson .tutor-lesson-icon,
 .tutor-course-topic-lesson-list li .tutor-lesson-icon,
 .tutor-lesson-list li .tutor-lesson-icon {
-    color: #6b7394 !important;
+    color: #8893b0 !important;
+}
+
+/* SVG icons with hardcoded fill (Tutor LMS v2+) */
+.tutor-course-topic-item .tutor-lesson-icon svg,
+.tutor-course-topic-item .tutor-lesson-icon svg path,
+.tutor-course-topic-item .tutor-lesson-icon svg rect,
+.tutor-course-topic-item .tutor-lesson-icon svg circle,
+.tutor-course-lesson .tutor-lesson-icon svg,
+.tutor-course-lesson .tutor-lesson-icon svg path,
+.tutor-course-topic-lesson-list li .tutor-lesson-icon svg,
+.tutor-course-topic-lesson-list li .tutor-lesson-icon svg path,
+.tutor-course-topic-lesson-list li .tutor-lesson-icon svg rect,
+.tutor-course-topic-lesson-list li .tutor-lesson-icon svg circle,
+.tutor-lesson-list li .tutor-lesson-icon svg,
+.tutor-lesson-list li .tutor-lesson-icon svg path,
+.tutor-lesson-list li .tutor-lesson-icon svg rect,
+.tutor-lesson-list li .tutor-lesson-icon svg circle {
+    fill: #8893b0 !important;
+    stroke: none !important;
+}
+
+/* Any standalone SVG icon in the sidebar that's not a lesson icon */
+.tutor-course-topics-sidebar svg:not(.tutor-star-rating svg):not(.tutor-form-check-input svg),
+.tutor-course-spotlight-sidebar svg:not(.tutor-star-rating svg):not(.tutor-form-check-input svg),
+.tutor-lesson-sidebar svg:not(.tutor-star-rating svg):not(.tutor-form-check-input svg) {
+    fill: #8893b0 !important;
+    color: #8893b0 !important;
 }
 
 .tutor-course-topic-item:hover .tutor-lesson-icon,
@@ -288,6 +315,21 @@ li[class*="course-lesson"] a {
 .tutor-lesson-list li:hover .tutor-lesson-icon,
 .tutor-lesson-list li.is-active .tutor-lesson-icon {
     color: #4077f3 !important;
+}
+
+.tutor-course-topic-item:hover .tutor-lesson-icon svg,
+.tutor-course-topic-item:hover .tutor-lesson-icon svg path,
+.tutor-course-topic-item.is-active .tutor-lesson-icon svg,
+.tutor-course-topic-item.is-active .tutor-lesson-icon svg path,
+.tutor-course-topic-lesson-list li:hover .tutor-lesson-icon svg,
+.tutor-course-topic-lesson-list li:hover .tutor-lesson-icon svg path,
+.tutor-course-topic-lesson-list li.is-active .tutor-lesson-icon svg,
+.tutor-course-topic-lesson-list li.is-active .tutor-lesson-icon svg path,
+.tutor-lesson-list li:hover .tutor-lesson-icon svg,
+.tutor-lesson-list li:hover .tutor-lesson-icon svg path,
+.tutor-lesson-list li.is-active .tutor-lesson-icon svg,
+.tutor-lesson-list li.is-active .tutor-lesson-icon svg path {
+    fill: #4077f3 !important;
 }
 
 /* Chevron / angle icons in topic headers */
