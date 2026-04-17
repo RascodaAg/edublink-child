@@ -1,4 +1,4 @@
-.course-main-content {
+﻿.course-main-content {
   min-height: 60vh;
   padding: 60px 24px 40px;
   background: var(--learnsimply-dark-bg);
@@ -951,7 +951,7 @@
 }
 
 .contact-card-title {
-  font-family: "Graphik Arabic", "IBM Plex Sans Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", "IBM Plex Sans Arabic", sans-serif;
   font-size: 20px;
   font-weight: 600;
   line-height: 32px;
@@ -960,7 +960,7 @@
 }
 
 .contact-card-description {
-  font-family: "Graphik Arabic", "IBM Plex Sans Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", "IBM Plex Sans Arabic", sans-serif;
   font-size: 16px;
   line-height: 24px;
   color: #999eb2;
@@ -1012,7 +1012,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
   padding: 12px 24px;
   border-radius: 10px;
   border: none;
-  font-family: "Graphik Arabic", "IBM Plex Sans Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", "IBM Plex Sans Arabic", sans-serif;
   font-size: 16px;
   font-weight: 400;
   cursor: pointer;
@@ -2991,7 +2991,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
 }
 
 .error-badge-text {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-size: 16px;
   line-height: 24px;
   color: white;
@@ -3030,7 +3030,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
 }
 
 .error-badge-text-2 {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-size: 16px;
   line-height: 24px;
   color: white;
@@ -3042,7 +3042,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
   left: 50%;
   top: 48px;
   transform: translateX(-50%);
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-size: 236px;
   line-height: 256px;
   color: #4077f3;
@@ -3061,7 +3061,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
 }
 
 .error-404-title {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-size: 56px;
   line-height: 64px;
   color: white;
@@ -3072,7 +3072,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
 }
 
 .error-404-description {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-size: 20px;
   line-height: normal;
   color: white;
@@ -3086,7 +3086,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
   color: var(--colro-text-dark, #132346);
   padding: 12px 24px;
   border-radius: 16px;
-  font-family: "Graphik Arabic";
+  font-family: "IBM Plex Sans Arabic";
   font-size: 20px;
   font-style: normal;
   font-weight: 500;

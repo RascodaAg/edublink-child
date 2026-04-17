@@ -13,16 +13,16 @@ Tags: custom-design
 */
 
 /* ============================================
-   Global Font Override - Graphik Arabic for entire site
+   Global Font Override - IBM Plex Sans Arabic for entire site
    ============================================ */
 
-/* Force Graphik Arabic font across entire site */
+/* Force IBM Plex Sans Arabic font across entire site */
 * {
-	font-family: "Graphik Arabic" !important;
+	font-family: "IBM Plex Sans Arabic" !important;
 }
 
 body, html {
-	font-family: "Graphik Arabic" !important;
+	font-family: "IBM Plex Sans Arabic" !important;
 }
 
 /* ============================================

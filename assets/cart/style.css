@@ -622,7 +622,7 @@ body.woocommerce-cart,
 .woocommerce-cart .page-content,
 .woocommerce-cart .page-content * {
   color: #d0d4e0 !important;
-  font-family: "Graphik Arabic" !important;
+  font-family: "IBM Plex Sans Arabic" !important;
   box-sizing: border-box;
 }
 

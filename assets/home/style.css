@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Home Page Styles
  * 
  * Custom styles for the home page
@@ -19,7 +19,7 @@
 .hero-wrapper .main-title {
     color: #FFF;
     text-align: right;
-    font-family: "Graphik Arabic";
+    font-family: "IBM Plex Sans Arabic";
     font-size: 59px;
     font-style: normal;
     font-weight: 500;
@@ -28,7 +28,7 @@
 .hero-wrapper .description {
     color: #FFF;
     text-align: right;
-    font-family: "Graphik Arabic";
+    font-family: "IBM Plex Sans Arabic";
     font-size: 30px;
     font-style: normal;
     font-weight: 400;
@@ -36,7 +36,7 @@
 
 .hero-wrapper .check-text {
     color: #FFF;
-    font-family: "Graphik Arabic";
+    font-family: "IBM Plex Sans Arabic";
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -45,7 +45,7 @@
 
 /* Hero badge overrides (text font family and ensure container styling) */
 .hero-wrapper .badge-text {
-    font-family: "Graphik Arabic";
+    font-family: "IBM Plex Sans Arabic";
     color: var(--primary, #4077F4); /* keep global color */
 }
 
@@ -63,7 +63,7 @@
 .hero-wrapper .blue-card-content .card-title {
     color: #FFF;
     text-align: right;
-    font-family: "Graphik Arabic";
+    font-family: "IBM Plex Sans Arabic";
     font-size: 58px;
     font-style: normal;
     font-weight: 500;
@@ -74,7 +74,7 @@
 .learnsimply-certificate-title {
     color: #FFF;
     text-align: right;
-    font-family: "Graphik Arabic";
+    font-family: "IBM Plex Sans Arabic";
     font-size: 56px;
     font-style: normal;
     font-weight: 500;
@@ -220,7 +220,7 @@
 	outline: none !important;
 	color: #fff;
 	font-size: 16px;
-	font-family: "Graphik Arabic", sans-serif;
+	font-family: "IBM Plex Sans Arabic", sans-serif;
 	padding: 14px 8px;
 	direction: rtl;
 	min-width: 0;
@@ -279,7 +279,7 @@
 	cursor: pointer;
 	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	flex-shrink: 0;
-	font-family: "Graphik Arabic", sans-serif;
+	font-family: "IBM Plex Sans Arabic", sans-serif;
 	box-shadow: 0 4px 14px rgba(64, 119, 243, 0.25);
 }
 

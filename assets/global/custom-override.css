@@ -77,7 +77,7 @@ body {
     white-space: nowrap !important;
 }
 
-/* Tutor LMS icons: restore icon font (global styles.css overrides *::before with Graphik Arabic) */
+/* Tutor LMS icons: restore icon font (global styles.css overrides *::before with IBM Plex Sans Arabic) */
 [class^="tutor-icon-"],
 [class*=" tutor-icon-"],
 [class^="tutor-icon-"]::before,

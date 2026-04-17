@@ -1,4 +1,4 @@
-/* ===== ROOT VARIABLES ===== */
+﻿/* ===== ROOT VARIABLES ===== */
 :root {
   --learnsimply-primary-blue: #4077f3;
   --primary: #4077f3;
@@ -17,7 +17,7 @@
   --learnsimply-yellow: #ffbb54;
 
   --learnsimply-font-primary:
-    "Graphik Arabic", "IBM Plex Sans Arabic", -apple-system, BlinkMacSystemFont,
+    "IBM Plex Sans Arabic", "IBM Plex Sans Arabic", -apple-system, BlinkMacSystemFont,
     "Segoe UI", sans-serif;
   --learnsimply-font-code: "Consolas", "Courier New", monospace;
 
@@ -30,7 +30,7 @@
 
 /* Ensure stat numbers use the site's primary Arabic font (override any other rules) */
 .stat-number {
-  font-family: var(--learnsimply-font-primary, "Graphik Arabic") !important;
+  font-family: var(--learnsimply-font-primary, "IBM Plex Sans Arabic") !important;
 }
 
 /* ===== RESET & BASE STYLES ===== */
@@ -171,7 +171,7 @@
 
 .learnsimply-header-logo-text {
   color: #fff;
-  font-family: "Graphik Arabic";
+  font-family: "IBM Plex Sans Arabic";
   font-size: 21.605px;
   font-style: normal;
   font-weight: 500;
@@ -213,7 +213,7 @@
 
 .learnsimply-header-menu-text {
   color: #fff;
-  font-family: "Graphik Arabic";
+  font-family: "IBM Plex Sans Arabic";
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
@@ -283,7 +283,7 @@
 .learnsimply-header-btn-text {
   color: var(--Primary-0, #fff);
   text-align: center;
-  font-family: "Graphik Arabic";
+  font-family: "IBM Plex Sans Arabic";
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -385,7 +385,7 @@
 .add-review-section .comment-form-rating label,
 .add-review-section .comment-form-comment label {
   color: #e5e7eb;
-  font-family: "Graphik Arabic";
+  font-family: "IBM Plex Sans Arabic";
   font-size: 14px;
   margin-bottom: 6px;
   display: block;
@@ -435,7 +435,7 @@
   border: 1px solid rgba(148, 163, 184, 0.5);
   padding: 10px 12px;
   color: #f9fafb;
-  font-family: "Graphik Arabic";
+  font-family: "IBM Plex Sans Arabic";
   font-size: 14px;
 }
 
@@ -451,7 +451,7 @@
   border: none;
   padding: 10px 26px;
   color: #fff;
-  font-family: "Graphik Arabic";
+  font-family: "IBM Plex Sans Arabic";
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -878,7 +878,7 @@
 
 .badge-text {
   color: var(--primary, #4077f3);
-  font-family: "Graphik Arabic";
+  font-family: "IBM Plex Sans Arabic";
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -891,7 +891,7 @@
   align-self: stretch;
   color: #fff;
   text-align: right;
-  font-family: "Graphik Arabic";
+  font-family: "IBM Plex Sans Arabic";
   font-size: 59px;
   font-style: normal;
   font-weight: 500;
@@ -906,7 +906,7 @@
   align-self: stretch;
   color: #fff;
   text-align: right;
-  font-family: "Graphik Arabic";
+  font-family: "IBM Plex Sans Arabic";
   font-size: 30px;
   font-style: normal;
   font-weight: 400;
@@ -935,7 +935,7 @@
 
 .check-text {
   color: #fff;
-  font-family: "Graphik Arabic";
+  font-family: "IBM Plex Sans Arabic";
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -1016,7 +1016,7 @@
 .card-title {
   color: #fff;
   text-align: right;
-  font-family: "Graphik Arabic";
+  font-family: "IBM Plex Sans Arabic";
   font-size: 58px;
   font-style: normal;
   font-weight: 500;
@@ -1176,7 +1176,7 @@
 .button-dark span {
   color: #fff;
   text-align: center;
-  font-family: "Graphik Arabic";
+  font-family: "IBM Plex Sans Arabic";
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -1216,7 +1216,7 @@
 
 .button-light span {
   color: #14141e;
-  font-family: "Graphik Arabic";
+  font-family: "IBM Plex Sans Arabic";
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -1367,7 +1367,7 @@
 .stat-number {
   color: var(--primary, #4077f3);
   text-align: center;
-  font-family: "Graphik Arabic";
+  font-family: "IBM Plex Sans Arabic";
   font-size: 40px;
   font-style: normal;
   font-weight: 700;
@@ -1397,7 +1397,7 @@
 .stat-label {
   color: #fff;
   text-align: center;
-  font-family: "Graphik Arabic";
+  font-family: "IBM Plex Sans Arabic";
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
@@ -1620,7 +1620,7 @@
 
 .learnsimply-partners-title {
   color: #fff;
-  font-family: "Graphik Arabic";
+  font-family: "IBM Plex Sans Arabic";
   font-size: 27.61px;
   font-style: normal;
   font-weight: 500;
@@ -2876,7 +2876,7 @@
 .learnsimply-section-title {
   color: #fff;
   text-align: center;
-  font-family: "Graphik Arabic";
+  font-family: "IBM Plex Sans Arabic";
   font-size: 60px;
   font-style: normal;
   font-weight: 700;
@@ -2887,7 +2887,7 @@
 .learnsimply-section-description {
   color: var(--description-color, #999eb2);
   text-align: center;
-  font-family: "Graphik Arabic";
+  font-family: "IBM Plex Sans Arabic";
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -3335,7 +3335,7 @@
 }
 
 .book-badge p {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 1;
@@ -3350,7 +3350,7 @@
 }
 
 .instructor-text .name {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: normal;
@@ -3359,7 +3359,7 @@
 }
 
 .instructor-text .title {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: normal;
@@ -3408,7 +3408,7 @@
 }
 
 .book-title p {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 400;
   font-size: 20px;
   line-height: 32px;
@@ -3462,7 +3462,7 @@
 }
 
 .info-item p {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 25px;
@@ -3498,7 +3498,7 @@
 }
 
 .discount-badge p {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 500;
   font-size: 14px;
   line-height: normal;
@@ -3515,7 +3515,7 @@
 }
 
 .old-price {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: normal;
@@ -3526,7 +3526,7 @@
 }
 
 .new-price {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 600;
   font-size: 16px;
   line-height: normal;
@@ -3570,7 +3570,7 @@
 }
 
 .buy-button p {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
@@ -3658,7 +3658,7 @@
 }
 
 .about-badge-text {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 500;
   font-size: 20px;
   line-height: 1.4;
@@ -3668,7 +3668,7 @@
 }
 
 .about-section-heading {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 600;
   font-size: 50px;
   line-height: 67px;
@@ -3681,7 +3681,7 @@
 }
 
 .about-description {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 400;
   font-size: 21px;
   line-height: 30px;
@@ -3752,7 +3752,7 @@
 }
 
 .about-stat-number {
-  font-family: "Plus Jakarta Sans", "Graphik Arabic", sans-serif;
+  font-family: "Plus Jakarta Sans", "IBM Plex Sans Arabic", sans-serif;
   font-weight: 700;
   font-size: 48px;
   line-height: 1.5;
@@ -3785,7 +3785,7 @@
 }
 
 .about-stat-label {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
@@ -3819,7 +3819,7 @@
 }
 
 .about-cta-button-text {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
@@ -3910,7 +3910,7 @@
 }
 
 .about-card-title {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 600;
   font-size: 50px;
   line-height: normal;
@@ -3922,7 +3922,7 @@
 }
 
 .about-card-description {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 400;
   font-size: 20px;
   line-height: 32px;
@@ -3945,7 +3945,7 @@
 .about-btn {
   padding: 12px 19px;
   border-radius: 10px;
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
@@ -4407,7 +4407,7 @@
 }
 
 .marquee-text {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 400;
   font-size: 34px;
   line-height: 64px;
@@ -4916,7 +4916,7 @@
 }
 
 .learnsimply-cert-title-text {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 500;
   color: white;
   line-height: 21.248px;
@@ -6299,7 +6299,7 @@ width: 100%;
 }
 
 .course-badge p {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 1;
@@ -6356,7 +6356,7 @@ width: 100%;
 }
 
 .course-title p {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 400;
   font-size: 20px;
   line-height: 32px;
@@ -6387,7 +6387,7 @@ width: 100%;
 }
 
 .review p {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 2;
@@ -6407,7 +6407,7 @@ width: 100%;
 }
 
 .students p {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
@@ -6503,7 +6503,7 @@ width: 100%;
 }
 
 .info-item p {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 25px;
@@ -6571,7 +6571,7 @@ width: 100%;
 }
 
 .discount-badge p {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 500;
   font-size: 14px;
   line-height: normal;
@@ -6588,7 +6588,7 @@ width: 100%;
 }
 
 .old-price {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: normal;
@@ -6599,7 +6599,7 @@ width: 100%;
 }
 
 .new-price {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 600;
   font-size: 16px;
   line-height: normal;
@@ -6645,7 +6645,7 @@ width: 100%;
 }
 
 .buy-button p {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
@@ -6719,7 +6719,7 @@ width: 100%;
 }
 
 .badge-text {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 500;
   font-size: 20px;
   line-height: 1.4;
@@ -6730,7 +6730,7 @@ width: 100%;
 
 /* Title */
 .section-heading {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 600;
   font-size: 50px;
   line-height: 67px;
@@ -6765,7 +6765,7 @@ width: 100%;
 .stat-number {
   color: var(--primary, #4077f3);
   text-align: center;
-  font-family: "Graphik Arabic";
+  font-family: "IBM Plex Sans Arabic";
   font-size: 40px;
   font-style: normal;
   font-weight: 700;
@@ -6781,7 +6781,7 @@ width: 100%;
 .stat-label {
   color: #fff;
   text-align: center;
-  font-family: "Graphik Arabic";
+  font-family: "IBM Plex Sans Arabic";
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
@@ -6810,7 +6810,7 @@ width: 100%;
 }
 
 .cta-button-text {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
@@ -6904,7 +6904,7 @@ width: 100%;
 }
 
 .learnsimply-main-title {
-  font-family: "IBM Plex Sans Arabic", "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", "IBM Plex Sans Arabic", sans-serif;
   font-weight: 700;
   font-size: 60px;
   line-height: 68px;
@@ -6915,7 +6915,7 @@ width: 100%;
 }
 
 .learnsimply-subtitle {
-  font-family: "IBM Plex Sans Arabic", "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", "IBM Plex Sans Arabic", sans-serif;
   font-weight: 400;
   font-size: 20px;
   line-height: 1.47;
@@ -7162,7 +7162,7 @@ width: 100%;
   background: rgba(255, 255, 255, 0.05);
   padding: 2px 7px;
   border-radius: 4px;
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-size: 12px;
   line-height: 16px;
   color: white;
@@ -9154,7 +9154,7 @@ width: 100%;
 }
 
 .story-date {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 600;
   font-size: 16px;
   line-height: 22px;
@@ -9725,7 +9725,7 @@ width: 100%;
 .add-review-section .comment-form-rating label,
 .add-review-section .comment-form-comment label {
   color: #e5e7eb;
-  font-family: "Graphik Arabic";
+  font-family: "IBM Plex Sans Arabic";
   font-size: 14px;
   margin-bottom: 6px;
   display: block;
@@ -9744,7 +9744,7 @@ width: 100%;
   border: 1px solid rgba(148, 163, 184, 0.5);
   padding: 10px 12px;
   color: #f9fafb;
-  font-family: "Graphik Arabic";
+  font-family: "IBM Plex Sans Arabic";
   font-size: 14px;
 }
 
@@ -9760,7 +9760,7 @@ width: 100%;
   border: none;
   padding: 10px 26px;
   color: #fff;
-  font-family: "Graphik Arabic";
+  font-family: "IBM Plex Sans Arabic";
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -10405,7 +10405,7 @@ width: 100%;
 }
 
 .contact-card-title {
-  font-family: "Graphik Arabic", "IBM Plex Sans Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", "IBM Plex Sans Arabic", sans-serif;
   font-size: 20px;
   font-weight: 600;
   line-height: 32px;
@@ -10414,7 +10414,7 @@ width: 100%;
 }
 
 .contact-card-description {
-  font-family: "Graphik Arabic", "IBM Plex Sans Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", "IBM Plex Sans Arabic", sans-serif;
   font-size: 16px;
   line-height: 24px;
   color: #999eb2;
@@ -10466,7 +10466,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
   padding: 12px 24px;
   border-radius: 10px;
   border: none;
-  font-family: "Graphik Arabic", "IBM Plex Sans Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", "IBM Plex Sans Arabic", sans-serif;
   font-size: 16px;
   font-weight: 400;
   cursor: pointer;
@@ -12430,7 +12430,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
 }
 
 .error-badge-text {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-size: 16px;
   line-height: 24px;
   color: white;
@@ -12469,7 +12469,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
 }
 
 .error-badge-text-2 {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-size: 16px;
   line-height: 24px;
   color: white;
@@ -12481,7 +12481,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
   left: 50%;
   top: 48px;
   transform: translateX(-50%);
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-size: 236px;
   line-height: 256px;
   color: #4077f3;
@@ -12500,7 +12500,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
 }
 
 .error-404-title {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-size: 56px;
   line-height: 64px;
   color: white;
@@ -12511,7 +12511,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
 }
 
 .error-404-description {
-  font-family: "Graphik Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   font-size: 20px;
   line-height: normal;
   color: white;
@@ -12525,7 +12525,7 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
   color: var(--colro-text-dark, #132346);
   padding: 12px 24px;
   border-radius: 16px;
-  font-family: "Graphik Arabic";
+  font-family: "IBM Plex Sans Arabic";
   font-size: 20px;
   font-style: normal;
   font-weight: 500;

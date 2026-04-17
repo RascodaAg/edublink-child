@@ -9,6 +9,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+/**
+ * Enqueue IBM Plex Sans Arabic from Google Fonts (site-wide font)
+ */
+add_action( 'wp_enqueue_scripts', 'learnsimply_enqueue_ibm_plex_font', 1 );
+function learnsimply_enqueue_ibm_plex_font() {
+	wp_enqueue_style(
+		'ibm-plex-sans-arabic',
+		'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap',
+		array(),
+		null
+	);
+}
+
 add_action( 'wp_enqueue_scripts', 'learnsimply_enqueue_single_post_styles' );
 
 /**
@@ -1156,6 +1169,19 @@ function edublink_child_disable_elementor_locations() {
 /* ==========================================================================
    OTHER ASSETS & WOOCOMMERCE
    ========================================================================== */
+
+/**
+ * Enqueue IBM Plex Sans Arabic from Google Fonts
+ */
+function edublink_child_enqueue_fonts() {
+	wp_enqueue_style(
+		'ibm-plex-sans-arabic',
+		'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap',
+		array(),
+		null
+	);
+}
+add_action( 'wp_enqueue_scripts', 'edublink_child_enqueue_fonts', 1 );
 
 /**
  * Enqueue parent and child theme styles
