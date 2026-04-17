@@ -48,7 +48,7 @@
 }
 
 .legal-hero-title {
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
     font-weight: 800;
     color: var(--learnsimply-text-white);
     margin: 0 0 12px;
@@ -56,7 +56,7 @@
 }
 
 .legal-hero-subtitle {
-    font-size: 1rem;
+    font-size: 1.15rem;
     color: var(--learnsimply-text-gray);
     margin: 0;
 }
@@ -82,7 +82,7 @@
     border: 1px solid var(--db-glass-border);
     border-radius: 50px;
     padding: 8px 18px;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     color: var(--learnsimply-text-gray);
     margin-bottom: 40px;
 }
@@ -124,17 +124,17 @@
 }
 
 .legal-section-title {
-    font-size: 1.2rem;
+    font-size: 1.35rem;
     font-weight: 700;
     color: var(--learnsimply-text-white);
     margin: 0;
 }
 
 .legal-section p {
-    font-size: 0.975rem;
-    line-height: 1.9;
+    font-size: 1.075rem;
+    line-height: 2;
     color: var(--learnsimply-text-gray);
-    margin: 0 0 14px;
+    margin: 0 0 16px;
 }
 
 .legal-section p:last-child {
@@ -153,8 +153,8 @@
 .legal-section ul li {
     position: relative;
     padding-right: 22px;
-    font-size: 0.975rem;
-    line-height: 1.8;
+    font-size: 1.075rem;
+    line-height: 1.9;
     color: var(--learnsimply-text-gray);
 }
 
@@ -175,10 +175,10 @@
     border: 1px solid var(--db-blue-active);
     border-right: 3px solid var(--db-blue);
     border-radius: 12px;
-    padding: 18px 20px;
+    padding: 20px 22px;
     margin: 20px 0;
-    font-size: 0.95rem;
-    line-height: 1.8;
+    font-size: 1.05rem;
+    line-height: 1.9;
     color: var(--db-white);
 }
 
@@ -188,10 +188,10 @@
     border: 1px solid rgba(255, 137, 4, 0.2);
     border-right: 3px solid var(--learnsimply-warning-orange);
     border-radius: 12px;
-    padding: 18px 20px;
+    padding: 20px 22px;
     margin: 20px 0;
-    font-size: 0.95rem;
-    line-height: 1.8;
+    font-size: 1.05rem;
+    line-height: 1.9;
     color: var(--db-white);
 }
 
@@ -206,17 +206,17 @@
 }
 
 .legal-contact-card h3 {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: var(--learnsimply-text-white);
     margin: 0 0 10px;
 }
 
 .legal-contact-card p {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--learnsimply-text-gray);
     margin: 0 0 20px;
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
 .legal-contact-btn {
@@ -226,9 +226,9 @@
     background: var(--learnsimply-primary-blue);
     color: var(--learnsimply-text-white);
     text-decoration: none;
-    padding: 12px 28px;
+    padding: 13px 30px;
     border-radius: 50px;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 600;
     transition: all 0.3s ease;
     margin: 4px;
