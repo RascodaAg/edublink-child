@@ -701,6 +701,35 @@
   }
 }
 
+/* Tech logos - horizontal scrollable strip on mobile (about-me page) */
+@media (max-width: 768px) {
+  .about-logos-section {
+    overflow: hidden;
+    padding-inline: 0;
+  }
+
+  .learnsimply-tech-logos-row {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 12px 20px;
+    gap: 20px !important;
+    justify-content: flex-start !important;
+  }
+
+  .learnsimply-tech-logos-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .learnsimply-tech-logo-item {
+    flex-shrink: 0 !important;
+    width: auto !important;
+    min-width: unset !important;
+  }
+}
+
 /* Darken icons at the left/right edges slightly for a subtle vignette */
 .learnsimply-tech-logos-row
   .learnsimply-tech-logo-item:nth-child(-n + 2)
