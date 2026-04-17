@@ -20,18 +20,19 @@
     color: #FFF;
     text-align: right;
     font-family: "IBM Plex Sans Arabic";
-    font-size: 59px;
+    font-size: 33px;
     font-style: normal;
     font-weight: 500;
 }
 
 .hero-wrapper .description {
-    color: #FFF;
+    color: #ffffffb3;
     text-align: right;
     font-family: "IBM Plex Sans Arabic";
-    font-size: 30px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 400;
+    line-height: normal;
 }
 
 .hero-wrapper .check-text {
