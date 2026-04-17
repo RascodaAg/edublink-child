@@ -853,6 +853,22 @@ function edublink_child_force_front_page_template( $template ) {
 }
 
 /**
+ * Force single blog post pages to use our custom single.php template.
+ * Runs at very high priority (999999) so it beats Elementor and the parent theme.
+ */
+add_filter( 'template_include', 'edublink_child_force_single_post_template', 999999 );
+
+function edublink_child_force_single_post_template( $template ) {
+    if ( is_single() && get_post_type() === 'post' ) {
+        $custom = get_stylesheet_directory() . '/single.php';
+        if ( file_exists( $custom ) ) {
+            return $custom;
+        }
+    }
+    return $template;
+}
+
+/**
  * Force blog page to use page-blog.php template
  */
 add_filter( 'template_include', 'edublink_child_force_blog_template', 999998 );
