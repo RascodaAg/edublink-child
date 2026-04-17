@@ -523,6 +523,20 @@ if ( class_exists( 'Timber\Timber' ) ) {
 			$context['site_icon_url'] = get_site_icon_url();
 		}
 		
+		// Footer legal links (terms & privacy) — resolved from WordPress/WooCommerce page settings
+		$context['privacy_url'] = function_exists( 'get_privacy_policy_url' ) && get_privacy_policy_url()
+			? get_privacy_policy_url()
+			: home_url( '/privacy-policy/' );
+
+		if ( function_exists( 'wc_get_page_id' ) ) {
+			$terms_page_id = wc_get_page_id( 'terms' );
+			$context['terms_url'] = ( $terms_page_id && $terms_page_id > 0 )
+				? get_permalink( $terms_page_id )
+				: home_url( '/terms-conditions/' );
+		} else {
+			$context['terms_url'] = home_url( '/terms-conditions/' );
+		}
+
 		// Promo banner settings (from العروض admin page)
 		$context['promo_banner_enabled'] = (bool) get_option( 'learnsimply_promo_enabled', false );
 		if ( $context['promo_banner_enabled'] ) {
