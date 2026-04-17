@@ -29,6 +29,107 @@ function learnsimply_enqueue_single_post_styles() {
 	}
 }
 
+// ──────────────────────────────────────────────
+// Legal Pages: Terms & Privacy
+// ──────────────────────────────────────────────
+
+/**
+ * Auto-create Terms & Privacy pages on init if they don't exist yet.
+ * Runs once and stores a flag so it never duplicates.
+ */
+add_action( 'init', 'learnsimply_create_legal_pages' );
+function learnsimply_create_legal_pages() {
+	if ( get_option( 'learnsimply_legal_pages_created' ) ) {
+		return;
+	}
+
+	$pages = array(
+		array(
+			'post_title'   => 'الشروط والأحكام',
+			'post_name'    => 'terms-conditions',
+			'post_status'  => 'publish',
+			'post_type'    => 'page',
+			'post_content' => '',
+		),
+		array(
+			'post_title'   => 'سياسة الخصوصية',
+			'post_name'    => 'privacy-policy',
+			'post_status'  => 'publish',
+			'post_type'    => 'page',
+			'post_content' => '',
+		),
+	);
+
+	foreach ( $pages as $page_data ) {
+		$existing = get_page_by_path( $page_data['post_name'], OBJECT, 'page' );
+		if ( ! $existing ) {
+			wp_insert_post( $page_data );
+		}
+	}
+
+	update_option( 'learnsimply_legal_pages_created', true );
+}
+
+/**
+ * Force Terms & Privacy pages to use our custom templates.
+ */
+add_filter( 'template_include', 'learnsimply_force_legal_templates', 999998 );
+function learnsimply_force_legal_templates( $template ) {
+	if ( is_page( 'terms-conditions' ) ) {
+		$custom = get_stylesheet_directory() . '/page-terms.php';
+		if ( file_exists( $custom ) ) {
+			return $custom;
+		}
+	}
+	if ( is_page( 'privacy-policy' ) ) {
+		$custom = get_stylesheet_directory() . '/page-privacy.php';
+		if ( file_exists( $custom ) ) {
+			return $custom;
+		}
+	}
+	return $template;
+}
+
+/**
+ * Enqueue legal page styles.
+ */
+add_action( 'wp_enqueue_scripts', 'learnsimply_enqueue_legal_styles' );
+function learnsimply_enqueue_legal_styles() {
+	if ( ! is_page( array( 'terms-conditions', 'privacy-policy' ) ) ) {
+		return;
+	}
+	$file = get_stylesheet_directory() . '/assets/legal/style.css';
+	if ( file_exists( $file ) ) {
+		wp_enqueue_style(
+			'learnsimply-legal',
+			get_stylesheet_directory_uri() . '/assets/legal/style.css',
+			array(),
+			filemtime( $file )
+		);
+	}
+}
+
+/**
+ * Update Timber context with resolved legal page URLs.
+ * Overrides the fallback slugs with actual WordPress page permalinks.
+ */
+add_filter( 'timber/context', 'learnsimply_legal_urls_to_context', 20 );
+function learnsimply_legal_urls_to_context( $context ) {
+	$terms_page = get_page_by_path( 'terms-conditions', OBJECT, 'page' );
+	if ( $terms_page ) {
+		$context['terms_url'] = get_permalink( $terms_page->ID );
+	}
+
+	$privacy_page = get_page_by_path( 'privacy-policy', OBJECT, 'page' );
+	if ( $privacy_page ) {
+		$context['privacy_url'] = get_permalink( $privacy_page->ID );
+	}
+
+	return $context;
+}
+
+
+
 add_action( 'wp_enqueue_scripts', 'learnsimply_enqueue_custom_overrides', 999 );
 
 /**
