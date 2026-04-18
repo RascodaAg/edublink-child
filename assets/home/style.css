@@ -17,22 +17,22 @@
 
 /* Hero section typography overrides (home page) */
 .hero-wrapper .main-title {
-    color: #FFF;
-    text-align: right;
-    font-family: "IBM Plex Sans Arabic";
-    font-size: 33px;
-    font-style: normal;
-    font-weight: 500;
+	color: #FFF;
+	text-align: right;
+	font-family: "IBM Plex Sans Arabic";
+	font-size: 33px !important;
+	font-style: normal;
+	font-weight: 500;
 }
 
 .hero-wrapper .description {
-    color: #ffffffb3;
-    text-align: right;
-    font-family: "IBM Plex Sans Arabic";
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+	color: #ffffffb3 !important;
+	text-align: right;
+	font-family: "IBM Plex Sans Arabic" !important;
+	font-size: 18px !important;
+	font-style: normal;
+	font-weight: 400 !important;
+	line-height: normal;
 }
 
 .hero-wrapper .check-text {
