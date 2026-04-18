@@ -5555,7 +5555,7 @@ width: 100%;
 }
 
 .learnsimply-social-facebook .learnsimply-social-image {
-  display: none;
+  display: block;
 }
 
 .learnsimply-social-facebook .learnsimply-facebook-svg {
