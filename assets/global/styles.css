@@ -1263,8 +1263,8 @@ table, th, td, tr,
   position: absolute;
   bottom: -0.53px;
   height: 842px;
-  left: -40px;
-  overflow: clip;
+  left: 0;
+  overflow: visible;
   width: 874px;
   direction: ltr;
 }
@@ -1281,7 +1281,7 @@ table, th, td, tr,
 .layer-image img {
   position: absolute;
   height: 100%;
-  left: -18%;
+  left: 0;
   max-width: none;
   top: 0;
 }
