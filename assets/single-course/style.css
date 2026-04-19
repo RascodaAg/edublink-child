@@ -1093,11 +1093,29 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
   direction: rtl;
 }
 
-/* الجانب الأيمن - معلومات المدرب */
+/* القسم الأيمن: يحتوي على صف الاسم+الصورة والبايو تحته */
+.instructor-right-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  align-items: flex-end;
+}
+
+/* الجانب الأيمن - معلومات المدرب (صف الصورة + الاسم فقط) */
 .instructor-info {
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+/* بايو المدرب */
+.instructor-bio {
+  font-size: 13px;
+  color: #9c9ca4;
+  line-height: 1.6;
+  text-align: right;
+  width: 100%;
 }
 
 .instructor-text {
