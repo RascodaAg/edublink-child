@@ -10568,6 +10568,14 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
   gap: 12px;
 }
 
+.instructor-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  text-align: right;
+}
+
 /* صورة المدرب */
 .instructor-avatar {
   width: 50.25px;
