@@ -1267,6 +1267,7 @@ table, th, td, tr,
   overflow: visible;
   width: 874px;
   direction: ltr;
+  clip-path: inset(-1000px -1000px 0px -1000px);
 }
 
 .layer-image {
