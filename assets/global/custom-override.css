@@ -612,4 +612,105 @@ body.single-post blockquote {
 
 .course-image {
     border-radius: 15px !important;
+}/* ==========================================================================
+   AUTHOR / ARCHIVE / BLOG - DARK THEME FIXES
+   ========================================================================== */
+
+/* Author page sidebar widgets */
+body.archive .widget-area .widget,
+body.blog .widget-area .widget {
+    background-color: #1b2133 !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0px 10px 40px 0px rgba(0,0,0,0.2) !important;
+    border-radius: 15px !important;
+    padding: 30px !important;
+}
+
+body.archive .widget-area .widget-title,
+body.blog .widget-area .widget-title {
+    color: #ffffff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+body.archive .widget-area .widget ul li a,
+body.blog .widget-area .widget ul li a,
+body.archive .widget-area .widget .media-body .entry-title a,
+body.blog .widget-area .widget .media-body .entry-title a {
+    color: #e2e6f0 !important;
+}
+
+body.archive .widget-area .widget ul li a:hover,
+body.blog .widget-area .widget ul li a:hover,
+body.archive .widget-area .widget .media-body .entry-title a:hover,
+body.blog .widget-area .widget .media-body .entry-title a:hover {
+    color: #4077f3 !important;
+}
+
+body.archive .widget-area .widget .post-meta-date,
+body.blog .widget-area .widget .post-meta-date {
+    color: #999eb2 !important;
+}
+
+body.archive .edublink-search-box input[type="search"],
+body.blog .edublink-search-box input[type="search"] {
+    background-color: #141924 !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    color: #ffffff !important;
+}
+
+body.archive .edublink-search-box .search-button,
+body.blog .edublink-search-box .search-button {
+    color: #ffffff !important;
+    background-color: transparent !important;
+}
+
+body.archive .edublink-search-box .search-button:hover,
+body.blog .edublink-search-box .search-button:hover {
+    color: #4077f3 !important;
+}
+
+/* Author page article cards */
+body.archive .edu-blog .inner,
+body.blog .edu-blog .inner {
+    background-color: #1b2133 !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: 15px !important;
+    box-shadow: 0px 10px 40px 0px rgba(0,0,0,0.2) !important;
+}
+
+body.archive .edu-blog .content {
+    background-color: transparent !important;
+}
+
+body.archive .edu-blog .content .title a,
+body.blog .edu-blog .content .title a {
+    color: #ffffff !important;
+}
+
+body.archive .edu-blog .content .title a:hover,
+body.blog .edu-blog .content .title a:hover {
+    color: #4077f3 !important;
+}
+
+body.archive .edu-blog .content .blog-meta li,
+body.blog .edu-blog .content .blog-meta li {
+    color: #999eb2 !important;
+}
+
+body.archive .edu-blog .content .card-bottom p,
+body.blog .edu-blog .content .card-bottom p {
+    color: #c8cfe0 !important;
+}
+
+body.archive .edu-blog .read-more-button .edu-btn,
+body.blog .edu-blog .read-more-button .edu-btn {
+    border-color: #4077f3 !important;
+    color: #4077f3 !important;
+    background-color: transparent !important;
+}
+
+body.archive .edu-blog .read-more-button .edu-btn:hover,
+body.blog .edu-blog .read-more-button .edu-btn:hover {
+    background-color: #4077f3 !important;
+    color: #ffffff !important;
 }
