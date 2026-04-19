@@ -7001,6 +7001,9 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
   box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.05);
   flex-shrink: 0;
   height: fit-content;
+  width: fit-content;
+  white-space: nowrap;
+  align-self: center;
 }
 
 .experience-text {

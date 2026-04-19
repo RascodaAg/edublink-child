@@ -301,6 +301,11 @@
         <div class="instructor-card">
           <!-- معلومات المدرب - الجانب الأيمن -->
           <div class="instructor-info">
+            <!-- النصوص -->
+            <div class="instructor-text">
+              <p class="instructor-name">{{ instructors[0].name }}</p>
+              <p class="instructor-title">{{ instructors[0].description ?: 'مدرب' }}</p>
+            </div>
             <!-- صورة المدرب -->
             <div class="instructor-avatar">
               <div class="instructor-avatar-inner">
@@ -344,11 +349,6 @@
                 <!-- الصورة -->
                 <img src="{{ instructors[0].avatar ?: theme_uri ~ '/assets/img/ellipse1.png' }}" alt="{{ instructors[0].name }}" />
               </div>
-            </div>
-            <!-- النصوص -->
-            <div class="instructor-text">
-              <p class="instructor-name">{{ instructors[0].name }}</p>
-              <p class="instructor-title">{{ instructors[0].description ?: 'مدرب' }}</p>
             </div>
           </div>
 
