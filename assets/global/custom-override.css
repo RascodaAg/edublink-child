@@ -746,3 +746,10 @@ i[class^="icon-"]::before, i[class*=" icon-"]::before {
     font-family: 'edublink', 'icomoon', 'FontAwesome', 'tutor' !important;
 }
 
+
+/* Hide the promotion banner widget at the bottom of the sidebar */
+body.archive .eb-sidebar-widget .widget:last-child,
+body.blog .eb-sidebar-widget .widget:last-child {
+    display: none !important;
+}
+
