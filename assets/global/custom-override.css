@@ -714,3 +714,24 @@ body.blog .edu-blog .read-more-button .edu-btn:hover {
     background-color: #4077f3 !important;
     color: #ffffff !important;
 }
+
+/* User asked for top spacing, no background on widget wrapper, and gap between widgets */
+
+body.archive .edublink-post-archive-wrapper,
+body.blog .edublink-post-archive-wrapper,
+body.archive #secondary.widget-area,
+body.blog #secondary.widget-area {
+    margin-top: 50px !important;
+}
+
+body.archive .eb-sidebar-widget .widget-area-wrapper,
+body.blog .eb-sidebar-widget .widget-area-wrapper {
+    background-color: transparent !important;
+    padding: 0 !important;
+}
+
+body.archive .widget-area .widget,
+body.blog .widget-area .widget {
+    margin-bottom: 30px !important;
+}
+
