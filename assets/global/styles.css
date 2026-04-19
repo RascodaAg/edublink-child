@@ -9626,6 +9626,7 @@ width: 100%;
   border-radius: 50%;
   margin-left: -10px;
   border: 2px solid #1a1d24;
+  object-fit: cover;
 }
 
 .avatar:first-child {
@@ -9641,9 +9642,10 @@ width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 9px;
+  font-size: 12px;
+  transform: scale(0.65);
   font-weight: bold;
-  color: white;
+  color: #000 !important;
   margin-left: -10px;
 }
 
