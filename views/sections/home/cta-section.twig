@@ -1,84 +1,134 @@
-    <!-- ===== START: CTA Section ===== -->
-    <section class="learnsimply-cta-section">
+    <!-- ===== START: CTA Bundle Section ===== -->
+    {% if promo_banner_enabled|default(false) %}
+    <section class="ls-cta-section">
       <div class="learnsimply-section-container">
-        <div class="learnsimply-cta-wrapper">
-          <div class="learnsimply-cta-glow learnsimply-cta-glow-1"></div>
-          <div class="learnsimply-cta-glow learnsimply-cta-glow-2"></div>
+        <div class="ls-cta">
+          <div class="ls-cta-glow ls-cta-glow-1"></div>
+          <div class="ls-cta-glow ls-cta-glow-2"></div>
 
-          <div class="learnsimply-cta-content">
-            <div class="learnsimply-cta-badge">
-              <div class="learnsimply-cta-badge-dot"></div>
-              <span class="learnsimply-cta-badge-text">عرض لفترة محدودة</span>
+          <div class="ls-cta-top">
+            <div class="ls-cta-badge">
+              <span class="ls-cta-badge-fire">🔥</span>
+              <span class="ls-cta-badge-text">عرض محدود — وفّر أكتر من 1,300 جنيه</span>
             </div>
 
-            <h2 class="learnsimply-cta-title">ابدأ رحلتك في <span>هياكل البيانات</span> بخصم 50% قبل ما العرض يخلص</h2>
+            <h2 class="ls-cta-title">حزمة <span>Java الكاملة</span> — من الصفر للاحتراف</h2>
+            <p class="ls-cta-subtitle">كورس أساسيات جافا + كورس OOP المتقدم + كتاب PDF مجاني — كل اللي محتاجه عشان تبدأ صح وتبني أساس قوي في البرمجة.</p>
 
-            <p class="learnsimply-cta-desc">الكورس اللي هيخليك تفهم الـ Data Structures صح من الأول — مش حفظ، لكن فهم حقيقي مع تطبيق عملي على كل موضوع.</p>
-
-            <div class="learnsimply-cta-features">
-              <div class="learnsimply-cta-feature">
-                <svg class="learnsimply-cta-feature-icon" viewBox="0 0 20 20" fill="none">
-                  <path d="M16.667 5L7.5 14.167 3.333 10" stroke="#18A963" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>شرح عربي مبسط</span>
+            <div class="ls-cta-timer">
+              <div class="ls-cta-timer-box">
+                <div class="ls-cta-timer-num" id="ls-cta-days">00</div>
+                <div class="ls-cta-timer-label">يوم</div>
               </div>
-              <div class="learnsimply-cta-feature">
-                <svg class="learnsimply-cta-feature-icon" viewBox="0 0 20 20" fill="none">
-                  <path d="M16.667 5L7.5 14.167 3.333 10" stroke="#18A963" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>تمارين بعد كل درس</span>
+              <div class="ls-cta-timer-box">
+                <div class="ls-cta-timer-num" id="ls-cta-hours">00</div>
+                <div class="ls-cta-timer-label">ساعة</div>
               </div>
-              <div class="learnsimply-cta-feature">
-                <svg class="learnsimply-cta-feature-icon" viewBox="0 0 20 20" fill="none">
-                  <path d="M16.667 5L7.5 14.167 3.333 10" stroke="#18A963" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>شهادة إتمام</span>
+              <div class="ls-cta-timer-box">
+                <div class="ls-cta-timer-num" id="ls-cta-mins">00</div>
+                <div class="ls-cta-timer-label">دقيقة</div>
               </div>
-              <div class="learnsimply-cta-feature">
-                <svg class="learnsimply-cta-feature-icon" viewBox="0 0 20 20" fill="none">
-                  <path d="M16.667 5L7.5 14.167 3.333 10" stroke="#18A963" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>مشاريع تطبيقية</span>
+              <div class="ls-cta-timer-box">
+                <div class="ls-cta-timer-num" id="ls-cta-secs">00</div>
+                <div class="ls-cta-timer-label">ثانية</div>
               </div>
-            </div>
-
-            <div class="learnsimply-cta-buttons">
-              <a class="learnsimply-cta-btn-primary" href="https://learrnsimply.com/courses/data-structure-c/">
-                <span>اشترك الان بنصف السعر</span>
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
-              <a class="learnsimply-cta-btn-secondary" href="https://learrnsimply.com/courses/data-structure-c/">
-                <span>شوف محتوى الكورس</span>
-              </a>
             </div>
           </div>
 
-          <div class="learnsimply-cta-card-wrapper">
-            <div class="learnsimply-cta-card">
-              <div class="learnsimply-cta-card-img">
-                <img src="{{ theme_uri }}/assets/img/DataStructure.png" alt="هياكل البيانات" />
+          <div class="ls-cta-middle">
+            <div class="ls-cta-item">
+              <div class="ls-cta-item-icon blue">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="#4077f3" stroke-width="1.5"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke="#4077f3" stroke-width="1.5"/></svg>
               </div>
-              <div class="learnsimply-cta-card-body">
-                <p class="learnsimply-cta-card-title">هياكل البيانات — المستوى الأول</p>
-                <div class="learnsimply-cta-price-row">
-                  <span class="learnsimply-cta-discount-badge">خصم 50%</span>
-                  <span class="learnsimply-cta-price-new">499 ج.م</span>
-                  <span class="learnsimply-cta-price-old">1,000 ج.م</span>
-                </div>
-                <div class="learnsimply-cta-card-stats">
-                  <div class="learnsimply-cta-stat">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.9 6.26L21.9 9.27l-5 3.86L18 21l-6-3.16L6 21l1.1-7.87-5-3.86 6.99-.99L12 2z" fill="#FFBB54"/></svg>
-                    <span>4.8 (120+)</span>
-                  </div>
-                  <div class="learnsimply-cta-stat">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#6b7394" stroke-width="1.5"/><path d="M4 20c0-3.3 3.6-6 8-6s8 2.7 8 6" stroke="#6b7394" stroke-width="1.5"/></svg>
-                    <span>500+ طالب</span>
-                  </div>
-                </div>
+              <div>
+                <div class="ls-cta-item-text">كورس Java Basics</div>
+                <div class="ls-cta-item-sub">من الصفر للمتوسط</div>
               </div>
+            </div>
+            <div class="ls-cta-item">
+              <div class="ls-cta-item-icon green">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#18A963" stroke-width="1.5"/><path d="M2 17l10 5 10-5" stroke="#18A963" stroke-width="1.5"/><path d="M2 12l10 5 10-5" stroke="#18A963" stroke-width="1.5"/></svg>
+              </div>
+              <div>
+                <div class="ls-cta-item-text">كورس OOP المتقدم</div>
+                <div class="ls-cta-item-sub">برمجة كائنية احترافية</div>
+              </div>
+            </div>
+            <div class="ls-cta-item">
+              <div class="ls-cta-item-icon amber">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke="#f0a030" stroke-width="1.5"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="#f0a030" stroke-width="1.5"/></svg>
+              </div>
+              <div>
+                <div class="ls-cta-item-text">كتاب PDF مجاني</div>
+                <div class="ls-cta-item-sub">ملخصات + تمارين</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ls-cta-price-row">
+            <span class="ls-cta-price-save">وفّر 1,300 ج.م</span>
+            <span class="ls-cta-price-new">850 ج.م</span>
+            <span class="ls-cta-price-old">2,150 ج.م</span>
+          </div>
+          <p class="ls-cta-price-note">* السعر ده للباقة كاملة — الـ 3 مع بعض</p>
+
+          <div class="ls-cta-buttons">
+            <a class="ls-cta-btn-primary" href="https://learrnsimply.com/product/java-basics-oop-bundle/">
+              <span>اشترك في الباقة دلوقتي</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="ls-cta-btn-secondary" href="https://learrnsimply.com/courses/">
+              <span>تصفح كل الكورسات</span>
+            </a>
+          </div>
+
+          <div class="ls-cta-trust">
+            <div class="ls-cta-trust-item">
+              <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M16.667 5L7.5 14.167 3.333 10" stroke="#18A963" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="ls-cta-trust-text">ضمان استرداد المبلغ</span>
+            </div>
+            <div class="ls-cta-trust-item">
+              <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M16.667 5L7.5 14.167 3.333 10" stroke="#18A963" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="ls-cta-trust-text">وصول مدى الحياة</span>
+            </div>
+            <div class="ls-cta-trust-item">
+              <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M16.667 5L7.5 14.167 3.333 10" stroke="#18A963" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="ls-cta-trust-text">+1000 طالب مشترك</span>
             </div>
           </div>
         </div>
       </div>
+
+      <script>
+      (function(){
+        var deadlineMs = typeof learnsimplyPromoDeadline !== 'undefined' ? parseInt(learnsimplyPromoDeadline) : 0;
+        if(!deadlineMs){
+          var fallback = new Date();
+          fallback.setDate(fallback.getDate() + 3);
+          fallback.setHours(23,59,59,0);
+          deadlineMs = fallback.getTime();
+        }
+
+        function pad(n){ return String(n).padStart(2,'0'); }
+
+        function tick(){
+          var diff = deadlineMs - Date.now();
+          if(diff <= 0){
+            document.getElementById('ls-cta-days').textContent='00';
+            document.getElementById('ls-cta-hours').textContent='00';
+            document.getElementById('ls-cta-mins').textContent='00';
+            document.getElementById('ls-cta-secs').textContent='00';
+            return;
+          }
+          document.getElementById('ls-cta-days').textContent = pad(Math.floor(diff/(1000*60*60*24)));
+          document.getElementById('ls-cta-hours').textContent = pad(Math.floor((diff%(1000*60*60*24))/(1000*60*60)));
+          document.getElementById('ls-cta-mins').textContent = pad(Math.floor((diff%(1000*60*60))/(1000*60)));
+          document.getElementById('ls-cta-secs').textContent = pad(Math.floor((diff%(1000*60))/1000));
+        }
+        tick();
+        setInterval(tick, 1000);
+      })();
+      </script>
     </section>
-    <!-- ===== END: CTA Section ===== -->
+    {% endif %}
+    <!-- ===== END: CTA Bundle Section ===== -->
