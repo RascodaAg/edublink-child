@@ -905,14 +905,119 @@ body.blog .post-meta {
 
 
 /* ==========================================================================
-   LESSON ATTACHMENT CARD - BACKGROUND COLOR OVERRIDE
+   LESSON ATTACHMENT CARD - PREMIUM DESIGN OVERRIDE
    ========================================================================== */
 
-/* ملفات التمرين (tutor-course-attachment) - تغيير خلفية الكارد من الأبيض إلى الأزرق */
+/* === الكارد الرئيسي === */
 .tutor-course-attachment.tutor-card.tutor-card-sm,
 .tutor-course-attachment.tutor-card,
 .tutor-card.tutor-course-attachment {
-    background-color: #4077f3 !important;
-    border-color: #4077f3 !important;
+    background: linear-gradient(135deg, #3062d4 0%, #4077f3 50%, #5a8eff 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 8px 32px rgba(64, 119, 243, 0.35), 0 2px 8px rgba(0,0,0,0.18) !important;
+    padding: 16px 20px !important;
+    transition: transform 0.22s ease, box-shadow 0.22s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Hover lift effect */
+.tutor-course-attachment.tutor-card.tutor-card-sm:hover,
+.tutor-course-attachment.tutor-card:hover,
+.tutor-card.tutor-course-attachment:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 14px 40px rgba(64, 119, 243, 0.45), 0 4px 12px rgba(0,0,0,0.22) !important;
+}
+
+/* Subtle decorative glow blob in top-right */
+.tutor-course-attachment.tutor-card::before,
+.tutor-card.tutor-course-attachment::before {
+    content: '' !important;
+    position: absolute !important;
+    top: -20px !important;
+    right: -20px !important;
+    width: 90px !important;
+    height: 90px !important;
+    background: rgba(255, 255, 255, 0.12) !important;
+    border-radius: 50% !important;
+    pointer-events: none !important;
+}
+
+/* === كل النصوص بتاعة الكارد تبقى أبيض === */
+.tutor-course-attachment.tutor-card *,
+.tutor-card.tutor-course-attachment * {
+    color: #ffffff !important;
+}
+
+/* === اسم الملف / العنوان === */
+.tutor-course-attachment.tutor-card .tutor-card-body,
+.tutor-course-attachment.tutor-card .tutor-card-content,
+.tutor-course-attachment.tutor-card .attachment-name,
+.tutor-card.tutor-course-attachment .tutor-card-body,
+.tutor-card.tutor-course-attachment .attachment-name {
+    background: transparent !important;
+    padding: 0 !important;
+}
+
+/* File name text */
+.tutor-course-attachment.tutor-card .tutor-card-title,
+.tutor-course-attachment.tutor-card h5,
+.tutor-course-attachment.tutor-card h4,
+.tutor-course-attachment.tutor-card p,
+.tutor-course-attachment.tutor-card span:not(.tutor-icon),
+.tutor-card.tutor-course-attachment .tutor-card-title,
+.tutor-card.tutor-course-attachment h5,
+.tutor-card.tutor-course-attachment h4,
+.tutor-card.tutor-course-attachment p,
+.tutor-card.tutor-course-attachment span:not(.tutor-icon) {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    letter-spacing: 0.01em !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.15) !important;
+}
+
+/* === أيقونة الملف (PDF / file icon) === */
+.tutor-course-attachment.tutor-card .tutor-icon,
+.tutor-course-attachment.tutor-card i[class*="tutor-icon"],
+.tutor-course-attachment.tutor-card i[class*="icon-"],
+.tutor-course-attachment.tutor-card svg,
+.tutor-card.tutor-course-attachment .tutor-icon,
+.tutor-card.tutor-course-attachment i[class*="tutor-icon"],
+.tutor-card.tutor-course-attachment svg {
+    color: #ffffff !important;
+    fill: #ffffff !important;
+    background: rgba(255, 255, 255, 0.18) !important;
+    border-radius: 10px !important;
+    padding: 8px !important;
+    font-size: 22px !important;
+    backdrop-filter: blur(4px) !important;
+}
+
+/* === زر التحميل / الرابط === */
+.tutor-course-attachment.tutor-card a,
+.tutor-card.tutor-course-attachment a {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.18) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 8px !important;
+    padding: 6px 14px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    transition: background 0.18s ease, border-color 0.18s ease !important;
+    backdrop-filter: blur(4px) !important;
+}
+
+.tutor-course-attachment.tutor-card a:hover,
+.tutor-card.tutor-course-attachment a:hover {
+    background: rgba(255, 255, 255, 0.30) !important;
+    border-color: rgba(255, 255, 255, 0.55) !important;
+    color: #ffffff !important;
+    text-decoration: none !important;
 }
 
