@@ -1,166 +1,270 @@
 /* ==========================================================
-   CTA SECTION — هياكل البيانات
-   Location: /assets/home/cta-section.css
+   CTA BUNDLE SECTION — حزمة Java الكاملة
+   Location: assets/home/cta-section.css
    ========================================================== */
 
-/* ── Section wrapper ── */
-.learnsimply-cta-section {
+/* ── Section ── */
+.ls-cta-section {
   padding: 0;
 }
 
-.learnsimply-cta-section .learnsimply-section-container {
+.ls-cta-section .learnsimply-section-container {
   padding-top: 20px;
   padding-bottom: 20px;
 }
 
-/* ── Main wrapper (the dark card) ── */
-.learnsimply-cta-wrapper {
+/* ── Main wrapper ── */
+.ls-cta {
   position: relative;
   background: #0d1220;
   border-radius: 20px;
   overflow: hidden;
-  padding: 48px 40px;
-  display: flex;
-  gap: 40px;
-  align-items: center;
+  padding: 48px 44px;
   direction: rtl;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
 }
 
 /* ── Glow effects ── */
-.learnsimply-cta-glow {
+.ls-cta-glow {
   position: absolute;
-  width: 400px;
-  height: 400px;
   border-radius: 50%;
   filter: blur(120px);
-  opacity: 0.15;
   pointer-events: none;
 }
 
-.learnsimply-cta-glow-1 {
+.ls-cta-glow-1 {
+  width: 350px;
+  height: 350px;
   background: #4077f3;
-  top: -100px;
-  right: -50px;
+  opacity: 0.12;
+  top: -80px;
+  right: -40px;
 }
 
-.learnsimply-cta-glow-2 {
-  background: #f34077;
-  bottom: -150px;
-  left: -50px;
-  opacity: 0.08;
+.ls-cta-glow-2 {
+  width: 300px;
+  height: 300px;
+  background: #f0a030;
+  opacity: 0.06;
+  bottom: -120px;
+  left: -60px;
 }
 
-/* ── Content (right side in RTL) ── */
-.learnsimply-cta-content {
-  flex: 1;
+/* ── Top area (badge, title, subtitle, timer) ── */
+.ls-cta-top {
   position: relative;
   z-index: 1;
+  text-align: center;
+  margin-bottom: 32px;
 }
 
 /* ── Badge ── */
-.learnsimply-cta-badge {
+.ls-cta-badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: rgba(64, 119, 243, 0.12);
-  border: 1px solid rgba(64, 119, 243, 0.3);
+  gap: 8px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.25);
   border-radius: 100px;
-  padding: 6px 16px;
-  margin-bottom: 12px;
+  padding: 6px 18px;
+  margin-bottom: 16px;
 }
 
-.learnsimply-cta-badge-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #4077f3;
-  animation: learnsimply-cta-pulse 2s infinite;
+.ls-cta-badge-fire {
+  font-size: 14px;
 }
 
-@keyframes learnsimply-cta-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-
-.learnsimply-cta-badge-text {
-  color: #4077f3;
+.ls-cta-badge-text {
+  color: #ef4444;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
   font-family: "IBM Plex Sans Arabic", sans-serif;
 }
 
 /* ── Title ── */
-.learnsimply-cta-title {
+.ls-cta-title {
   color: #fff;
-  font-size: 28px;
-  font-weight: 600;
-  line-height: 1.5;
-  margin: 0 0 12px;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.6;
+  margin: 0 0 10px;
   font-family: "IBM Plex Sans Arabic", sans-serif;
 }
 
-.learnsimply-cta-title span {
-  color: #4077f3;
+.ls-cta-title span {
+  background: linear-gradient(135deg, #4077f3, #60a5fa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* ── Description ── */
-.learnsimply-cta-desc {
+/* ── Subtitle ── */
+.ls-cta-subtitle {
   color: #8893b0;
   font-size: 15px;
-  line-height: 1.8;
-  margin: 0 0 24px;
-  max-width: 480px;
+  line-height: 1.7;
+  margin: 0 auto 28px;
+  max-width: 600px;
   font-family: "IBM Plex Sans Arabic", sans-serif;
 }
 
-/* ── Features grid ── */
-.learnsimply-cta-features {
+/* ── Countdown Timer ── */
+.ls-cta-timer {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
   gap: 12px;
-  margin-bottom: 28px;
+  margin-bottom: 32px;
 }
 
-.learnsimply-cta-feature {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 10px;
-  padding: 8px 14px;
+.ls-cta-timer-box {
+  background: rgba(64, 119, 243, 0.08);
+  border: 1px solid rgba(64, 119, 243, 0.2);
+  border-radius: 14px;
+  padding: 16px 8px;
+  min-width: 80px;
+  text-align: center;
 }
 
-.learnsimply-cta-feature-icon {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
+.ls-cta-timer-num {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 4px;
+  font-variant-numeric: tabular-nums;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
 }
 
-.learnsimply-cta-feature span {
-  color: #c8cfe0;
-  font-size: 13px;
+.ls-cta-timer-label {
+  color: #6b7394;
+  font-size: 12px;
   font-weight: 400;
   font-family: "IBM Plex Sans Arabic", sans-serif;
 }
 
-/* ── Buttons ── */
-.learnsimply-cta-buttons {
+/* ── Bundle items (middle) ── */
+.ls-cta-middle {
+  position: relative;
+  z-index: 1;
   display: flex;
-  gap: 12px;
-  align-items: center;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 32px;
   flex-wrap: wrap;
 }
 
-.learnsimply-cta-btn-primary {
+.ls-cta-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 12px 18px;
+  flex: 0 1 auto;
+}
+
+.ls-cta-item-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ls-cta-item-icon.blue {
+  background: rgba(64, 119, 243, 0.12);
+}
+
+.ls-cta-item-icon.green {
+  background: rgba(24, 169, 99, 0.12);
+}
+
+.ls-cta-item-icon.amber {
+  background: rgba(240, 160, 48, 0.12);
+}
+
+.ls-cta-item-text {
+  font-size: 14px;
+  color: #c8cfe0;
+  font-weight: 500;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+}
+
+.ls-cta-item-sub {
+  font-size: 11px;
+  color: #6b7394;
+  font-weight: 400;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+}
+
+/* ── Price row ── */
+.ls-cta-price-row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.ls-cta-price-save {
+  background: rgba(24, 169, 99, 0.12);
+  color: #18A963;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+}
+
+.ls-cta-price-new {
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+}
+
+.ls-cta-price-old {
+  color: #6b7394;
+  font-size: 16px;
+  text-decoration: line-through;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+}
+
+.ls-cta-price-note {
+  color: #6b7394;
+  font-size: 12px;
+  text-align: center;
+  margin: 0 0 24px;
+  position: relative;
+  z-index: 1;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+}
+
+/* ── Buttons ── */
+.ls-cta-buttons {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ls-cta-btn-primary {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   background: linear-gradient(135deg, #4077f3, #2563eb);
   color: #fff;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
-  padding: 14px 32px;
+  padding: 16px 36px;
   border-radius: 12px;
   text-decoration: none;
   border: none;
@@ -169,14 +273,14 @@
   font-family: "IBM Plex Sans Arabic", sans-serif;
 }
 
-.learnsimply-cta-btn-primary:hover {
+.ls-cta-btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(64, 119, 243, 0.3);
+  box-shadow: 0 8px 28px rgba(64, 119, 243, 0.35);
   color: #fff;
   text-decoration: none;
 }
 
-.learnsimply-cta-btn-secondary {
+.ls-cta-btn-secondary {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -184,111 +288,42 @@
   color: #8893b0;
   font-size: 14px;
   font-weight: 400;
-  padding: 14px 20px;
+  padding: 16px 24px;
   border-radius: 12px;
   text-decoration: none;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  cursor: pointer;
   transition: border-color 0.2s, color 0.2s;
   font-family: "IBM Plex Sans Arabic", sans-serif;
 }
 
-.learnsimply-cta-btn-secondary:hover {
+.ls-cta-btn-secondary:hover {
   border-color: rgba(255, 255, 255, 0.25);
   color: #fff;
   text-decoration: none;
 }
 
-/* ── Course card (left side in RTL) ── */
-.learnsimply-cta-card-wrapper {
+/* ── Trust bar ── */
+.ls-cta-trust {
   position: relative;
   z-index: 1;
-  flex-shrink: 0;
-  width: 300px;
-}
-
-.learnsimply-cta-card {
-  background: #141924;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  overflow: hidden;
-  width: 100%;
-}
-
-.learnsimply-cta-card-img {
-  width: 100%;
-  height: 180px;
-  overflow: hidden;
-  background: #1b2133;
-}
-
-.learnsimply-cta-card-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-  background: #1b2133;
-}
-
-.learnsimply-cta-card-body {
-  padding: 16px;
-}
-
-.learnsimply-cta-card-title {
-  color: #fff;
-  font-size: 14px;
-  font-weight: 500;
-  margin: 0 0 12px;
-  line-height: 1.5;
-  font-family: "IBM Plex Sans Arabic", sans-serif;
-}
-
-.learnsimply-cta-price-row {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 24px;
   flex-wrap: wrap;
 }
 
-.learnsimply-cta-discount-badge {
-  background: rgba(239, 68, 68, 0.12);
-  color: #ef4444;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 3px 8px;
-  border-radius: 6px;
-  font-family: "IBM Plex Sans Arabic", sans-serif;
-}
-
-.learnsimply-cta-price-new {
-  color: #fff;
-  font-size: 20px;
-  font-weight: 700;
-  font-family: "IBM Plex Sans Arabic", sans-serif;
-}
-
-.learnsimply-cta-price-old {
-  color: #6b7394;
-  font-size: 14px;
-  text-decoration: line-through;
-  font-family: "IBM Plex Sans Arabic", sans-serif;
-}
-
-.learnsimply-cta-card-stats {
-  display: flex;
-  gap: 16px;
-  padding-top: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.learnsimply-cta-stat {
+.ls-cta-trust-item {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
 }
 
-.learnsimply-cta-stat span {
+.ls-cta-trust-item svg {
+  flex-shrink: 0;
+}
+
+.ls-cta-trust-text {
   color: #6b7394;
   font-size: 12px;
   font-family: "IBM Plex Sans Arabic", sans-serif;
@@ -298,139 +333,192 @@
    RESPONSIVE
    ========================================================== */
 
-/* ── Tablet (1024px and below) ── */
+/* ── Tablet (1024px) ── */
 @media (max-width: 1024px) {
-  .learnsimply-cta-wrapper {
+  .ls-cta {
     padding: 40px 32px;
-    gap: 32px;
   }
 
-  .learnsimply-cta-title {
-    font-size: 24px;
+  .ls-cta-title {
+    font-size: 26px;
   }
 
-  .learnsimply-cta-card-wrapper {
-    width: 260px;
+  .ls-cta-timer-box {
+    min-width: 70px;
+    padding: 14px 6px;
   }
 
-  .learnsimply-cta-card-img {
-    height: 150px;
+  .ls-cta-timer-num {
+    font-size: 28px;
+  }
+
+  .ls-cta-item {
+    padding: 10px 14px;
   }
 }
 
-/* ── Small tablet / large mobile (768px and below) ── */
+/* ── Small tablet (768px) ── */
 @media (max-width: 768px) {
-  .learnsimply-cta-wrapper {
-    flex-direction: column;
-    padding: 32px 24px;
-    gap: 28px;
-    text-align: center;
-    align-items: center;
+  .ls-cta {
+    padding: 32px 20px;
   }
 
-  .learnsimply-cta-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .learnsimply-cta-title {
+  .ls-cta-title {
     font-size: 22px;
-    text-align: center;
   }
 
-  .learnsimply-cta-desc {
-    text-align: center;
-    max-width: 100%;
-  }
-
-  .learnsimply-cta-features {
-    justify-content: center;
-  }
-
-  .learnsimply-cta-buttons {
-    justify-content: center;
-    width: 100%;
-  }
-
-  .learnsimply-cta-btn-primary {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .learnsimply-cta-btn-secondary {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .learnsimply-cta-card-wrapper {
-    width: 100%;
-    max-width: 340px;
-    order: -1;
-  }
-
-  .learnsimply-cta-card-img {
-    height: 180px;
-  }
-}
-
-/* ── Mobile (480px and below) ── */
-@media (max-width: 480px) {
-  .learnsimply-cta-section .learnsimply-section-container {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  .learnsimply-cta-wrapper {
-    padding: 24px 18px;
-    border-radius: 16px;
-    gap: 20px;
-  }
-
-  .learnsimply-cta-title {
-    font-size: 20px;
-  }
-
-  .learnsimply-cta-desc {
+  .ls-cta-subtitle {
     font-size: 14px;
   }
 
-  .learnsimply-cta-features {
+  .ls-cta-timer {
     gap: 8px;
   }
 
-  .learnsimply-cta-feature {
-    padding: 6px 10px;
+  .ls-cta-timer-box {
+    min-width: 60px;
+    padding: 12px 4px;
+    border-radius: 10px;
   }
 
-  .learnsimply-cta-feature span {
-    font-size: 12px;
+  .ls-cta-timer-num {
+    font-size: 24px;
   }
 
-  .learnsimply-cta-btn-primary {
-    font-size: 14px;
-    padding: 12px 24px;
+  .ls-cta-middle {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
   }
 
-  .learnsimply-cta-btn-secondary {
+  .ls-cta-item {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .ls-cta-price-new {
+    font-size: 24px;
+  }
+
+  .ls-cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ls-cta-btn-primary {
+    width: 100%;
+    max-width: 340px;
+    justify-content: center;
+    font-size: 15px;
+    padding: 14px 28px;
+  }
+
+  .ls-cta-btn-secondary {
+    width: 100%;
+    max-width: 340px;
+    justify-content: center;
+  }
+
+  .ls-cta-trust {
+    gap: 16px;
+  }
+}
+
+/* ── Mobile (480px) ── */
+@media (max-width: 480px) {
+  .ls-cta-section .learnsimply-section-container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .ls-cta {
+    padding: 24px 16px;
+    border-radius: 16px;
+  }
+
+  .ls-cta-badge {
+    padding: 5px 12px;
+  }
+
+  .ls-cta-badge-text {
+    font-size: 11px;
+  }
+
+  .ls-cta-title {
+    font-size: 19px;
+    line-height: 1.5;
+  }
+
+  .ls-cta-subtitle {
     font-size: 13px;
-    padding: 12px 16px;
+    margin-bottom: 20px;
   }
 
-  .learnsimply-cta-card-wrapper {
+  .ls-cta-timer {
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+
+  .ls-cta-timer-box {
+    min-width: 52px;
+    padding: 10px 4px;
+    border-radius: 8px;
+  }
+
+  .ls-cta-timer-num {
+    font-size: 20px;
+  }
+
+  .ls-cta-timer-label {
+    font-size: 10px;
+  }
+
+  .ls-cta-item {
+    padding: 10px 12px;
     max-width: 100%;
   }
 
-  .learnsimply-cta-card-img {
-    height: 160px;
+  .ls-cta-item-text {
+    font-size: 13px;
   }
 
-  .learnsimply-cta-price-new {
-    font-size: 18px;
+  .ls-cta-price-row {
+    gap: 10px;
   }
 
-  .learnsimply-cta-glow {
-    width: 250px;
-    height: 250px;
+  .ls-cta-price-save {
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+
+  .ls-cta-price-new {
+    font-size: 22px;
+  }
+
+  .ls-cta-price-old {
+    font-size: 14px;
+  }
+
+  .ls-cta-btn-primary {
+    font-size: 14px;
+    padding: 12px 20px;
+    max-width: 100%;
+  }
+
+  .ls-cta-btn-secondary {
+    font-size: 13px;
+    padding: 12px 16px;
+    max-width: 100%;
+  }
+
+  .ls-cta-trust {
+    gap: 12px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ls-cta-glow {
+    width: 200px;
+    height: 200px;
   }
 }
