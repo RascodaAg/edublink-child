@@ -659,8 +659,12 @@ if ( class_exists( 'Timber\Timber' ) ) {
 			$context['promo_highlight']      = get_option( 'learnsimply_promo_highlight', '50%' );
 			$context['promo_emoji']          = get_option( 'learnsimply_promo_emoji', '🔥' );
 			$context['promo_cta_text']       = get_option( 'learnsimply_promo_cta_text', 'اشترك الآن' );
-			$cta_url = get_option( 'learnsimply_promo_cta_url', '' );
-			$context['promo_cta_url']        = $cta_url ? $cta_url : home_url( '/' );
+			$cta_url      = get_option( 'learnsimply_promo_cta_url', '' );
+			$java_url     = home_url( '/product/java-basics-oop-bundle/' );
+			// Use Java product page as default unless a custom URL has been explicitly set (not empty & not just the homepage)
+			$home_trimmed = rtrim( home_url(), '/' );
+			$cta_trimmed  = rtrim( $cta_url, '/' );
+			$context['promo_cta_url'] = ( $cta_url && $cta_trimmed !== $home_trimmed ) ? esc_url( $cta_url ) : $java_url;
 		}
 		
 		return $context;
