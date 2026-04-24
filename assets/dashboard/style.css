@@ -1401,3 +1401,12 @@ body.tutor-screen-frontend-dashboard .entry-content {
 .tutor-wrap.tutor-dashboard .tutor-dashboard-menu-item-icon {
     display: none !important;
 }
+
+/* FINAL OVERRIDE FOR NO DATA FOUND TEXT */
+.tutor-fs-6.tutor-fw-bold.tutor-mb-0.tutor-mt-32,
+.tutor-no-data-found .tutor-fs-6,
+.tutor-empty-state .tutor-fs-6,
+.tutor-wrap.tutor-dashboard .tutor-no-data-found p,
+.tutor-wrap.tutor-dashboard .tutor-empty-state p {
+    color: #ffffff !important;
+}
