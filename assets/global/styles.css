@@ -13101,23 +13101,30 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
   /* keep existing styles */
 }
 
-/* WP Editor (About You) - Global Force Fix */
-body .wp-editor-wrap,
-body .wp-editor-container,
-body .wp-editor-tools,
-body .quicktags-toolbar,
-body .wp-editor-area,
-body div[id^="wp-"][id$="-wrap"],
-body div[id^="wp-"][id$="-container"] {
+/* WP Editor (About You) - Exhaustive Dark Theme Fix */
+.wp-editor-wrap,
+.wp-editor-container,
+.wp-editor-tools,
+.quicktags-toolbar,
+.wp-editor-area,
+.wp-core-ui .button,
+.wp-core-ui .button-secondary,
+.mce-container,
+.mce-panel,
+.mce-toolbar,
+.mce-stack-layout-item,
+.mce-edit-area,
+[id^="wp-"][id$="-wrap"],
+[id^="wp-"][id$="-container"] {
     background-color: #1a2232 !important;
     background: #1a2232 !important;
     color: #ffffff !important;
     border-color: rgba(255,255,255,0.1) !important;
 }
 
-body .quicktags-toolbar input,
-body .wp-core-ui .button,
-body .wp-core-ui .button-secondary {
+.quicktags-toolbar input,
+.wp-core-ui .button,
+.wp-core-ui .button-secondary {
     background: rgba(255,255,255,0.1) !important;
     color: #ffffff !important;
     border: 1px solid rgba(255,255,255,0.1) !important;
