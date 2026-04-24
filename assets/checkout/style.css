@@ -35,8 +35,8 @@ body.woocommerce-checkout body,
 .woocommerce-checkout .page-content {
     background: transparent !important;
     max-width: 1100px;
-    margin: 0 auto;
-    padding: 100px 28px 60px; /* Reduced top padding to 100px and bottom to 60px */
+    margin: 80px auto 0 !important; /* Clears fixed header */
+    padding: 15px 28px 30px !important; /* Drastically reduced */
     direction: rtl;
 }
 

@@ -13511,7 +13511,7 @@ button[name="reset_password"],
 /* ──────────────────────────────────────────────────────────
    UNIFIED PAGE HEADER / BREADCRUMB SPACING
    ────────────────────────────────────────────────────────── */
-/* Targets breadcrumb and title areas globally to reduce excessive spacing */
+/* Drastically reduced spacing for a tighter, cleaner look */
 .edu-breadcrumb-area,
 .breadcrumb-area,
 .page-title-area,
@@ -13521,26 +13521,25 @@ button[name="reset_password"],
 .course-main-content,
 .lc-cart,
 .woocommerce-checkout .woocommerce,
-.woocommerce-cart .woocommerce {
-    margin-top: 0 !important;
-    padding-top: 100px !important; /* Clears fixed header (approx 90px) with small gap */
-    padding-bottom: 40px !important;
-    min-height: auto !important; /* Remove huge default min-heights */
-}
-
-/* Specific fix for checkout padding which was set to 130px */
-.woocommerce-checkout .woocommerce,
+.woocommerce-cart .woocommerce,
 .woocommerce-checkout .entry-content,
 .woocommerce-checkout .page-content {
-    padding-top: 100px !important;
+    margin-top: 80px !important; /* Clears fixed header */
+    padding-top: 15px !important;  /* Minimal internal padding */
+    padding-bottom: 15px !important;
+    min-height: auto !important;
+    margin-bottom: 20px !important;
 }
 
-/* Adjust title sizes to be consistent if they vary too much */
+/* Ensure title doesn't have its own margins */
 .page-title-area h1,
 .edu-breadcrumb-area h1,
 .sp-hero__title,
 .course-title,
-.lc-cart-hero__title {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
+.lc-cart-hero__title,
+.woocommerce-checkout h1,
+.woocommerce-cart h1 {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.2 !important;
 }
