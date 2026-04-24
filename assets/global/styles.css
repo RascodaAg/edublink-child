@@ -13098,7 +13098,36 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
 
 .learnsimply-pagination .page-numbers.prev,
 .learnsimply-pagination .page-numbers.next {
-  padding: 0 18px;
+  /* keep existing styles */
+}
+
+/* WP Editor (About You) - Global Force Fix */
+body .wp-editor-wrap,
+body .wp-editor-container,
+body .wp-editor-tools,
+body .quicktags-toolbar,
+body .wp-editor-area,
+body div[id^="wp-"][id$="-wrap"],
+body div[id^="wp-"][id$="-container"] {
+    background-color: #1a2232 !important;
+    background: #1a2232 !important;
+    color: #ffffff !important;
+    border-color: rgba(255,255,255,0.1) !important;
+}
+
+body .quicktags-toolbar input,
+body .wp-core-ui .button,
+body .wp-core-ui .button-secondary {
+    background: rgba(255,255,255,0.1) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+body .wp-core-ui .dashicons, 
+body .wp-core-ui .dashicons-before:before {
+    color: #ffffff !important;
 }
 
 @media (max-width: 768px) {
