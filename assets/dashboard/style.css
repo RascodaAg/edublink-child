@@ -719,6 +719,12 @@ body.tutor-screen-frontend-dashboard .entry-content {
     padding-left: 36px !important;
 }
 
+/* Dropdown options styling */
+.tutor-wrap.tutor-dashboard select option {
+    background-color: var(--db-card-alt) !important;
+    color: white !important;
+}
+
 /* File upload area */
 .tutor-wrap.tutor-dashboard .tutor-thumbnail-uploader,
 .tutor-wrap.tutor-dashboard .tutor-profile-photo-upload {
