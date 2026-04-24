@@ -13507,3 +13507,40 @@ button[name="reset_password"],
 .tutor-alert.tutor-success::before {
     color: #18a963 !important;
 }
+
+/* ──────────────────────────────────────────────────────────
+   UNIFIED PAGE HEADER / BREADCRUMB SPACING
+   ────────────────────────────────────────────────────────── */
+/* Targets breadcrumb and title areas globally to reduce excessive spacing */
+.edu-breadcrumb-area,
+.breadcrumb-area,
+.page-title-area,
+.edublink-breadcrumb-area,
+.entry-header,
+.sp-hero,
+.course-main-content,
+.lc-cart,
+.woocommerce-checkout .woocommerce,
+.woocommerce-cart .woocommerce {
+    margin-top: 0 !important;
+    padding-top: 100px !important; /* Clears fixed header (approx 90px) with small gap */
+    padding-bottom: 40px !important;
+    min-height: auto !important; /* Remove huge default min-heights */
+}
+
+/* Specific fix for checkout padding which was set to 130px */
+.woocommerce-checkout .woocommerce,
+.woocommerce-checkout .entry-content,
+.woocommerce-checkout .page-content {
+    padding-top: 100px !important;
+}
+
+/* Adjust title sizes to be consistent if they vary too much */
+.page-title-area h1,
+.edu-breadcrumb-area h1,
+.sp-hero__title,
+.course-title,
+.lc-cart-hero__title {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}

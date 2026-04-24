@@ -36,7 +36,7 @@ body.woocommerce-checkout body,
     background: transparent !important;
     max-width: 1100px;
     margin: 0 auto;
-    padding: 130px 28px 80px;
+    padding: 100px 28px 60px; /* Reduced top padding to 100px and bottom to 60px */
     direction: rtl;
 }
 
