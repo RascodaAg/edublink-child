@@ -117,7 +117,7 @@ $checkout_page_url = CheckoutController::get_page_url();
 						</div>
 						<button
 							type="button"
-							class="lc-item__remove"
+							class="custom-remove-item-btn"
 							data-course-id="<?php echo esc_attr( $course->ID ); ?>"
 							aria-label="إزالة <?php echo esc_attr( $course->post_title ); ?> من السلة"
 						>
