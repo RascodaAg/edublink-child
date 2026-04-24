@@ -659,8 +659,11 @@ body.tutor-screen-frontend-dashboard .entry-content {
 
 /* Labels */
 .tutor-wrap.tutor-dashboard label,
-.tutor-wrap.tutor-dashboard .tutor-form-label {
-    color: var(--db-gray) !important;
+.tutor-wrap.tutor-dashboard .tutor-form-label,
+.tutor-wrap.tutor-dashboard .tutor-dashboard-setting .tutor-fs-7,
+.tutor-wrap.tutor-dashboard .tutor-dashboard-setting .tutor-color-muted,
+.tutor-wrap.tutor-dashboard .tutor-dashboard-setting .tutor-color-secondary {
+    color: var(--db-white) !important;
     font-size: 13px !important;
     font-weight: 500 !important;
     margin-bottom: 6px !important;
