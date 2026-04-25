@@ -33,25 +33,29 @@
 }
 
 .about-image-container {
-  flex: 0 0 450px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  flex: 1;
+  min-width: 0;
 }
 
 .about-profile-image {
-  width: 380px;
-  height: 380px;
-  border-radius: 50%;
+  width: 100%;
+  border-radius: 29px;
   overflow: hidden;
-  border: 4px solid rgba(64, 119, 243, 0.2);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
 }
 
 .about-profile-image img {
+  /* Show the image fully within the card while preserving aspect ratio.
+       Use contain so the whole image is visible; center it inside the
+       rounded container. */
+  position: relative;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  left: 0;
+  top: 0;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center;
 }
 
 .about-content-container {
@@ -165,17 +169,6 @@
     margin-right: 0 !important;
     width: 100%;
     max-width: 320px;
-  }
-
-  .about-image-container {
-    flex: 0 0 auto;
-    width: 100%;
-    margin-bottom: 40px;
-  }
-
-  .about-profile-image {
-    width: 300px;
-    height: 300px;
   }
 }
 
