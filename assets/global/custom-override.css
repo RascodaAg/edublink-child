@@ -537,7 +537,6 @@ body.single-post .learnsimply-promo-banner-inner,
 body.single-post .learnsimply-promo-banner-inner * {
     all: revert !important;
 }
-
 body.single-post pre code {
     background-color: #1b2133 !important;
     color: #e2e8f0 !important;
@@ -613,9 +612,7 @@ body.single-post blockquote {
 
 .course-image {
     border-radius: 15px !important;
-}
-
-/* ==========================================================================
+}/* ==========================================================================
    AUTHOR / ARCHIVE / BLOG - DARK THEME FIXES
    ========================================================================== */
 
@@ -624,7 +621,7 @@ body.archive .widget-area .widget,
 body.blog .widget-area .widget {
     background-color: #1b2133 !important;
     border: 1px solid rgba(255, 255, 255, 0.05) !important;
-    box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 0px 10px 40px 0px rgba(0,0,0,0.2) !important;
     border-radius: 15px !important;
     padding: 30px !important;
 }
@@ -657,7 +654,7 @@ body.blog .widget-area .widget .post-meta-date {
 body.archive .edublink-search-box input[type="search"],
 body.blog .edublink-search-box input[type="search"] {
     background-color: #141924 !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
     color: #ffffff !important;
 }
 
@@ -678,7 +675,7 @@ body.blog .edu-blog .inner {
     background-color: #1b2133 !important;
     border: 1px solid rgba(255, 255, 255, 0.05) !important;
     border-radius: 15px !important;
-    box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 0px 10px 40px 0px rgba(0,0,0,0.2) !important;
 }
 
 body.archive .edu-blog .content {
@@ -744,10 +741,8 @@ body.blog .widget-area .widget {
 
 
 /* Fix for broken icon fonts due to IBM Plex global override */
-i[class^="icon-"],
-i[class*=" icon-"],
-i[class^="icon-"]::before,
-i[class*=" icon-"]::before {
+i[class^="icon-"], i[class*=" icon-"],
+i[class^="icon-"]::before, i[class*=" icon-"]::before {
     font-family: 'edublink', 'icomoon', 'FontAwesome', 'tutor' !important;
 }
 
@@ -816,17 +811,15 @@ body.blog .post-meta {
         gap: 15px !important;
         margin-inline: 15px !important;
     }
-
+    
     .hero-wrapper .blue-card-content {
         gap: 10px !important;
-        align-items: center !important;
-        /* Centering for better balance on mobile */
+        align-items: center !important; /* Centering for better balance on mobile */
         width: 100% !important;
     }
 
     .hero-wrapper .blue-card-content .card-title {
-        font-size: 24px !important;
-        /* Significantly reduced to prevent excessive wrapping */
+        font-size: 24px !important; /* Significantly reduced to prevent excessive wrapping */
         line-height: 1.4 !important;
         text-align: center !important;
         margin-bottom: 5px !important;
@@ -858,7 +851,7 @@ body.blog .post-meta {
     .hero-wrapper .blue-card-content .card-title {
         font-size: 20px !important;
     }
-
+    
     .hero-wrapper .blue-card-content .stars-icon {
         width: 120px !important;
     }
@@ -876,15 +869,13 @@ body.blog .post-meta {
 @media (max-width: 480px) {
     .learnsimply-certificate-title {
         font-size: 32px !important;
-        line-height: 1.4 !important;
-        /* Fixed overlapping by increasing line-height */
+        line-height: 1.4 !important; /* Fixed overlapping by increasing line-height */
         letter-spacing: normal !important;
         margin-bottom: 20px !important;
-        text-align: center !important;
-        /* Centered for a cleaner mobile layout */
+        text-align: center !important; /* Centered for a cleaner mobile layout */
         word-break: break-word !important;
     }
-
+    
     .learnsimply-certificate-description {
         font-size: 16px !important;
         line-height: 1.6 !important;
@@ -924,7 +915,7 @@ body.blog .post-meta {
     background: linear-gradient(135deg, #3062d4 0%, #4077f3 50%, #5a8eff 100%) !important;
     border: 1px solid rgba(255, 255, 255, 0.18) !important;
     border-radius: 14px !important;
-    box-shadow: 0 8px 32px rgba(64, 119, 243, 0.35), 0 2px 8px rgba(0, 0, 0, 0.18) !important;
+    box-shadow: 0 8px 32px rgba(64, 119, 243, 0.35), 0 2px 8px rgba(0,0,0,0.18) !important;
     padding: 16px 20px !important;
     transition: transform 0.22s ease, box-shadow 0.22s ease !important;
     position: relative !important;
@@ -936,7 +927,7 @@ body.blog .post-meta {
 .tutor-course-attachment.tutor-card:hover,
 .tutor-card.tutor-course-attachment:hover {
     transform: translateY(-3px) !important;
-    box-shadow: 0 14px 40px rgba(64, 119, 243, 0.45), 0 4px 12px rgba(0, 0, 0, 0.22) !important;
+    box-shadow: 0 14px 40px rgba(64, 119, 243, 0.45), 0 4px 12px rgba(0,0,0,0.22) !important;
 }
 
 /* Subtle decorative glow blob in top-right */
@@ -984,7 +975,7 @@ body.blog .post-meta {
     font-weight: 600 !important;
     font-size: 14px !important;
     letter-spacing: 0.01em !important;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.15) !important;
 }
 
 /* === أيقونة الملف (PDF / file icon) === */
@@ -1598,6 +1589,244 @@ div[class*="quiz-wrap"] {
     --tutor-color-design-system-light: #141924 !important;
     --tutor-color-background-primary: #141924 !important;
     --tutor-color-background-secondary: #1b2133 !important;
+    --tutor-color-surface: #1b2133 !important;
+    --tutor-color-surface-2: #232d45 !important;
+}
+
+
+/* ==========================================================================
+   QUIZ DARK MODE — AGGRESSIVE SPOTLIGHT-SCOPED OVERRIDES
+   These target quiz elements INSIDE the spotlight content area,
+   matching the actual DOM rendered by Tutor LMS v2/v3.
+   Based on live inspection of learnsimply.com quiz pages.
+   ========================================================================== */
+
+/* --- NUCLEAR: All white/light backgrounds inside spotlight content --- */
+.tutor-course-spotlight-content [style*="background-color"],
+.tutor-course-spotlight-content [style*="background:"],
+.tutor-course-spotlight-content .tutor-bg-white,
+.tutor-course-spotlight-content [class*="bg-white"],
+.tutor-course-spotlight-content [class*="bg-light"] {
+    background-color: transparent !important;
+    background: transparent !important;
+}
+
+/* --- Quiz wrapper inside spotlight content --- */
+.tutor-course-spotlight-content .tutor-quiz-wrap,
+.tutor-course-spotlight-content .tutor-quiz-body,
+.tutor-course-spotlight-content .tutor-quiz-content,
+.tutor-course-spotlight-content form[id*="quiz"],
+.tutor-course-spotlight-content div[id*="quiz"],
+.tutor-course-spotlight-content div[class*="quiz"] {
+    background-color: transparent !important;
+    color: #e2e6f0 !important;
+}
+
+/* --- Code block / pre inside quiz (the white Java code box) --- */
+.tutor-course-spotlight-content pre,
+.tutor-course-spotlight-content code,
+.tutor-course-spotlight-content pre code,
+.tutor-course-spotlight-content .wp-block-code,
+.tutor-course-spotlight-content .wp-block-preformatted {
+    background-color: #1b2133 !important;
+    color: #e2e8f0 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 10px !important;
+}
+
+/* --- Quiz question text --- */
+.tutor-course-spotlight-content .tutor-quiz-question-desc,
+.tutor-course-spotlight-content .tutor-quiz-question-text,
+.tutor-course-spotlight-content .tutor-quiz-question p,
+.tutor-course-spotlight-content .tutor-quiz-question span,
+.tutor-course-spotlight-content .tutor-quiz-question div,
+.tutor-course-spotlight-content .tutor-quiz-question label {
+    color: #e2e6f0 !important;
+}
+
+/* --- Answer option buttons (the 4 white answer boxes) --- */
+.tutor-course-spotlight-content .tutor-quiz-answer,
+.tutor-course-spotlight-content .tutor-quiz-option,
+.tutor-course-spotlight-content .tutor-quiz-answer-item,
+.tutor-course-spotlight-content .tutor-quiz-answers .tutor-answer-item,
+.tutor-course-spotlight-content .tutor-quiz-answers li,
+.tutor-course-spotlight-content .tutor-quiz-answer-list li,
+.tutor-course-spotlight-content .tutor-answer-item,
+.tutor-course-spotlight-content [class*="answer-item"],
+.tutor-course-spotlight-content [class*="quiz-answer"],
+.tutor-course-spotlight-content [class*="quiz-option"] {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 10px !important;
+    color: #e2e6f0 !important;
+    transition: all 0.25s ease !important;
+}
+
+.tutor-course-spotlight-content .tutor-quiz-answer:hover,
+.tutor-course-spotlight-content .tutor-quiz-option:hover,
+.tutor-course-spotlight-content .tutor-quiz-answer-item:hover,
+.tutor-course-spotlight-content .tutor-answer-item:hover,
+.tutor-course-spotlight-content [class*="answer-item"]:hover,
+.tutor-course-spotlight-content [class*="quiz-answer"]:hover,
+.tutor-course-spotlight-content [class*="quiz-option"]:hover {
+    background-color: rgba(64, 119, 243, 0.08) !important;
+    border-color: rgba(64, 119, 243, 0.3) !important;
+}
+
+/* Selected answer state */
+.tutor-course-spotlight-content .tutor-quiz-answer.is-selected,
+.tutor-course-spotlight-content .tutor-quiz-answer.selected,
+.tutor-course-spotlight-content .tutor-quiz-answer.active,
+.tutor-course-spotlight-content .tutor-quiz-answer-item.is-selected,
+.tutor-course-spotlight-content .tutor-quiz-answer-item.selected,
+.tutor-course-spotlight-content .tutor-answer-item.is-selected,
+.tutor-course-spotlight-content .tutor-answer-item.selected,
+.tutor-course-spotlight-content [class*="answer-item"].is-selected,
+.tutor-course-spotlight-content [class*="answer-item"].selected {
+    background-color: rgba(64, 119, 243, 0.15) !important;
+    border-color: #4077f3 !important;
+}
+
+/* Answer text inside answer boxes */
+.tutor-course-spotlight-content .tutor-quiz-answer *,
+.tutor-course-spotlight-content .tutor-quiz-option *,
+.tutor-course-spotlight-content .tutor-quiz-answer-item *,
+.tutor-course-spotlight-content .tutor-answer-item *,
+.tutor-course-spotlight-content [class*="answer-item"] *,
+.tutor-course-spotlight-content [class*="quiz-answer"] *,
+.tutor-course-spotlight-content [class*="quiz-option"] * {
+    color: #e2e6f0 !important;
+}
+
+/* --- Quiz info bar --- */
+.tutor-course-spotlight-content .tutor-quiz-info,
+.tutor-course-spotlight-content .tutor-quiz-meta,
+.tutor-course-spotlight-content .tutor-quiz-header,
+.tutor-course-spotlight-content [class*="quiz-info"],
+.tutor-course-spotlight-content [class*="quiz-meta"],
+.tutor-course-spotlight-content [class*="quiz-header"] {
+    color: #999eb2 !important;
+    background-color: transparent !important;
+}
+
+.tutor-course-spotlight-content .tutor-quiz-info *,
+.tutor-course-spotlight-content .tutor-quiz-meta *,
+.tutor-course-spotlight-content [class*="quiz-info"] *,
+.tutor-course-spotlight-content [class*="quiz-meta"] * {
+    color: #999eb2 !important;
+}
+
+/* --- Skip question link --- */
+.tutor-course-spotlight-content .tutor-quiz-skip,
+.tutor-course-spotlight-content a[class*="skip"],
+.tutor-course-spotlight-content [class*="quiz-skip"] {
+    color: #4077f3 !important;
+}
+
+/* --- Timer badge --- */
+.tutor-course-spotlight-content .tutor-quiz-time-remaining,
+.tutor-course-spotlight-content .tutor-quiz-timer,
+.tutor-course-spotlight-content [class*="quiz-time"],
+.tutor-course-spotlight-content [class*="quiz-timer"] {
+    color: #ff8904 !important;
+}
+
+.tutor-course-spotlight-content .tutor-quiz-time-remaining *,
+.tutor-course-spotlight-content .tutor-quiz-timer * {
+    color: #ff8904 !important;
+}
+
+/* --- Quiz results --- */
+.tutor-course-spotlight-content .tutor-quiz-result,
+.tutor-course-spotlight-content .tutor-quiz-attempt-details,
+.tutor-course-spotlight-content [class*="quiz-result"],
+.tutor-course-spotlight-content [class*="quiz-attempt"] {
+    background-color: #141924 !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 14px !important;
+    color: #e2e6f0 !important;
+}
+
+.tutor-course-spotlight-content .tutor-quiz-result *,
+.tutor-course-spotlight-content [class*="quiz-result"] * {
+    color: #e2e6f0 !important;
+}
+
+.tutor-course-spotlight-content .tutor-quiz-result strong,
+.tutor-course-spotlight-content .tutor-quiz-result h2,
+.tutor-course-spotlight-content .tutor-quiz-result h3 {
+    color: #ffffff !important;
+}
+
+/* Correct / incorrect */
+.tutor-course-spotlight-content [class*="correct"],
+.tutor-course-spotlight-content [class*="right-answer"] {
+    background-color: rgba(24, 169, 99, 0.1) !important;
+    border-color: rgba(24, 169, 99, 0.3) !important;
+}
+
+.tutor-course-spotlight-content [class*="incorrect"],
+.tutor-course-spotlight-content [class*="wrong-answer"] {
+    background-color: rgba(249, 106, 123, 0.1) !important;
+    border-color: rgba(249, 106, 123, 0.3) !important;
+}
+
+/* --- Tables --- */
+.tutor-course-spotlight-content table {
+    background-color: #141924 !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.tutor-course-spotlight-content table thead {
+    background-color: #1b2133 !important;
+}
+
+.tutor-course-spotlight-content table th {
+    color: #ffffff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.tutor-course-spotlight-content table td {
+    color: #e2e6f0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+}
+
+/* --- Inputs --- */
+.tutor-course-spotlight-content input[type="text"],
+.tutor-course-spotlight-content input[type="number"],
+.tutor-course-spotlight-content textarea,
+.tutor-course-spotlight-content select {
+    background-color: #1b2133 !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: #ffffff !important;
+}
+
+/* --- Radio / Checkbox --- */
+.tutor-course-spotlight-content input[type="radio"],
+.tutor-course-spotlight-content input[type="checkbox"] {
+    border-color: rgba(255, 255, 255, 0.25) !important;
+    background-color: transparent !important;
+}
+
+.tutor-course-spotlight-content input[type="radio"]:checked,
+.tutor-course-spotlight-content input[type="checkbox"]:checked {
+    background-color: #4077f3 !important;
+    border-color: #4077f3 !important;
+}
+
+/* --- Tutor CSS variables scoped to spotlight content (catch-all) --- */
+.tutor-course-spotlight-content {
+    --tutor-color-black: #e2e6f0 !important;
+    --tutor-color-text: #e2e6f0 !important;
+    --tutor-color-text-primary: #e2e6f0 !important;
+    --tutor-color-text-secondary: #999eb2 !important;
+    --tutor-color-text-hints: #6b7394 !important;
+    --tutor-color-secondary: #999eb2 !important;
+    --tutor-color-muted: #999eb2 !important;
+    --tutor-color-design-system-dark: #e2e6f0 !important;
+    --tutor-color-design-system-light: #141924 !important;
+    --tutor-color-background-primary: #0a0f1a !important;
+    --tutor-color-background-secondary: #141924 !important;
     --tutor-color-surface: #1b2133 !important;
     --tutor-color-surface-2: #232d45 !important;
 }

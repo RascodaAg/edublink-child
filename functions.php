@@ -180,6 +180,7 @@ function learnsimply_inject_sidebar_dark_mode() {
 		$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
 		$is_tutor_page = strpos( $request_uri, '/lesson/' ) !== false
 			|| strpos( $request_uri, '/quiz/' ) !== false
+			|| strpos( $request_uri, '/quizzes/' ) !== false
 			|| strpos( $request_uri, '/tutor-quiz/' ) !== false
 			|| strpos( $request_uri, '/assignments/' ) !== false
 			|| strpos( $request_uri, '/tutor-assignment/' ) !== false
@@ -1453,6 +1454,7 @@ function edublink_child_lesson_sidebar_dark_mode() {
 	$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
 	$is_spotlight_page = strpos( $request_uri, '/lesson/' ) !== false
 		|| strpos( $request_uri, '/quiz/' ) !== false
+		|| strpos( $request_uri, '/quizzes/' ) !== false
 		|| strpos( $request_uri, '/tutor-quiz/' ) !== false
 		|| strpos( $request_uri, '/assignments/' ) !== false
 		|| strpos( $request_uri, '/tutor-assignment/' ) !== false;
