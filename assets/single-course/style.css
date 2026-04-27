@@ -1450,6 +1450,53 @@ background: linear-gradient(131deg, rgba(100, 84, 213, 0.20) -66.81%, rgba(100, 
   border-radius: var(--learnsimply-border-radius-md);
   padding: 32px;
   direction: rtl;
+  position: relative;
+  max-height: 450px;
+  overflow: hidden;
+}
+
+.learning-card.expanded {
+  max-height: none;
+  overflow: visible;
+}
+
+.learning-card .learning-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  background: linear-gradient(to bottom, rgba(20, 25, 36, 0) 0%, var(--learnsimply-card-bg) 75%);
+  border-radius: 0 0 var(--learnsimply-border-radius-md) var(--learnsimply-border-radius-md);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 20px;
+  pointer-events: none;
+}
+
+.learning-card.expanded .learning-gradient {
+  position: relative;
+  height: auto;
+  background: none;
+  padding: 16px 0 0;
+}
+
+.learning-show-more {
+  font-size: 16px;
+  font-weight: 500;
+  color: #4077f3;
+  cursor: pointer;
+  pointer-events: all;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+  background: transparent;
+  border: none;
+  padding: 0;
+  transition: opacity 0.2s;
+}
+
+.learning-show-more:hover {
+  opacity: 0.8;
 }
 
 .learning-card .section-header {
