@@ -168,17 +168,21 @@ function learnsimply_enqueue_custom_overrides() {
 add_action( 'wp_footer', 'learnsimply_inject_sidebar_dark_mode', 9999 );
 
 function learnsimply_inject_sidebar_dark_mode() {
-	// Only inject on Tutor LMS lesson/course pages
+	// Inject on ALL Tutor LMS spotlight pages (lessons, quizzes, assignments)
 	$is_tutor_page = false;
 	if ( function_exists( 'tutor_utils' ) ) {
 		$is_tutor_page = tutor_utils()->is_single_lesson()
 			|| tutor_utils()->is_single_course()
 			|| ( function_exists( 'is_tutor_page' ) && is_tutor_page() );
 	}
-	// Fallback: check URL contains /lesson/ or /courses/
+	// Fallback: check URL for lesson, quiz, or assignment paths
 	if ( ! $is_tutor_page ) {
 		$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
 		$is_tutor_page = strpos( $request_uri, '/lesson/' ) !== false
+			|| strpos( $request_uri, '/quiz/' ) !== false
+			|| strpos( $request_uri, '/tutor-quiz/' ) !== false
+			|| strpos( $request_uri, '/assignments/' ) !== false
+			|| strpos( $request_uri, '/tutor-assignment/' ) !== false
 			|| ( strpos( $request_uri, '/courses/' ) !== false && strpos( $request_uri, '/lesson/' ) !== false );
 	}
 
@@ -1445,9 +1449,14 @@ add_action( 'wp_head', 'edublink_child_load_global_override_css', 10000 );
  * bypassing any file-level server/CDN caching.
  */
 function edublink_child_lesson_sidebar_dark_mode() {
-	// Only load on Tutor LMS lesson pages (spotlight mode)
+	// Load on ALL Tutor LMS spotlight pages (lessons, quizzes, assignments)
 	$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
-	if ( strpos( $request_uri, '/lesson/' ) === false ) {
+	$is_spotlight_page = strpos( $request_uri, '/lesson/' ) !== false
+		|| strpos( $request_uri, '/quiz/' ) !== false
+		|| strpos( $request_uri, '/tutor-quiz/' ) !== false
+		|| strpos( $request_uri, '/assignments/' ) !== false
+		|| strpos( $request_uri, '/tutor-assignment/' ) !== false;
+	if ( ! $is_spotlight_page ) {
 		return;
 	}
 	?>
