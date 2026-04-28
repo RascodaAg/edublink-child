@@ -8,7 +8,98 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+add_action( 'wp', 'learnsimply_delete_quizzes_topic1' );
 add_action( 'wp', 'learnsimply_create_quizzes_topic1' );
+
+function learnsimply_delete_quizzes_topic1() {
+	if ( ! isset( $_GET['delete_quizzes_topic1'] ) || '1' !== $_GET['delete_quizzes_topic1'] ) {
+		return;
+	}
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_die( 'Access denied.' );
+	}
+
+	try {
+		global $wpdb;
+
+		$topic_id = 24444;
+		$quiz_ids = array( 38649, 38650, 38651, 38652 );
+
+		echo '<!DOCTYPE html><html dir="rtl"><head><meta charset="UTF-8">';
+		echo '<style>body{font-family:sans-serif;padding:20px;direction:rtl;} .ok{color:green;} .err{color:red;}</style>';
+		echo '</head><body>';
+		echo '<h2>حذف الاختبارات — Topic ID ' . esc_html( $topic_id ) . '</h2>';
+
+		foreach ( $quiz_ids as $quiz_id ) {
+			// Collect question IDs for this quiz.
+			$q_ids = $wpdb->get_col(
+				$wpdb->prepare(
+					"SELECT question_id FROM {$wpdb->prefix}tutor_quiz_questions WHERE quiz_id = %d",
+					$quiz_id
+				)
+			);
+
+			// Delete answers for all questions.
+			if ( ! empty( $q_ids ) ) {
+				$placeholders = implode( ',', array_fill( 0, count( $q_ids ), '%d' ) );
+				$wpdb->query(
+					$wpdb->prepare(
+						"DELETE FROM {$wpdb->prefix}tutor_quiz_question_answers WHERE belongs_question_id IN ($placeholders)",
+						...$q_ids
+					)
+				);
+				// Delete questions.
+				$wpdb->query(
+					$wpdb->prepare(
+						"DELETE FROM {$wpdb->prefix}tutor_quiz_questions WHERE quiz_id = %d",
+						$quiz_id
+					)
+				);
+			}
+
+			// Delete post meta.
+			$wpdb->delete( $wpdb->postmeta, array( 'post_id' => $quiz_id ), array( '%d' ) );
+
+			// Get the quiz menu_order before deleting.
+			$quiz_order = (int) $wpdb->get_var(
+				$wpdb->prepare(
+					"SELECT menu_order FROM {$wpdb->posts} WHERE ID = %d",
+					$quiz_id
+				)
+			);
+
+			// Delete the quiz post.
+			$deleted = $wpdb->delete( $wpdb->posts, array( 'ID' => $quiz_id ), array( '%d' ) );
+
+			if ( $deleted ) {
+				// Shift siblings with higher menu_order down by 1 to close the gap.
+				if ( $quiz_order > 0 ) {
+					$wpdb->query(
+						$wpdb->prepare(
+							"UPDATE {$wpdb->posts}
+							 SET menu_order = menu_order - 1
+							 WHERE post_parent = %d
+							   AND menu_order > %d",
+							$topic_id,
+							$quiz_order
+						)
+					);
+				}
+				echo '<p class="ok">تم حذف Quiz ID: <strong>' . esc_html( $quiz_id ) . '</strong> مع أسئلته وإجاباته</p>';
+			} else {
+				echo '<p class="err">لم يُعثر على Quiz ID: ' . esc_html( $quiz_id ) . ' أو حدث خطأ</p>';
+			}
+		}
+
+		echo '<hr><p>اكتمل الحذف. يمكنك الآن زيارة <code>?create_quizzes_topic1=1</code> لإعادة الإنشاء.</p>';
+		echo '</body></html>';
+
+	} catch ( Exception $e ) {
+		echo '<p style="color:red;">Error: ' . esc_html( $e->getMessage() ) . '</p>';
+	}
+
+	die();
+}
 
 function learnsimply_create_quizzes_topic1() {
 	if ( ! isset( $_GET['create_quizzes_topic1'] ) || '1' !== $_GET['create_quizzes_topic1'] ) {
@@ -308,9 +399,29 @@ function learnsimply_create_quizzes_topic1() {
 		);
 
 		echo '<!DOCTYPE html><html dir="rtl"><head><meta charset="UTF-8">';
-		echo '<style>body{font-family:sans-serif;padding:20px;direction:rtl;} .ok{color:green;} .skip{color:orange;} .err{color:red;}</style>';
+		echo '<style>body{font-family:sans-serif;padding:20px;direction:rtl;} .ok{color:green;} .skip{color:orange;} .err{color:red;} table{border-collapse:collapse;margin-bottom:20px;} th,td{border:1px solid #ccc;padding:5px 10px;text-align:left;} th{background:#f0f0f0;}</style>';
 		echo '</head><body>';
 		echo '<h2>إنشاء الاختبارات — Topic ID ' . esc_html( $topic_id ) . '</h2>';
+
+		// Print actual columns of tutor_quiz_questions so we know what exists.
+		$columns = $wpdb->get_results( 'DESCRIBE ' . $wpdb->prefix . 'tutor_quiz_questions' );
+		echo '<h3>أعمدة جدول tutor_quiz_questions</h3>';
+		if ( $columns ) {
+			echo '<table><tr><th>Field</th><th>Type</th><th>Null</th><th>Key</th><th>Default</th><th>Extra</th></tr>';
+			foreach ( $columns as $col ) {
+				echo '<tr>';
+				echo '<td>' . esc_html( $col->Field ) . '</td>';
+				echo '<td>' . esc_html( $col->Type ) . '</td>';
+				echo '<td>' . esc_html( $col->Null ) . '</td>';
+				echo '<td>' . esc_html( $col->Key ) . '</td>';
+				echo '<td>' . esc_html( (string) $col->Default ) . '</td>';
+				echo '<td>' . esc_html( $col->Extra ) . '</td>';
+				echo '</tr>';
+			}
+			echo '</table>';
+		} else {
+			echo '<p class="err">تعذّر قراءة أعمدة الجدول — ' . esc_html( $wpdb->last_error ) . '</p>';
+		}
 
 		$created_ids = array();
 		$now         = current_time( 'mysql' );
@@ -437,17 +548,16 @@ function learnsimply_create_quizzes_topic1() {
 				$wpdb->insert(
 					$wpdb->prefix . 'tutor_quiz_questions',
 					array(
-						'quiz_id'             => $quiz_id,
-						'parent_id'           => 0,
-						'question_title'      => $q['title'],
-						'question_description'=> '',
-						'question_type'       => 'multiple_choice',
-						'answer_explanation'  => '',
-						'question_mark'       => 1,
-						'question_order'      => $q_order,
-						'question_settings'   => $q_settings,
+						'quiz_id'              => $quiz_id,
+						'question_title'       => $q['title'],
+						'question_description' => '',
+						'question_type'        => 'multiple_choice',
+						'answer_explanation'   => '',
+						'question_mark'        => 1,
+						'question_order'       => $q_order,
+						'question_settings'    => $q_settings,
 					),
-					array( '%d', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%s' )
+					array( '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%s' )
 				);
 
 				$question_id = $wpdb->insert_id;
