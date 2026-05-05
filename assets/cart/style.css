@@ -1,4 +1,4 @@
-﻿/* =========================================================
+/* =========================================================
    Cart Page — Modern Dark Redesign
    All colors from CSS variables — no hardcoded hex
    ========================================================= */
@@ -2228,7 +2228,7 @@ body.woocommerce-checkout body,
     background: transparent !important;
     max-width: 1100px;
     margin: 0 auto;
-    padding: 130px 28px 80px;
+    padding: 90px 28px 40px;
     direction: rtl;
 }
 
@@ -2853,7 +2853,28 @@ body.woocommerce-checkout body,
     .woocommerce-checkout .woocommerce,
     .woocommerce-checkout .entry-content,
     .woocommerce-checkout .page-content {
-        padding: 110px 16px 50px !important;
+        padding: 80px 14px 30px !important;
+        margin-top: 0 !important;
+    }
+
+    /* Stack columns vertically */
+    .woocommerce-checkout .col2-set {
+        display: block !important;
+        width: 100% !important;
+    }
+
+    .woocommerce-checkout .col2-set .col-1,
+    .woocommerce-checkout .col2-set .col-2 {
+        width: 100% !important;
+        float: none !important;
+        display: block !important;
+        margin-bottom: 16px !important;
+    }
+
+    /* Fix form layout */
+    .woocommerce-checkout form.woocommerce-checkout {
+        display: block !important;
+        width: 100% !important;
     }
 
     .woocommerce-checkout .woocommerce-billing-fields,
@@ -2861,8 +2882,21 @@ body.woocommerce-checkout body,
     .woocommerce-checkout .woocommerce-additional-fields,
     .woocommerce-checkout .woocommerce-checkout-payment,
     .woocommerce-checkout .woocommerce-checkout-review-order {
-        padding: 20px 18px 24px !important;
+        padding: 18px 16px 20px !important;
         border-radius: 16px !important;
+        margin-bottom: 16px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Fix form rows to stack on mobile */
+    .woocommerce-checkout .form-row-first,
+    .woocommerce-checkout .form-row-last {
+        width: 100% !important;
+        float: none !important;
+        display: block !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
 
     .woocommerce-checkout #payment ul.payment_methods li {
@@ -2875,6 +2909,23 @@ body.woocommerce-checkout body,
     .woocommerce-checkout .woocommerce-checkout-review-order table tfoot .order-total bdi {
         font-size: 20px !important;
     }
+
+    /* Fix login/notice info box overflow */
+    .woocommerce-checkout .woocommerce-info,
+    .woocommerce-checkout .woocommerce-message {
+        font-size: 13px !important;
+        padding: 14px 16px !important;
+        word-break: break-word !important;
+        overflow-wrap: break-word !important;
+    }
+
+    /* Fix page heading */
+    .woocommerce-checkout h1,
+    .woocommerce-checkout h2,
+    .woocommerce-checkout h3 {
+        font-size: 18px !important;
+        text-align: center !important;
+    }
 }
 
 /* ─── 7.20 RESPONSIVE — Small Phone ─── */
@@ -2882,7 +2933,8 @@ body.woocommerce-checkout body,
     .woocommerce-checkout .woocommerce,
     .woocommerce-checkout .entry-content,
     .woocommerce-checkout .page-content {
-        padding: 100px 12px 40px !important;
+        padding: 75px 10px 24px !important;
+        margin-top: 0 !important;
     }
 
     .woocommerce-checkout .woocommerce-billing-fields,
@@ -2890,14 +2942,32 @@ body.woocommerce-checkout body,
     .woocommerce-checkout .woocommerce-additional-fields,
     .woocommerce-checkout .woocommerce-checkout-payment,
     .woocommerce-checkout .woocommerce-checkout-review-order {
-        padding: 16px 14px 20px !important;
+        padding: 14px 12px 16px !important;
         border-radius: 14px !important;
-        margin-bottom: 16px !important;
+        margin-bottom: 14px !important;
     }
 
     .woocommerce-checkout #place_order {
         padding: 14px 20px !important;
         font-size: 14px !important;
+    }
+
+    /* Ensure inputs don't overflow */
+    .woocommerce-checkout input.input-text,
+    .woocommerce-checkout select,
+    .woocommerce-checkout textarea {
+        font-size: 16px !important; /* Prevent iOS zoom */
+    }
+
+    /* Fix card heading size */
+    .woocommerce-checkout .woocommerce-billing-fields h3,
+    .woocommerce-checkout .woocommerce-shipping-fields h3,
+    .woocommerce-checkout .woocommerce-additional-fields h3,
+    .woocommerce-checkout .woocommerce-checkout-review-order h3,
+    .woocommerce-checkout .woocommerce-checkout-payment h3,
+    .woocommerce-checkout #order_review_heading {
+        font-size: 15px !important;
+        margin-bottom: 14px !important;
     }
 }
 

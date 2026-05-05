@@ -13492,10 +13492,7 @@ button[name="reset_password"],
 .sp-hero,
 .course-main-content,
 .lc-cart,
-.woocommerce-checkout .woocommerce,
 .woocommerce-cart .woocommerce,
-.woocommerce-checkout .entry-content,
-.woocommerce-checkout .page-content,
 .archive-header,
 .page-header,
 .woocommerce-products-header,
@@ -13507,6 +13504,9 @@ button[name="reset_password"],
     min-height: 0 !important;
     margin-bottom: 10px !important;
 }
+
+/* ── Checkout page: do NOT override its own padding/margin rules ── */
+/* The checkout CSS (assets/cart/style.css) handles its own spacing  */
 
 /* Drastically reduce internal container padding specifically for archives */
 .learnsimply-archive-section .learnsimply-section-container,
