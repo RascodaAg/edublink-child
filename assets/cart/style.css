@@ -3026,3 +3026,191 @@ body.woocommerce-checkout .woocommerce {
         margin-top: 65px !important;
     }
 }
+
+/* =============================================================
+   CHECKOUT GUEST LOGIN FORM — Mobile Responsive Fix
+   Fixes the overflowing login form shown to non-logged-in users
+   ============================================================= */
+
+/* Base: constrain the login form */
+.woocommerce-checkout .woocommerce-form-login-toggle,
+.woocommerce-checkout .woocommerce-form-login,
+.woocommerce-checkout .woocommerce-form-coupon {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    max-width: 100% !important;
+}
+
+/* Login toggle notice */
+.woocommerce-checkout .woocommerce-form-login-toggle .woocommerce-info {
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+/* Login form description paragraph */
+.woocommerce-checkout .woocommerce-form-login > p:first-child {
+    color: #c5c8d6 !important;
+    font-size: 14px !important;
+    line-height: 1.8 !important;
+    margin-bottom: 20px !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+    direction: rtl !important;
+}
+
+/* Stack username + password fields vertically always */
+.woocommerce-checkout .woocommerce-form-login .form-row-first,
+.woocommerce-checkout .woocommerce-form-login .form-row-last {
+    width: 100% !important;
+    float: none !important;
+    display: block !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    clear: both !important;
+}
+
+/* Login button full-width */
+.woocommerce-checkout .woocommerce-form-login .woocommerce-form__label-for-checkbox,
+.woocommerce-checkout .woocommerce-form-login .woocommerce-button {
+    display: block !important;
+    width: 100% !important;
+}
+
+/* Checkbox row — flex layout */
+.woocommerce-checkout .woocommerce-form-login .form-row:last-child {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+    align-items: stretch !important;
+}
+
+/* Remember-me label */
+.woocommerce-checkout .woocommerce-form-login .woocommerce-form__label-for-checkbox {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    font-size: 14px !important;
+    color: #c5c8d6 !important;
+    cursor: pointer !important;
+    width: auto !important;
+}
+
+/* Login button style */
+.woocommerce-checkout .woocommerce-form-login button[name="login"],
+.woocommerce-checkout .woocommerce-form-login .woocommerce-button.button {
+    width: 100% !important;
+    background: linear-gradient(135deg, #4077f3 0%, #3568d4 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 13px 20px !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.25s ease !important;
+    box-shadow: 0 2px 12px rgba(64, 119, 243, 0.2) !important;
+}
+
+/* ── Mobile-specific overrides ── */
+@media (max-width: 768px) {
+
+    /* Prevent any horizontal overflow on the whole checkout */
+    body.woocommerce-checkout {
+        overflow-x: hidden !important;
+    }
+
+    /* Constrain all woocommerce children */
+    .woocommerce-checkout .woocommerce > * {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Login / coupon toggle info box */
+    .woocommerce-checkout .woocommerce-form-login-toggle .woocommerce-info {
+        font-size: 13px !important;
+        padding: 12px 14px !important;
+        border-radius: 12px !important;
+    }
+
+    /* Login form card */
+    .woocommerce-checkout .woocommerce-form-login,
+    .woocommerce-checkout .woocommerce-form-coupon {
+        padding: 18px 14px !important;
+        border-radius: 16px !important;
+        margin-bottom: 16px !important;
+    }
+
+    /* Login description text */
+    .woocommerce-checkout .woocommerce-form-login > p:first-child {
+        font-size: 13px !important;
+        line-height: 1.7 !important;
+        margin-bottom: 16px !important;
+    }
+
+    /* Inputs inside login form */
+    .woocommerce-checkout .woocommerce-form-login input[type="text"],
+    .woocommerce-checkout .woocommerce-form-login input[type="email"],
+    .woocommerce-checkout .woocommerce-form-login input[type="password"] {
+        width: 100% !important;
+        font-size: 16px !important; /* prevent iOS auto-zoom */
+        padding: 12px 14px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Lost password link */
+    .woocommerce-checkout .woocommerce-form-login .lost_password {
+        display: block !important;
+        text-align: center !important;
+        margin-top: 10px !important;
+        font-size: 13px !important;
+        color: #4077f3 !important;
+    }
+
+    /* Cart notice (متابعة التسوق) */
+    .woocommerce-checkout .woocommerce-notices-wrapper {
+        margin-bottom: 16px !important;
+    }
+
+    .woocommerce-checkout .woocommerce-message {
+        padding: 12px 14px !important;
+        font-size: 13px !important;
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+        border-radius: 12px !important;
+    }
+
+    .woocommerce-checkout .woocommerce-message a.button {
+        display: inline-block !important;
+        flex-shrink: 0 !important;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* Extra-tight login form on small phones */
+    .woocommerce-checkout .woocommerce-form-login,
+    .woocommerce-checkout .woocommerce-form-coupon {
+        padding: 14px 12px !important;
+        border-radius: 14px !important;
+    }
+
+    .woocommerce-checkout .woocommerce-form-login-toggle .woocommerce-info {
+        font-size: 12px !important;
+        padding: 10px 12px !important;
+    }
+
+    .woocommerce-checkout .woocommerce-form-login > p:first-child {
+        font-size: 12px !important;
+    }
+
+    .woocommerce-checkout .woocommerce-form-login button[name="login"],
+    .woocommerce-checkout .woocommerce-form-login .woocommerce-button.button {
+        padding: 12px 16px !important;
+        font-size: 14px !important;
+    }
+}
