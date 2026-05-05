@@ -179,13 +179,13 @@ function learnsimply_checkout_mobile_inline_fix() {
 	   CHECKOUT PAGE — MOBILE FIX (Inline / highest priority)
 	   ============================================================ */
 
-	/* 1. Remove the huge empty space above the page title */
+	/* 1. Tight spacing — breadcrumb is hidden so no need for big offset */
 	body.woocommerce-checkout .woocommerce,
 	body.woocommerce-checkout .entry-content,
 	body.woocommerce-checkout .page-content {
-		padding-top: 10px !important;
+		padding-top: 8px !important;
 		padding-bottom: 20px !important;
-		margin-top: 65px !important;
+		margin-top: 10px !important;
 	}
 
 	/* Hide breadcrumb areas that create empty vertical space */
@@ -201,11 +201,11 @@ function learnsimply_checkout_mobile_inline_fix() {
 		padding: 0 !important;
 	}
 
-	/* Compact the h1 title margins */
+	/* h1 title — compact margins */
 	body.woocommerce-checkout h1 {
-		margin: 0 0 18px 0 !important;
+		margin: 8px 0 10px 0 !important;
 		padding: 0 !important;
-		font-size: 24px !important;
+		font-size: 22px !important;
 		text-align: center !important;
 		line-height: 1.3 !important;
 	}
@@ -282,20 +282,35 @@ function learnsimply_checkout_mobile_inline_fix() {
 			flex-shrink: 0 !important;
 		}
 
-		/* Login button — full width */
+		/* Login button — full width, text inside */
 		.woocommerce-checkout .woocommerce-form-login button[type="submit"],
 		.woocommerce-checkout .woocommerce-form-login .woocommerce-button,
 		.woocommerce-checkout .woocommerce-form-login input[type="submit"] {
 			display: block !important;
 			width: 100% !important;
 			box-sizing: border-box !important;
-			padding: 14px !important;
+			padding: 13px 16px !important;
 			margin-top: 6px !important;
 			float: none !important;
 			clear: both !important;
 			font-size: 15px !important;
 			font-weight: 700 !important;
 			text-align: center !important;
+			line-height: 1.4 !important;
+			white-space: normal !important;
+			word-break: keep-all !important;
+			overflow: visible !important;
+			height: auto !important;
+			min-height: 48px !important;
+		}
+
+		/* Any span/text node inside the button */
+		.woocommerce-checkout .woocommerce-form-login button[type="submit"] *,
+		.woocommerce-checkout .woocommerce-form-login .woocommerce-button * {
+			display: inline !important;
+			width: auto !important;
+			float: none !important;
+			position: static !important;
 		}
 
 		/* Description paragraph */
