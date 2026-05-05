@@ -2228,16 +2228,38 @@ body.woocommerce-checkout body,
     background: transparent !important;
     max-width: 1100px;
     margin: 0 auto;
-    padding: 90px 28px 40px;
+    padding: 20px 28px 40px;
     direction: rtl;
 }
 
-/* Hide breadcrumbs and page titles */
+/* Hide breadcrumbs and page titles — all possible selectors */
 .woocommerce-checkout .woocommerce-breadcrumb,
 .woocommerce-checkout .edublink-breadcrumb-area,
+.woocommerce-checkout .edu-breadcrumb-area,
+.woocommerce-checkout .breadcrumb-area,
 .woocommerce-checkout .entry-header,
-.woocommerce-checkout .page-title-area {
+.woocommerce-checkout .page-title-area,
+.woocommerce-checkout .sp-hero,
+.woocommerce-checkout .page-banner {
     display: none !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Checkout page h1 title — compact, no huge gap */
+.woocommerce-checkout .entry-content > h1,
+.woocommerce-checkout .page-content > h1,
+.woocommerce-checkout .woocommerce > h1,
+.woocommerce-checkout h1.entry-title,
+.woocommerce-checkout h1 {
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    text-align: center !important;
+    margin: 0 0 20px 0 !important;
+    padding: 0 !important;
+    line-height: 1.3 !important;
 }
 
 /* ─── 7.2 BOOTSTRAP / PARENT-THEME BACKGROUND RESET ─── */
@@ -2853,7 +2875,7 @@ body.woocommerce-checkout body,
     .woocommerce-checkout .woocommerce,
     .woocommerce-checkout .entry-content,
     .woocommerce-checkout .page-content {
-        padding: 80px 14px 30px !important;
+        padding: 16px 14px 24px !important;
         margin-top: 0 !important;
     }
 
@@ -2933,7 +2955,7 @@ body.woocommerce-checkout body,
     .woocommerce-checkout .woocommerce,
     .woocommerce-checkout .entry-content,
     .woocommerce-checkout .page-content {
-        padding: 75px 10px 24px !important;
+        padding: 12px 10px 20px !important;
         margin-top: 0 !important;
     }
 
@@ -2973,4 +2995,34 @@ body.woocommerce-checkout body,
 
 .col-1{
   border: none !important;
+}
+
+/* =============================================================
+   CHECKOUT PAGE — Site wrapper offset (clear fixed header)
+   The fixed header on mobile is ~60px; promo banner adds ~90px.
+   We use margin-top on the site content wrapper instead of
+   padding-top on the inner .woocommerce div.
+   ============================================================= */
+body.woocommerce-checkout .site-content,
+body.woocommerce-checkout #page,
+body.woocommerce-checkout .edublink-main-wrapper,
+body.woocommerce-checkout main,
+body.woocommerce-checkout .site-main {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* Nudge the inner woocommerce wrapper just enough to clear the header */
+body.woocommerce-checkout .entry-content,
+body.woocommerce-checkout .page-content,
+body.woocommerce-checkout .woocommerce {
+    margin-top: 70px !important;  /* clears fixed header ~60px + small gap */
+}
+
+@media (max-width: 768px) {
+    body.woocommerce-checkout .entry-content,
+    body.woocommerce-checkout .page-content,
+    body.woocommerce-checkout .woocommerce {
+        margin-top: 65px !important;
+    }
 }
