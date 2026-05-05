@@ -118,9 +118,32 @@ body.woocommerce-checkout body,
 .woocommerce-checkout .woocommerce-error li {
     color: #f96a7b !important;
 }
-
 /* ─── 4. LAYOUT WRAPPERS ─── */
-.woocommerce-checkout form.checkout,
+.woocommerce-checkout form.checkout {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.woocommerce-checkout .wpr-customer-details-wrapper {
+    order: 2 !important;
+}
+
+.woocommerce-checkout .wpr-checkout-order-review-table {
+    order: 1 !important;
+}
+
+.woocommerce-checkout .wpr-checkout-order-review {
+    order: 3 !important;
+    position: sticky !important;
+    bottom: 0 !important;
+    z-index: 99 !important;
+    padding-bottom: 12px !important;
+    background: var(--db-bg) !important;
+}
+
 .woocommerce-checkout .col2-set {
     background: transparent !important;
     border: none !important;
@@ -135,7 +158,6 @@ body.woocommerce-checkout body,
     border: none !important;
     box-shadow: none !important;
 }
-
 /* ─── 5. CHECKOUT CARDS ─── */
 .woocommerce-checkout .woocommerce-billing-fields,
 .woocommerce-checkout .woocommerce-additional-fields,
@@ -813,13 +835,13 @@ body.woocommerce-checkout body,
 
 /* ─── 18. RESPONSIVE — Tablet ─── */
 @media (max-width: 1024px) {
+
     .woocommerce-checkout .col2-set .col-1,
     .woocommerce-checkout .col2-set .col-2 {
         width: 100% !important;
         float: none !important;
     }
 }
-
 /* ─── 19. RESPONSIVE — Mobile ─── */
 @media (max-width: 768px) {
     .woocommerce-checkout .woocommerce,

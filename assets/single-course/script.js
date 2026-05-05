@@ -44,6 +44,22 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 	}
 
+	// Show More / Show Less for Learning Card (ماذا ستتعلم)
+	const learningShowMore = document.querySelector(".learning-show-more");
+	if (learningShowMore) {
+		learningShowMore.addEventListener("click", function () {
+			const card = this.closest(".learning-card");
+			if (!card) return;
+
+			const isExpanded = card.classList.toggle("expanded");
+			this.textContent = isExpanded ? "عرض أقل" : "عرض المزيد";
+
+			if (!isExpanded) {
+				card.scrollIntoView({ behavior: "smooth", block: "start" });
+			}
+		});
+	}
+
 	// Replace all lecture-icon SVGs with the Subtract image from the project
 	document.querySelectorAll("svg.lecture-icon").forEach((svg) => {
 		try {

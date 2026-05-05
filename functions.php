@@ -1,4 +1,5 @@
 <?php
+// DEPLOY TEST - April 28 2026
 /**
  * EduBlink Child Theme functions and definitions
  *
@@ -8,6 +9,9 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
+
+require_once get_stylesheet_directory() . '/list-lessons.php';
+require_once get_stylesheet_directory() . '/create-quizzes-topic1.php';
 
 /**
  * Enqueue IBM Plex Sans Arabic from Google Fonts (site-wide font)
@@ -161,6 +165,82 @@ function learnsimply_enqueue_custom_overrides() {
 }
 
 /**
+ * Strip blank/nbsp paragraphs and extra <br> tags from signup and login page content
+ * so Elementor-injected whitespace doesn't create a visible gap above the form.
+ */
+function learnsimply_strip_signup_blank_paras( $content ) {
+	$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
+	$is_signup_page = is_page( 'signup' )
+		|| is_page( 'dashboard' )
+		|| strpos( $request_uri, '/signup' ) !== false
+		|| strpos( $request_uri, '/dashboard' ) !== false;
+
+	if ( ! $is_signup_page ) {
+		return $content;
+	}
+
+	// Remove paragraphs containing only whitespace or &nbsp;
+	$content = preg_replace( '/<p[^>]*>(\s|&nbsp;)*<\/p>/i', '', $content );
+	// Remove bare <br> / <br /> tags at the top level
+	$content = preg_replace( '/^(\s*<br\s*\/?>\s*)+/i', '', $content );
+
+	return $content;
+}
+add_filter( 'the_content', 'learnsimply_strip_signup_blank_paras', 20 );
+
+/**
+ * On signup/login pages, inject a small script that removes any Elementor
+ * inline min-height styles set directly on section/container elements,
+ * which can't be overridden by CSS alone when set as inline styles.
+ */
+function learnsimply_fix_signup_elementor_height() {
+	$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
+	$is_signup_page = is_page( 'signup' )
+		|| is_page( 'dashboard' )
+		|| strpos( $request_uri, '/signup' ) !== false
+		|| strpos( $request_uri, '/dashboard' ) !== false;
+
+	if ( ! $is_signup_page ) {
+		return;
+	}
+	?>
+	<script id="learnsimply-fix-signup-height">
+	(function() {
+		function fixHeight() {
+			var selectors = [
+				'.elementor-section',
+				'.elementor-top-section',
+				'.elementor-inner-section',
+				'.elementor-column',
+				'.elementor-widget-wrap',
+				'.elementor-container',
+				'[data-element_type="section"]',
+				'[data-element_type="container"]',
+				'[data-element_type="column"]'
+			];
+			selectors.forEach(function(sel) {
+				document.querySelectorAll(sel).forEach(function(el) {
+					el.style.removeProperty('min-height');
+					el.style.removeProperty('height');
+					el.style.removeProperty('padding-top');
+					el.style.removeProperty('padding-bottom');
+					el.style.removeProperty('margin-top');
+					el.style.removeProperty('margin-bottom');
+				});
+			});
+		}
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', fixHeight);
+		} else {
+			fixHeight();
+		}
+	})();
+	</script>
+	<?php
+}
+add_action( 'wp_footer', 'learnsimply_fix_signup_elementor_height', 9998 );
+
+/**
  * Inject sidebar dark mode CSS at the very end of wp_footer (highest possible priority).
  * This MUST come after all Tutor LMS stylesheets to override them.
  * Only runs on lesson/course pages to avoid impacting other pages.
@@ -168,17 +248,22 @@ function learnsimply_enqueue_custom_overrides() {
 add_action( 'wp_footer', 'learnsimply_inject_sidebar_dark_mode', 9999 );
 
 function learnsimply_inject_sidebar_dark_mode() {
-	// Only inject on Tutor LMS lesson/course pages
+	// Inject on ALL Tutor LMS spotlight pages (lessons, quizzes, assignments)
 	$is_tutor_page = false;
 	if ( function_exists( 'tutor_utils' ) ) {
 		$is_tutor_page = tutor_utils()->is_single_lesson()
 			|| tutor_utils()->is_single_course()
 			|| ( function_exists( 'is_tutor_page' ) && is_tutor_page() );
 	}
-	// Fallback: check URL contains /lesson/ or /courses/
+	// Fallback: check URL for lesson, quiz, or assignment paths
 	if ( ! $is_tutor_page ) {
 		$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
 		$is_tutor_page = strpos( $request_uri, '/lesson/' ) !== false
+			|| strpos( $request_uri, '/quiz/' ) !== false
+			|| strpos( $request_uri, '/quizzes/' ) !== false
+			|| strpos( $request_uri, '/tutor-quiz/' ) !== false
+			|| strpos( $request_uri, '/assignments/' ) !== false
+			|| strpos( $request_uri, '/tutor-assignment/' ) !== false
 			|| ( strpos( $request_uri, '/courses/' ) !== false && strpos( $request_uri, '/lesson/' ) !== false );
 	}
 
@@ -1445,9 +1530,15 @@ add_action( 'wp_head', 'edublink_child_load_global_override_css', 10000 );
  * bypassing any file-level server/CDN caching.
  */
 function edublink_child_lesson_sidebar_dark_mode() {
-	// Only load on Tutor LMS lesson pages (spotlight mode)
+	// Load on ALL Tutor LMS spotlight pages (lessons, quizzes, assignments)
 	$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
-	if ( strpos( $request_uri, '/lesson/' ) === false ) {
+	$is_spotlight_page = strpos( $request_uri, '/lesson/' ) !== false
+		|| strpos( $request_uri, '/quiz/' ) !== false
+		|| strpos( $request_uri, '/quizzes/' ) !== false
+		|| strpos( $request_uri, '/tutor-quiz/' ) !== false
+		|| strpos( $request_uri, '/assignments/' ) !== false
+		|| strpos( $request_uri, '/tutor-assignment/' ) !== false;
+	if ( ! $is_spotlight_page ) {
 		return;
 	}
 	?>
@@ -1693,6 +1784,31 @@ function edublink_child_lesson_sidebar_dark_mode() {
 		fill: #4077f3 !important;
 	}
 
+	/* ── Quiz items: always blue icon, never grey ── */
+	.tutor-course-spotlight-sidebar [data-content-type="tutor_quiz"] i,
+	.tutor-course-spotlight-sidebar [data-content-type="tutor_quiz"] [class^="tutor-icon-"],
+	.tutor-course-spotlight-sidebar [data-content-type="tutor_quiz"] [class*=" tutor-icon-"],
+	.tutor-course-spotlight-sidebar [data-content-type="tutor_quiz"] [class*="icon"],
+	.tutor-course-topics-sidebar [data-content-type="tutor_quiz"] i,
+	.tutor-course-topics-sidebar [data-content-type="tutor_quiz"] [class^="tutor-icon-"],
+	.tutor-course-topics-sidebar [data-content-type="tutor_quiz"] [class*=" tutor-icon-"],
+	.tutor-course-topics-sidebar [data-content-type="tutor_quiz"] [class*="icon"] {
+		color: #4077f3 !important;
+	}
+	.tutor-course-spotlight-sidebar [data-content-type="tutor_quiz"] i::before,
+	.tutor-course-spotlight-sidebar [data-content-type="tutor_quiz"] [class^="tutor-icon-"]::before,
+	.tutor-course-topics-sidebar [data-content-type="tutor_quiz"] i::before,
+	.tutor-course-topics-sidebar [data-content-type="tutor_quiz"] [class^="tutor-icon-"]::before {
+		color: #4077f3 !important;
+	}
+	.tutor-course-spotlight-sidebar [data-content-type="tutor_quiz"] svg,
+	.tutor-course-spotlight-sidebar [data-content-type="tutor_quiz"] svg *,
+	.tutor-course-topics-sidebar [data-content-type="tutor_quiz"] svg,
+	.tutor-course-topics-sidebar [data-content-type="tutor_quiz"] svg * {
+		fill: #4077f3 !important;
+		color: #4077f3 !important;
+	}
+
 	/* ── NUCLEAR: wipe stray backgrounds on ALL sidebar descendants ── */
 	.tutor-course-spotlight-sidebar *:not(.tutor-btn):not([class*="icon"]):not(svg):not(path):not(i):not(input) {
 		background-color: transparent !important;
@@ -1733,7 +1849,8 @@ function edublink_child_lesson_sidebar_dark_mode() {
 			sidebars.forEach(function(sb){
 				sb.querySelectorAll('svg').forEach(function(svg){
 					var isActive = svg.closest('.is-active, .tutor-active, .active');
-					var c = isActive ? AC : DC;
+					var isQuiz  = svg.closest('[data-content-type="tutor_quiz"]');
+					var c = (isActive || isQuiz) ? AC : DC;
 					svg.style.fill = c;
 					svg.style.color = c;
 					svg.querySelectorAll('path, rect, circle').forEach(function(s){
@@ -1742,7 +1859,8 @@ function edublink_child_lesson_sidebar_dark_mode() {
 				});
 				sb.querySelectorAll('i, [class^="tutor-icon-"]').forEach(function(el){
 					var isActive = el.closest('.is-active, .tutor-active, .active');
-					el.style.color = isActive ? AC : DC;
+					var isQuiz  = el.closest('[data-content-type="tutor_quiz"]');
+					el.style.color = (isActive || isQuiz) ? AC : DC;
 				});
 			});
 			isRunning = false;
@@ -2281,3 +2399,4 @@ function learnsimply_change_paypal_text( $translated_text, $text, $domain ) {
     }
     return $translated_text;
 }
+

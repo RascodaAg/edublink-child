@@ -1021,3 +1021,1096 @@ body.blog .post-meta {
     text-decoration: none !important;
 }
 
+/* ==========================================================================
+   TUTOR LMS QUIZ PAGE — DARK MODE
+   Covers: quiz start screen, quiz questions (all types), quiz results,
+   quiz attempt history, timer, feedback, and quiz-related modals.
+   Renders inside spotlight mode (same sidebar layout as lessons).
+   ========================================================================== */
+
+/* --- Quiz page wrapper & content area --- */
+.tutor-quiz-wrap,
+.tutor-single-quiz-wrap,
+.tutor-quiz-content,
+div[class*="quiz-wrap"],
+div[class*="quiz-content"] {
+    background-color: #0a0f1a !important;
+    color: #e2e6f0 !important;
+}
+
+/* --- Quiz header (title + info bar) --- */
+.tutor-quiz-header,
+.tutor-quiz-header-content,
+.tutor-quiz-spotlight-header {
+    background-color: #0e1422 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    color: #ffffff !important;
+}
+
+.tutor-quiz-header h1,
+.tutor-quiz-header h2,
+.tutor-quiz-header h3,
+.tutor-quiz-header h4,
+.tutor-quiz-header .tutor-quiz-title,
+.tutor-quiz-spotlight-header .tutor-quiz-title {
+    color: #ffffff !important;
+}
+
+/* --- Quiz start screen (description + start button) --- */
+.tutor-quiz-start-content,
+.tutor-quiz-meta,
+.tutor-quiz-start-wrap,
+.tutor-quiz-details {
+    background-color: transparent !important;
+    color: #e2e6f0 !important;
+}
+
+.tutor-quiz-start-content p,
+.tutor-quiz-start-content span,
+.tutor-quiz-start-content div,
+.tutor-quiz-meta span,
+.tutor-quiz-meta p,
+.tutor-quiz-details p,
+.tutor-quiz-details span {
+    color: #999eb2 !important;
+}
+
+.tutor-quiz-start-content h2,
+.tutor-quiz-start-content h3,
+.tutor-quiz-start-content h4,
+.tutor-quiz-start-content strong {
+    color: #ffffff !important;
+}
+
+/* Quiz info badges (time limit, attempts, pass grade, etc.) */
+.tutor-quiz-info-item,
+.tutor-quiz-meta-item,
+.tutor-quiz-detail-item,
+div[class*="quiz-info"] {
+    background-color: #1b2133 !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 10px !important;
+    color: #999eb2 !important;
+}
+
+.tutor-quiz-info-item strong,
+.tutor-quiz-meta-item strong,
+.tutor-quiz-detail-item strong,
+.tutor-quiz-info-item .tutor-color-black,
+.tutor-quiz-meta-item .tutor-color-black {
+    color: #ffffff !important;
+}
+
+/* --- Quiz body (questions area) --- */
+.tutor-quiz-body,
+.tutor-quiz-question-wrap,
+.tutor-quiz-questions-wrap,
+div[class*="quiz-body"],
+div[class*="quiz-question"] {
+    background-color: transparent !important;
+    color: #e2e6f0 !important;
+}
+
+/* Individual question card */
+.tutor-quiz-question,
+.tutor-quiz-question-item {
+    background-color: #141924 !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 14px !important;
+    padding: 24px !important;
+    margin-bottom: 20px !important;
+    color: #e2e6f0 !important;
+}
+
+/* Question title / text */
+.tutor-quiz-question-title,
+.tutor-quiz-question-text,
+.tutor-quiz-question h3,
+.tutor-quiz-question h4,
+.tutor-quiz-question p,
+.tutor-quiz-question-item h3,
+.tutor-quiz-question-item h4,
+.tutor-quiz-question-item p,
+.tutor-quiz-question-desc {
+    color: #e2e6f0 !important;
+}
+
+.tutor-quiz-question strong,
+.tutor-quiz-question-item strong {
+    color: #ffffff !important;
+}
+
+/* Question number / counter */
+.tutor-quiz-question-number,
+.tutor-quiz-question-counter,
+.tutor-quiz-question-index {
+    color: #4077f3 !important;
+    font-weight: 600 !important;
+}
+
+/* --- Answer options (radio / checkbox / text input) --- */
+.tutor-quiz-answer-wrap,
+.tutor-quiz-options,
+.tutor-quiz-answer-list {
+    background-color: transparent !important;
+}
+
+.tutor-quiz-answer,
+.tutor-quiz-answer-item,
+.tutor-quiz-option,
+.tutor-quiz-answer-list li {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 10px !important;
+    color: #e2e6f0 !important;
+    transition: all 0.25s ease !important;
+}
+
+.tutor-quiz-answer:hover,
+.tutor-quiz-answer-item:hover,
+.tutor-quiz-option:hover,
+.tutor-quiz-answer-list li:hover {
+    background-color: rgba(64, 119, 243, 0.08) !important;
+    border-color: rgba(64, 119, 243, 0.3) !important;
+}
+
+/* Selected answer */
+.tutor-quiz-answer.is-selected,
+.tutor-quiz-answer.selected,
+.tutor-quiz-answer-item.is-selected,
+.tutor-quiz-answer-item.selected,
+.tutor-quiz-option.is-selected,
+.tutor-quiz-option.selected,
+.tutor-quiz-answer-list li.is-selected,
+.tutor-quiz-answer-list li.selected {
+    background-color: rgba(64, 119, 243, 0.15) !important;
+    border-color: #4077f3 !important;
+}
+
+/* Answer text */
+.tutor-quiz-answer span,
+.tutor-quiz-answer label,
+.tutor-quiz-answer p,
+.tutor-quiz-answer-item span,
+.tutor-quiz-answer-item label,
+.tutor-quiz-answer-item p,
+.tutor-quiz-option span,
+.tutor-quiz-option label {
+    color: #e2e6f0 !important;
+}
+
+/* Radio and checkbox inputs */
+.tutor-quiz-answer input[type="radio"],
+.tutor-quiz-answer input[type="checkbox"],
+.tutor-quiz-answer-item input[type="radio"],
+.tutor-quiz-answer-item input[type="checkbox"] {
+    border-color: rgba(255, 255, 255, 0.25) !important;
+    background-color: transparent !important;
+}
+
+.tutor-quiz-answer input[type="radio"]:checked,
+.tutor-quiz-answer input[type="checkbox"]:checked,
+.tutor-quiz-answer-item input[type="radio"]:checked,
+.tutor-quiz-answer-item input[type="checkbox"]:checked {
+    background-color: #4077f3 !important;
+    border-color: #4077f3 !important;
+}
+
+/* Text input / textarea answers (open-ended, short answer, fill-in) */
+.tutor-quiz-answer textarea,
+.tutor-quiz-answer input[type="text"],
+.tutor-quiz-answer-item textarea,
+.tutor-quiz-answer-item input[type="text"],
+.tutor-quiz-question textarea,
+.tutor-quiz-question input[type="text"],
+.tutor-quiz-open-ended textarea,
+.tutor-quiz-open-ended input {
+    background-color: #1b2133 !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 10px !important;
+    color: #ffffff !important;
+    padding: 14px 18px !important;
+}
+
+.tutor-quiz-answer textarea:focus,
+.tutor-quiz-answer input[type="text"]:focus,
+.tutor-quiz-answer-item textarea:focus,
+.tutor-quiz-answer-item input[type="text"]:focus,
+.tutor-quiz-question textarea:focus,
+.tutor-quiz-question input[type="text"]:focus {
+    border-color: rgba(64, 119, 243, 0.5) !important;
+    outline: none !important;
+}
+
+.tutor-quiz-answer textarea::placeholder,
+.tutor-quiz-answer input[type="text"]::placeholder {
+    color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Fill in the blanks / gap fields */
+.tutor-quiz-fill-in-the-blanks input,
+.tutor-quiz-question input.tutor-quiz-answer-input,
+input.tutor-quiz-fill-blank-input {
+    background-color: #1b2133 !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 6px !important;
+    color: #ffffff !important;
+    padding: 8px 12px !important;
+}
+
+/* Matching quiz type — drag and drop items */
+.tutor-quiz-matching-item,
+.tutor-quiz-matching-wrap,
+.tutor-quiz-image-matching-item {
+    background-color: #1b2133 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 8px !important;
+    color: #e2e6f0 !important;
+}
+
+.tutor-quiz-matching-item:hover,
+.tutor-quiz-image-matching-item:hover {
+    border-color: rgba(64, 119, 243, 0.3) !important;
+}
+
+/* Ordering quiz type */
+.tutor-quiz-ordering-item,
+.tutor-quiz-ordering-list li {
+    background-color: #1b2133 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 8px !important;
+    color: #e2e6f0 !important;
+}
+
+/* --- Quiz timer --- */
+.tutor-quiz-timer,
+.tutor-quiz-time-remaining,
+div[class*="quiz-timer"] {
+    background-color: rgba(255, 137, 4, 0.1) !important;
+    border: 1px solid rgba(255, 137, 4, 0.25) !important;
+    border-radius: 10px !important;
+    color: #ff8904 !important;
+}
+
+.tutor-quiz-timer span,
+.tutor-quiz-time-remaining span {
+    color: #ff8904 !important;
+}
+
+/* --- Quiz navigation buttons (next, prev, submit) --- */
+.tutor-quiz-btn-group,
+.tutor-quiz-footer,
+.tutor-quiz-action-buttons,
+div[class*="quiz-btn"],
+div[class*="quiz-footer"],
+div[class*="quiz-action"] {
+    background-color: transparent !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Start quiz button */
+.tutor-quiz-start-btn,
+.tutor-start-quiz,
+button.tutor-start-quiz,
+a.tutor-start-quiz {
+    background-color: #4077f3 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 14px 32px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+}
+
+.tutor-quiz-start-btn:hover,
+.tutor-start-quiz:hover {
+    background-color: #3568d4 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 16px rgba(64, 119, 243, 0.35) !important;
+}
+
+/* Next/Prev/Submit buttons */
+.tutor-quiz-btn-next,
+.tutor-quiz-btn-prev,
+.tutor-quiz-submit-btn,
+.tutor-btn-quiz-next,
+.tutor-btn-quiz-prev,
+.tutor-quiz-answer-submit {
+    background-color: #4077f3 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+}
+
+.tutor-quiz-btn-next:hover,
+.tutor-quiz-submit-btn:hover,
+.tutor-btn-quiz-next:hover,
+.tutor-quiz-answer-submit:hover {
+    background-color: #3568d4 !important;
+}
+
+.tutor-quiz-btn-prev,
+.tutor-btn-quiz-prev {
+    background-color: rgba(255, 255, 255, 0.06) !important;
+    color: #999eb2 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.tutor-quiz-btn-prev:hover,
+.tutor-btn-quiz-prev:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+}
+
+/* --- Quiz results / feedback --- */
+.tutor-quiz-result,
+.tutor-quiz-result-wrap,
+.tutor-quiz-attempt-details,
+.tutor-quiz-result-content,
+div[class*="quiz-result"] {
+    background-color: #141924 !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 14px !important;
+    color: #e2e6f0 !important;
+}
+
+.tutor-quiz-result h2,
+.tutor-quiz-result h3,
+.tutor-quiz-result h4,
+.tutor-quiz-result strong,
+.tutor-quiz-result-wrap h2,
+.tutor-quiz-result-wrap h3,
+.tutor-quiz-result-wrap strong,
+.tutor-quiz-attempt-details h2,
+.tutor-quiz-attempt-details h3,
+.tutor-quiz-attempt-details strong {
+    color: #ffffff !important;
+}
+
+.tutor-quiz-result p,
+.tutor-quiz-result span,
+.tutor-quiz-result-wrap p,
+.tutor-quiz-result-wrap span,
+.tutor-quiz-attempt-details p,
+.tutor-quiz-attempt-details span {
+    color: #999eb2 !important;
+}
+
+/* Pass / fail indicators */
+.tutor-quiz-result .tutor-quiz-pass,
+.tutor-quiz-result-pass,
+.tutor-quiz-badge-pass {
+    background-color: rgba(24, 169, 99, 0.12) !important;
+    border: 1px solid rgba(24, 169, 99, 0.3) !important;
+    color: #18a963 !important;
+}
+
+.tutor-quiz-result .tutor-quiz-fail,
+.tutor-quiz-result-fail,
+.tutor-quiz-badge-fail {
+    background-color: rgba(249, 106, 123, 0.12) !important;
+    border: 1px solid rgba(249, 106, 123, 0.3) !important;
+    color: #f96a7b !important;
+}
+
+/* Correct / incorrect answer indicators in review */
+.tutor-quiz-answer.is-correct,
+.tutor-quiz-answer-item.is-correct,
+.tutor-quiz-answer-correct {
+    background-color: rgba(24, 169, 99, 0.1) !important;
+    border-color: rgba(24, 169, 99, 0.3) !important;
+}
+
+.tutor-quiz-answer.is-incorrect,
+.tutor-quiz-answer-item.is-incorrect,
+.tutor-quiz-answer-incorrect {
+    background-color: rgba(249, 106, 123, 0.1) !important;
+    border-color: rgba(249, 106, 123, 0.3) !important;
+}
+
+/* Answer explanation text */
+.tutor-quiz-answer-explanation,
+.tutor-quiz-question-explanation,
+.tutor-quiz-feedback-text {
+    background-color: rgba(64, 119, 243, 0.06) !important;
+    border: 1px solid rgba(64, 119, 243, 0.15) !important;
+    border-radius: 10px !important;
+    color: #999eb2 !important;
+    padding: 14px 18px !important;
+}
+
+/* --- Quiz result table (attempt history) --- */
+.tutor-quiz-result-table,
+.tutor-quiz-attempt-table,
+.tutor-quiz-result table,
+.tutor-quiz-attempt-details table {
+    background-color: #141924 !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+}
+
+.tutor-quiz-result-table thead,
+.tutor-quiz-attempt-table thead,
+.tutor-quiz-result table thead,
+.tutor-quiz-attempt-details table thead {
+    background-color: #1b2133 !important;
+}
+
+.tutor-quiz-result-table th,
+.tutor-quiz-attempt-table th,
+.tutor-quiz-result table th,
+.tutor-quiz-attempt-details table th {
+    color: #ffffff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    font-weight: 600 !important;
+}
+
+.tutor-quiz-result-table td,
+.tutor-quiz-attempt-table td,
+.tutor-quiz-result table td,
+.tutor-quiz-attempt-details table td {
+    color: #e2e6f0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+}
+
+.tutor-quiz-result-table tr:hover td,
+.tutor-quiz-attempt-table tr:hover td,
+.tutor-quiz-result table tr:hover td,
+.tutor-quiz-attempt-details table tr:hover td {
+    background-color: rgba(255, 255, 255, 0.03) !important;
+}
+
+/* --- Quiz progress bar --- */
+.tutor-quiz-progress,
+.tutor-quiz-progress-bar,
+.tutor-progress-bar {
+    background-color: #1b2133 !important;
+    border-radius: 6px !important;
+    overflow: hidden !important;
+}
+
+.tutor-quiz-progress-fill,
+.tutor-quiz-progress-bar-fill,
+.tutor-progress-bar .tutor-progress-filled,
+.tutor-progress-bar-fill {
+    background-color: #4077f3 !important;
+    border-radius: 6px !important;
+}
+
+/* --- Question pagination / dots --- */
+.tutor-quiz-question-pagination,
+.tutor-quiz-dots {
+    background-color: transparent !important;
+}
+
+.tutor-quiz-question-pagination span,
+.tutor-quiz-dot {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.tutor-quiz-question-pagination span.current,
+.tutor-quiz-question-pagination span.active,
+.tutor-quiz-dot.current,
+.tutor-quiz-dot.active {
+    background-color: #4077f3 !important;
+    border-color: #4077f3 !important;
+}
+
+.tutor-quiz-question-pagination span.answered,
+.tutor-quiz-dot.answered {
+    background-color: #18a963 !important;
+    border-color: #18a963 !important;
+}
+
+/* --- Generic Tutor utility class overrides inside quiz --- */
+.tutor-quiz-wrap .tutor-bg-white,
+.tutor-quiz-wrap [class*="bg-white"],
+.tutor-quiz-wrap [class*="bg-light"],
+.tutor-single-quiz-wrap .tutor-bg-white,
+.tutor-single-quiz-wrap [class*="bg-white"],
+.tutor-single-quiz-wrap [class*="bg-light"] {
+    background-color: #141924 !important;
+}
+
+.tutor-quiz-wrap .tutor-color-black,
+.tutor-quiz-wrap .tutor-color-dark,
+.tutor-quiz-wrap [class*="color-black"],
+.tutor-quiz-wrap [class*="color-dark"],
+.tutor-single-quiz-wrap .tutor-color-black,
+.tutor-single-quiz-wrap .tutor-color-dark {
+    color: #ffffff !important;
+}
+
+.tutor-quiz-wrap .tutor-color-secondary,
+.tutor-quiz-wrap .tutor-color-muted,
+.tutor-single-quiz-wrap .tutor-color-secondary,
+.tutor-single-quiz-wrap .tutor-color-muted {
+    color: #999eb2 !important;
+}
+
+/* --- Tutor cards inside quiz results --- */
+.tutor-quiz-wrap .tutor-card,
+.tutor-single-quiz-wrap .tutor-card {
+    background-color: #1b2133 !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 14px !important;
+    color: #e2e6f0 !important;
+}
+
+.tutor-quiz-wrap .tutor-card *,
+.tutor-single-quiz-wrap .tutor-card * {
+    color: inherit !important;
+}
+
+.tutor-quiz-wrap .tutor-card strong,
+.tutor-quiz-wrap .tutor-card h3,
+.tutor-quiz-wrap .tutor-card h4,
+.tutor-single-quiz-wrap .tutor-card strong,
+.tutor-single-quiz-wrap .tutor-card h3,
+.tutor-single-quiz-wrap .tutor-card h4 {
+    color: #ffffff !important;
+}
+
+/* --- Tutor CSS variable overrides scoped to quiz --- */
+.tutor-quiz-wrap,
+.tutor-single-quiz-wrap,
+div[class*="quiz-wrap"] {
+    --tutor-color-black: #e2e6f0 !important;
+    --tutor-color-text: #e2e6f0 !important;
+    --tutor-color-text-primary: #e2e6f0 !important;
+    --tutor-color-text-secondary: #999eb2 !important;
+    --tutor-color-text-hints: #6b7394 !important;
+    --tutor-color-secondary: #999eb2 !important;
+    --tutor-color-muted: #999eb2 !important;
+    --tutor-color-design-system-dark: #e2e6f0 !important;
+    --tutor-color-design-system-light: #141924 !important;
+    --tutor-color-background-primary: #141924 !important;
+    --tutor-color-background-secondary: #1b2133 !important;
+    --tutor-color-surface: #1b2133 !important;
+    --tutor-color-surface-2: #232d45 !important;
+}
+
+
+/* ==========================================================================
+   QUIZ DARK MODE — AGGRESSIVE SPOTLIGHT-SCOPED OVERRIDES
+   These target quiz elements INSIDE the spotlight content area,
+   matching the actual DOM rendered by Tutor LMS v2/v3.
+   Based on live inspection of learnsimply.com quiz pages.
+   ========================================================================== */
+
+/* --- NUCLEAR: All white/light backgrounds inside spotlight content --- */
+.tutor-course-spotlight-content [style*="background-color"],
+.tutor-course-spotlight-content [style*="background:"],
+.tutor-course-spotlight-content .tutor-bg-white,
+.tutor-course-spotlight-content [class*="bg-white"],
+.tutor-course-spotlight-content [class*="bg-light"] {
+    background-color: transparent !important;
+    background: transparent !important;
+}
+
+/* --- Quiz wrapper inside spotlight content --- */
+.tutor-course-spotlight-content .tutor-quiz-wrap,
+.tutor-course-spotlight-content .tutor-quiz-body,
+.tutor-course-spotlight-content .tutor-quiz-content,
+.tutor-course-spotlight-content form[id*="quiz"],
+.tutor-course-spotlight-content div[id*="quiz"],
+.tutor-course-spotlight-content div[class*="quiz"] {
+    background-color: transparent !important;
+    color: #e2e6f0 !important;
+}
+
+/* --- Code block / pre inside quiz (the white Java code box) --- */
+.tutor-course-spotlight-content pre,
+.tutor-course-spotlight-content code,
+.tutor-course-spotlight-content pre code,
+.tutor-course-spotlight-content .wp-block-code,
+.tutor-course-spotlight-content .wp-block-preformatted {
+    background-color: #1b2133 !important;
+    color: #e2e8f0 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 10px !important;
+}
+
+/* --- Quiz question text --- */
+.tutor-course-spotlight-content .tutor-quiz-question-desc,
+.tutor-course-spotlight-content .tutor-quiz-question-text,
+.tutor-course-spotlight-content .tutor-quiz-question p,
+.tutor-course-spotlight-content .tutor-quiz-question span,
+.tutor-course-spotlight-content .tutor-quiz-question div,
+.tutor-course-spotlight-content .tutor-quiz-question label {
+    color: #e2e6f0 !important;
+}
+
+/* --- Answer option buttons (the 4 white answer boxes) --- */
+.tutor-course-spotlight-content .tutor-quiz-answer,
+.tutor-course-spotlight-content .tutor-quiz-option,
+.tutor-course-spotlight-content .tutor-quiz-answer-item,
+.tutor-course-spotlight-content .tutor-quiz-answers .tutor-answer-item,
+.tutor-course-spotlight-content .tutor-quiz-answers li,
+.tutor-course-spotlight-content .tutor-quiz-answer-list li,
+.tutor-course-spotlight-content .tutor-answer-item,
+.tutor-course-spotlight-content [class*="answer-item"],
+.tutor-course-spotlight-content [class*="quiz-answer"],
+.tutor-course-spotlight-content [class*="quiz-option"] {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 10px !important;
+    color: #e2e6f0 !important;
+    transition: all 0.25s ease !important;
+}
+
+.tutor-course-spotlight-content .tutor-quiz-answer:hover,
+.tutor-course-spotlight-content .tutor-quiz-option:hover,
+.tutor-course-spotlight-content .tutor-quiz-answer-item:hover,
+.tutor-course-spotlight-content .tutor-answer-item:hover,
+.tutor-course-spotlight-content [class*="answer-item"]:hover,
+.tutor-course-spotlight-content [class*="quiz-answer"]:hover,
+.tutor-course-spotlight-content [class*="quiz-option"]:hover {
+    background-color: rgba(64, 119, 243, 0.08) !important;
+    border-color: rgba(64, 119, 243, 0.3) !important;
+}
+
+/* Selected answer state */
+.tutor-course-spotlight-content .tutor-quiz-answer.is-selected,
+.tutor-course-spotlight-content .tutor-quiz-answer.selected,
+.tutor-course-spotlight-content .tutor-quiz-answer.active,
+.tutor-course-spotlight-content .tutor-quiz-answer-item.is-selected,
+.tutor-course-spotlight-content .tutor-quiz-answer-item.selected,
+.tutor-course-spotlight-content .tutor-answer-item.is-selected,
+.tutor-course-spotlight-content .tutor-answer-item.selected,
+.tutor-course-spotlight-content [class*="answer-item"].is-selected,
+.tutor-course-spotlight-content [class*="answer-item"].selected {
+    background-color: rgba(64, 119, 243, 0.15) !important;
+    border-color: #4077f3 !important;
+}
+
+/* Answer text inside answer boxes */
+.tutor-course-spotlight-content .tutor-quiz-answer *,
+.tutor-course-spotlight-content .tutor-quiz-option *,
+.tutor-course-spotlight-content .tutor-quiz-answer-item *,
+.tutor-course-spotlight-content .tutor-answer-item *,
+.tutor-course-spotlight-content [class*="answer-item"] *,
+.tutor-course-spotlight-content [class*="quiz-answer"] *,
+.tutor-course-spotlight-content [class*="quiz-option"] * {
+    color: #e2e6f0 !important;
+}
+
+/* --- Quiz info bar --- */
+.tutor-course-spotlight-content .tutor-quiz-info,
+.tutor-course-spotlight-content .tutor-quiz-meta,
+.tutor-course-spotlight-content .tutor-quiz-header,
+.tutor-course-spotlight-content [class*="quiz-info"],
+.tutor-course-spotlight-content [class*="quiz-meta"],
+.tutor-course-spotlight-content [class*="quiz-header"] {
+    color: #999eb2 !important;
+    background-color: transparent !important;
+}
+
+.tutor-course-spotlight-content .tutor-quiz-info *,
+.tutor-course-spotlight-content .tutor-quiz-meta *,
+.tutor-course-spotlight-content [class*="quiz-info"] *,
+.tutor-course-spotlight-content [class*="quiz-meta"] * {
+    color: #999eb2 !important;
+}
+
+/* --- Skip question link --- */
+.tutor-course-spotlight-content .tutor-quiz-skip,
+.tutor-course-spotlight-content a[class*="skip"],
+.tutor-course-spotlight-content [class*="quiz-skip"] {
+    color: #4077f3 !important;
+}
+
+/* --- Timer badge --- */
+.tutor-course-spotlight-content .tutor-quiz-time-remaining,
+.tutor-course-spotlight-content .tutor-quiz-timer,
+.tutor-course-spotlight-content [class*="quiz-time"],
+.tutor-course-spotlight-content [class*="quiz-timer"] {
+    color: #ff8904 !important;
+}
+
+.tutor-course-spotlight-content .tutor-quiz-time-remaining *,
+.tutor-course-spotlight-content .tutor-quiz-timer * {
+    color: #ff8904 !important;
+}
+
+/* --- Quiz results --- */
+.tutor-course-spotlight-content .tutor-quiz-result,
+.tutor-course-spotlight-content .tutor-quiz-attempt-details,
+.tutor-course-spotlight-content [class*="quiz-result"],
+.tutor-course-spotlight-content [class*="quiz-attempt"] {
+    background-color: #141924 !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 14px !important;
+    color: #e2e6f0 !important;
+}
+
+.tutor-course-spotlight-content .tutor-quiz-result *,
+.tutor-course-spotlight-content [class*="quiz-result"] * {
+    color: #e2e6f0 !important;
+}
+
+.tutor-course-spotlight-content .tutor-quiz-result strong,
+.tutor-course-spotlight-content .tutor-quiz-result h2,
+.tutor-course-spotlight-content .tutor-quiz-result h3 {
+    color: #ffffff !important;
+}
+
+/* Correct / incorrect */
+.tutor-course-spotlight-content [class*="correct"],
+.tutor-course-spotlight-content [class*="right-answer"] {
+    background-color: rgba(24, 169, 99, 0.1) !important;
+    border-color: rgba(24, 169, 99, 0.3) !important;
+}
+
+.tutor-course-spotlight-content [class*="incorrect"],
+.tutor-course-spotlight-content [class*="wrong-answer"] {
+    background-color: rgba(249, 106, 123, 0.1) !important;
+    border-color: rgba(249, 106, 123, 0.3) !important;
+}
+
+/* --- Tables --- */
+.tutor-course-spotlight-content table {
+    background-color: #141924 !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.tutor-course-spotlight-content table thead {
+    background-color: #1b2133 !important;
+}
+
+.tutor-course-spotlight-content table th {
+    color: #ffffff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.tutor-course-spotlight-content table td {
+    color: #e2e6f0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+}
+
+/* --- Inputs --- */
+.tutor-course-spotlight-content input[type="text"],
+.tutor-course-spotlight-content input[type="number"],
+.tutor-course-spotlight-content textarea,
+.tutor-course-spotlight-content select {
+    background-color: #1b2133 !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: #ffffff !important;
+}
+
+/* --- Radio / Checkbox --- */
+.tutor-course-spotlight-content input[type="radio"],
+.tutor-course-spotlight-content input[type="checkbox"] {
+    border-color: rgba(255, 255, 255, 0.25) !important;
+    background-color: transparent !important;
+}
+
+.tutor-course-spotlight-content input[type="radio"]:checked,
+.tutor-course-spotlight-content input[type="checkbox"]:checked {
+    background-color: #4077f3 !important;
+    border-color: #4077f3 !important;
+}
+
+/* --- Tutor CSS variables scoped to spotlight content (catch-all) --- */
+.tutor-course-spotlight-content {
+    --tutor-color-black: #e2e6f0 !important;
+    --tutor-color-text: #e2e6f0 !important;
+    --tutor-color-text-primary: #e2e6f0 !important;
+    --tutor-color-text-secondary: #999eb2 !important;
+    --tutor-color-text-hints: #6b7394 !important;
+    --tutor-color-secondary: #999eb2 !important;
+    --tutor-color-muted: #999eb2 !important;
+    --tutor-color-design-system-dark: #e2e6f0 !important;
+    --tutor-color-design-system-light: #141924 !important;
+    --tutor-color-background-primary: #0a0f1a !important;
+    --tutor-color-background-secondary: #141924 !important;
+    --tutor-color-surface: #1b2133 !important;
+    --tutor-color-surface-2: #232d45 !important;
+}
+
+/* ==========================================================================
+   QUIZ DARK MODE — EXACT SELECTORS FROM LIVE DOM INSPECTION
+   Based on inspecting learnsimply.com/courses/.../quizzes/...
+   Tutor LMS classes confirmed: tutor-quiz-question-item, tutor-card,
+   tutor-quiz-wrap, tutor-quiz-single-entry-wrap, quiz-question,
+   quiz-question-ans-choice-area, tutor-quiz-answer-single, etc.
+   ========================================================================== */
+
+/* --- Root quiz page: body has class single-tutor_quiz --- */
+body.single-tutor_quiz,
+body.single-tutor_quiz .tutor-page-wrap,
+body.single-tutor_quiz .site-content,
+body.single-tutor_quiz .entry-content {
+    background-color: #0a0f1a !important;
+}
+
+/* --- Main quiz content wrapper --- */
+.tutor-quiz-single-entry-wrap,
+.tutor-course-single-content-wrapper.tutor-quiz-single-entry-wrap,
+#tutor-quiz-single-entry-wrap {
+    background-color: #0a0f1a !important;
+    color: #e2e6f0 !important;
+}
+
+/* --- Quiz top bar (الأسئلة لـ | مجموع المحاولات | الوقت المتبقي) --- */
+.tutor-course-topic-single-header,
+.tutor-single-page-top-bar,
+.tutor-course-topic-single-header.tutor-single-page-top-bar {
+    background-color: #0e1422 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    color: #999eb2 !important;
+}
+
+.tutor-course-topic-single-header *,
+.tutor-single-page-top-bar * {
+    color: #999eb2 !important;
+}
+
+/* --- Quiz info meta bar --- */
+.quiz-meta-info,
+div.quiz-meta-info,
+.tutor-quiz-meta-info {
+    color: #999eb2 !important;
+}
+
+/* --- Quiz wrapper --- */
+.tutor-quiz-wrap,
+div.tutor-quiz-wrap,
+.tutor-quiz-wrapper,
+.tutor-quiz-single-multiple-choice,
+#tutor-quiz-image-matching-choice {
+    background-color: transparent !important;
+    color: #e2e6f0 !important;
+}
+
+/* --- Quiz question block --- */
+.quiz-question,
+div.quiz-question,
+.tutor-quiz-question {
+    background-color: transparent !important;
+    color: #e2e6f0 !important;
+}
+
+.quiz-question *,
+.tutor-quiz-question * {
+    color: #e2e6f0 !important;
+}
+
+.quiz-question strong,
+.tutor-quiz-question strong,
+.quiz-question h3,
+.quiz-question h4 {
+    color: #ffffff !important;
+}
+
+/* --- Quiz question title (the blue highlighted question text) --- */
+.tutor-quiz-question-title,
+.quiz-question-title {
+    color: #ffffff !important;
+}
+
+/* --- الدرجات (grades) text --- */
+.quiz-question .tutor-fs-7,
+.quiz-question .tutor-color-muted {
+    color: #999eb2 !important;
+}
+
+/* --- Answer choice area --- */
+.quiz-question-ans-choice-area,
+div.quiz-question-ans-choice-area,
+.question-type_multiple_choice,
+.question-type_single_choice {
+    background-color: transparent !important;
+}
+
+/* --- Answer row container --- */
+.tutor-row,
+.tutor-quiz-wrap .tutor-row {
+    background-color: transparent !important;
+}
+
+/* =====================================================
+   THE KEY FIX: Answer option cards (.tutor-card inside 
+   label.tutor-quiz-question-item)
+   ===================================================== */
+label.tutor-quiz-question-item,
+.tutor-quiz-question-item,
+.tutor-quiz-answer-single label,
+.tutor-quiz-answer-single .tutor-quiz-question-item {
+    background-color: transparent !important;
+    color: #e2e6f0 !important;
+    cursor: pointer !important;
+}
+
+/* The actual white card INSIDE the label */
+label.tutor-quiz-question-item .tutor-card,
+.tutor-quiz-question-item .tutor-card,
+.tutor-quiz-answer-single .tutor-card,
+.tutor-quiz-wrap .tutor-quiz-question-item .tutor-card,
+.tutor-quiz-single-multiple-choice .tutor-card,
+.quiz-question-ans-choice-area .tutor-card {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 10px !important;
+    color: #e2e6f0 !important;
+    transition: all 0.25s ease !important;
+}
+
+/* Hover state */
+label.tutor-quiz-question-item:hover .tutor-card,
+.tutor-quiz-question-item:hover .tutor-card,
+.tutor-quiz-answer-single:hover .tutor-card,
+.quiz-question-ans-choice-area .tutor-card:hover {
+    background-color: rgba(64, 119, 243, 0.08) !important;
+    border-color: rgba(64, 119, 243, 0.3) !important;
+}
+
+/* Selected / checked state */
+label.tutor-quiz-question-item.is-selected .tutor-card,
+label.tutor-quiz-question-item.selected .tutor-card,
+label.tutor-quiz-question-item.active .tutor-card,
+.tutor-quiz-question-item.is-selected .tutor-card,
+.tutor-quiz-answer-single.is-selected .tutor-card,
+input[type="radio"]:checked + .tutor-card,
+input[type="checkbox"]:checked + .tutor-card,
+input[type="radio"]:checked ~ .tutor-card,
+input[type="checkbox"]:checked ~ .tutor-card {
+    background-color: rgba(64, 119, 243, 0.15) !important;
+    border-color: #4077f3 !important;
+}
+
+/* All text inside answer cards */
+label.tutor-quiz-question-item .tutor-card *,
+.tutor-quiz-question-item .tutor-card *,
+.tutor-quiz-answer-single .tutor-card *,
+.quiz-question-ans-choice-area .tutor-card * {
+    color: #e2e6f0 !important;
+}
+
+/* --- Also target .tutor-card globally inside quiz entry wrap --- */
+.tutor-quiz-single-entry-wrap .tutor-card,
+.tutor-quiz-wrap .tutor-card {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #e2e6f0 !important;
+}
+
+.tutor-quiz-single-entry-wrap .tutor-card *,
+.tutor-quiz-wrap .tutor-card * {
+    color: #e2e6f0 !important;
+}
+
+/* --- Flash message / notification area --- */
+.quiz-flash-message,
+div.quiz-flash-message {
+    color: #999eb2 !important;
+}
+
+/* --- Quiz attempt questions wrap --- */
+.tutor-quiz-attempt-questions-wrap,
+#tutor-quiz-attempt-questions-wrap,
+div[id*="quiz-attempt"] {
+    background-color: transparent !important;
+    color: #e2e6f0 !important;
+}
+
+/* --- Quiz attempt single question block --- */
+.quiz-attempt-single-question,
+div[class*="quiz-attempt-single-question"] {
+    background-color: #141924 !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 14px !important;
+    color: #e2e6f0 !important;
+}
+
+/* --- Answer help block --- */
+.answer-help-block {
+    color: #999eb2 !important;
+    background-color: transparent !important;
+}
+
+/* --- Quiz button group (إرسال & التالي / تخطي السؤال) --- */
+.answer-quiz-btn-group,
+div.answer-quiz-btn-group,
+.tutor-quiz-btn-group {
+    background-color: transparent !important;
+}
+
+/* --- Code blocks inside quiz questions --- */
+.tutor-quiz-single-entry-wrap pre,
+.tutor-quiz-single-entry-wrap code,
+.tutor-quiz-single-entry-wrap pre code,
+.tutor-quiz-wrap pre,
+.tutor-quiz-wrap code,
+.quiz-question pre,
+.quiz-question code {
+    background-color: #1b2133 !important;
+    color: #e2e8f0 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 10px !important;
+}
+
+/* --- Tutor utility overrides inside quiz --- */
+.tutor-quiz-single-entry-wrap .tutor-bg-white,
+.tutor-quiz-single-entry-wrap [class*="bg-white"],
+.tutor-quiz-wrap .tutor-bg-white,
+.tutor-quiz-wrap [class*="bg-white"] {
+    background-color: transparent !important;
+}
+
+.tutor-quiz-single-entry-wrap .tutor-color-black,
+.tutor-quiz-single-entry-wrap .tutor-color-dark,
+.tutor-quiz-wrap .tutor-color-black,
+.tutor-quiz-wrap .tutor-color-dark {
+    color: #ffffff !important;
+}
+
+.tutor-quiz-single-entry-wrap .tutor-color-secondary,
+.tutor-quiz-single-entry-wrap .tutor-color-muted,
+.tutor-quiz-wrap .tutor-color-secondary,
+.tutor-quiz-wrap .tutor-color-muted {
+    color: #999eb2 !important;
+}
+
+/* --- Tutor CSS variables scoped to quiz entry wrap --- */
+.tutor-quiz-single-entry-wrap,
+.tutor-quiz-single-entry-wrap .tutor-quiz-wrap {
+    --tutor-color-black: #e2e6f0 !important;
+    --tutor-color-text: #e2e6f0 !important;
+    --tutor-color-text-primary: #e2e6f0 !important;
+    --tutor-color-text-secondary: #999eb2 !important;
+    --tutor-color-text-hints: #6b7394 !important;
+    --tutor-color-secondary: #999eb2 !important;
+    --tutor-color-muted: #999eb2 !important;
+    --tutor-color-design-system-dark: #e2e6f0 !important;
+    --tutor-color-design-system-light: #141924 !important;
+    --tutor-color-background-primary: #0a0f1a !important;
+    --tutor-color-background-secondary: #141924 !important;
+    --tutor-color-surface: #1b2133 !important;
+    --tutor-color-surface-2: #232d45 !important;
+}
+
+/* --- Override .tutor-card:not(.tutor-no-border) border --- */
+.tutor-quiz-single-entry-wrap .tutor-card:not(.tutor-no-border),
+.tutor-quiz-wrap .tutor-card:not(.tutor-no-border) {
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* --- The .tutor-card background override with HIGH specificity --- */
+body.single-tutor_quiz .tutor-quiz-wrap .tutor-card,
+body.single-tutor_quiz label.tutor-quiz-question-item .tutor-card,
+body.single-tutor_quiz .quiz-question-ans-choice-area .tutor-card,
+body.single-tutor_quiz .tutor-quiz-single-multiple-choice .tutor-card,
+body.single-tutor_quiz .tutor-quiz-answer-single .tutor-card {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.single-tutor_quiz .tutor-quiz-wrap .tutor-card *,
+body.single-tutor_quiz label.tutor-quiz-question-item .tutor-card *,
+body.single-tutor_quiz .quiz-question-ans-choice-area .tutor-card * {
+    color: #e2e6f0 !important;
+}
