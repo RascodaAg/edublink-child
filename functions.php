@@ -255,24 +255,25 @@ function learnsimply_checkout_mobile_inline_fix()
 			padding-bottom: 0 !important;
 		}
 
-		/* 2. CHECKOUT LOGIN FORM — Professional Design */
+		/* 2. CHECKOUT LOGIN FORM — Professional Grid Design */
 		body.woocommerce-checkout .woocommerce-form-login {
-			display: flex !important;
-			flex-direction: row-reverse !important; /* Text on right, form on left for RTL */
-			flex-wrap: wrap !important;
-			gap: 40px !important;
+			display: grid !important;
+			grid-template-columns: 1.2fr 1fr !important; /* Form on right (1.2fr), Text on left (1fr) */
+			gap: 10px 40px !important;
 			background: #1b2133 !important;
 			padding: 40px !important;
 			border-radius: 20px !important;
 			border: 1px solid rgba(255, 255, 255, 0.08) !important;
 			margin: 0 0 20px 0 !important;
-			align-items: flex-start !important;
+			align-items: start !important;
 			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+			direction: rtl !important;
 		}
 
-		/* Description Text Section */
+		/* Description Text Section - Span across all form rows on the left */
 		body.woocommerce-checkout .woocommerce-form-login > p:not(.form-row):not(.lost_password) {
-			flex: 1 1 350px !important;
+			grid-column: 2 / 3 !important;
+			grid-row: 1 / 10 !important; /* Large span to cover all form rows */
 			margin: 0 !important;
 			font-size: 16px !important;
 			line-height: 1.8 !important;
@@ -281,24 +282,16 @@ function learnsimply_checkout_mobile_inline_fix()
 			padding: 25px !important;
 			border-radius: 12px !important;
 			border-right: 4px solid #4077f3 !important;
+			height: 100% !important;
+			box-sizing: border-box !important;
 		}
 
-		/* Form Inputs Column */
-		body.woocommerce-checkout .woocommerce-form-login .login-form-fields-wrapper,
-		body.woocommerce-checkout .woocommerce-form-login .form-row-first,
-		body.woocommerce-checkout .woocommerce-form-login .form-row-last,
-		body.woocommerce-checkout .woocommerce-form-login .form-row {
-			flex: 1 1 300px !important;
-			width: auto !important;
-			float: none !important;
-			margin-bottom: 15px !important;
-		}
-
-		/* Force rows to stack in the form column */
-		body.woocommerce-checkout .woocommerce-form-login .form-row-first,
-		body.woocommerce-checkout .woocommerce-form-login .form-row-last {
-			display: block !important;
+		/* All Form Rows (Username, Password, Button) on the right column */
+		body.woocommerce-checkout .woocommerce-form-login .form-row,
+		body.woocommerce-checkout .woocommerce-form-login .lost_password {
+			grid-column: 1 / 2 !important;
 			width: 100% !important;
+			margin: 0 0 15px 0 !important;
 		}
 
 		/* Labels styling */
@@ -308,6 +301,7 @@ function learnsimply_checkout_mobile_inline_fix()
 			font-size: 14px !important;
 			font-weight: 500 !important;
 			color: #ffffff !important;
+			text-align: right !important;
 		}
 
 		/* Input styling */
@@ -320,6 +314,7 @@ function learnsimply_checkout_mobile_inline_fix()
 			width: 100% !important;
 			font-size: 15px !important;
 			transition: all 0.3s ease !important;
+			box-sizing: border-box !important;
 		}
 
 		body.woocommerce-checkout .woocommerce-form-login input.input-text:focus {
@@ -331,9 +326,10 @@ function learnsimply_checkout_mobile_inline_fix()
 		/* Checkbox and Login Button row */
 		body.woocommerce-checkout .woocommerce-form-login .form-row:has(button) {
 			display: flex !important;
+			flex-direction: row-reverse !important; /* Button then checkbox in RTL flow */
 			align-items: center !important;
+			justify-content: flex-end !important;
 			gap: 20px !important;
-			flex-wrap: wrap !important;
 			margin-top: 10px !important;
 		}
 
@@ -354,18 +350,20 @@ function learnsimply_checkout_mobile_inline_fix()
 			font-weight: 600 !important;
 			border: none !important;
 			cursor: pointer !important;
-			transition: background 0.3s ease !important;
+			transition: all 0.3s ease !important;
+			white-space: nowrap !important;
 		}
 
 		body.woocommerce-checkout .woocommerce-form-login .button:hover {
 			background: #2d61d6 !important;
+			transform: translateY(-1px) !important;
 		}
 
 		/* Forgot Password link */
 		body.woocommerce-checkout .woocommerce-form-login .lost_password {
-			width: 100% !important;
-			margin-top: 15px !important;
+			margin-top: 5px !important;
 			font-size: 14px !important;
+			text-align: right !important;
 		}
 
 		body.woocommerce-checkout .woocommerce-form-login .lost_password a {
@@ -373,43 +371,33 @@ function learnsimply_checkout_mobile_inline_fix()
 			text-decoration: none !important;
 		}
 
-		body.woocommerce-checkout .woocommerce-form-login .lost_password a:hover {
-			text-decoration: underline !important;
-		}
-
-		/* Clearfix removal if any */
-		body.woocommerce-checkout .woocommerce-form-login .clear {
-			display: none !important;
-		}
-
 		/* 3. GUEST LOGIN FORM — Mobile responsive */
-		@media screen and (max-width: 767px) {
+		@media screen and (max-width: 991px) {
 			body.woocommerce-checkout .woocommerce-form-login {
-				flex-direction: column !important;
+				grid-template-columns: 1fr !important;
 				padding: 25px 20px !important;
 				gap: 20px !important;
 			}
 
 			body.woocommerce-checkout .woocommerce-form-login > p:not(.form-row):not(.lost_password) {
-				flex: none !important;
+				grid-column: 1 / 2 !important;
+				grid-row: auto !important;
 				width: 100% !important;
 				padding: 20px !important;
-				font-size: 14px !important;
 			}
 
-			body.woocommerce-checkout .woocommerce-form-login .form-row {
-				flex: none !important;
-				width: 100% !important;
+			body.woocommerce-checkout .woocommerce-form-login .form-row,
+			body.woocommerce-checkout .woocommerce-form-login .lost_password {
+				grid-column: 1 / 2 !important;
 			}
 			
 			body.woocommerce-checkout .woocommerce-form-login .form-row:has(button) {
-				flex-direction: column-reverse !important;
+				flex-direction: column !important;
 				align-items: stretch !important;
 			}
 
 			body.woocommerce-checkout .woocommerce-form-login .button {
 				width: 100% !important;
-				padding: 14px !important;
 			}
 		}
 
