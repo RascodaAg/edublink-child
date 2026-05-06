@@ -397,6 +397,18 @@ function learnsimply_checkout_mobile_inline_fix() {
 				}
 			}
 
+			// Global margin limiter for all elements on checkout page
+			var allDivs = document.querySelectorAll('.woocommerce-checkout div, .woocommerce-checkout section');
+			allDivs.forEach(function(el) {
+				var style = window.getComputedStyle(el);
+				if (parseFloat(style.marginBottom) > 12) {
+					el.style.setProperty('margin-bottom', '10px', 'important');
+				}
+				if (parseFloat(style.marginTop) > 12) {
+					el.style.setProperty('margin-top', '0', 'important');
+				}
+			});
+
 			var titles = document.querySelectorAll('h1, h2, h3, .elementor-heading-title, .page-title');
 			for (var i = 0; i < titles.length; i++) {
 				var txt = titles[i].textContent || '';

@@ -112,7 +112,7 @@ body.woocommerce-checkout body,
     color: #f96a7b !important;
     padding: 18px 24px !important;
     list-style: none !important;
-    margin-bottom: 24px !important;
+    margin-bottom: 10px !important;
 }
 
 .woocommerce-checkout .woocommerce-error li {
@@ -355,7 +355,7 @@ body.woocommerce-checkout body,
     border: none !important;
     border-radius: var(--db-radius) !important;
     padding: 28px 32px 32px !important;
-    margin-bottom: 24px !important;
+    margin-bottom: 10px !important;
     box-shadow: 0 2px 16px rgba(0, 0, 0, 0.15) !important;
 }
 
