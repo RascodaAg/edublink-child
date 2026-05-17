@@ -124,7 +124,8 @@ if ( function_exists( 'tutor_utils' ) ) {
 					$course->product_id = null;
 					$course->product_url = null;
 				}
-				
+				// Check if current user is enrolled in this course
+				$course->is_enrolled = is_user_logged_in() && tutor_utils()->is_enrolled( $course_id, get_current_user_id() );
 				$context['courses'][] = $course;
 			}
 		}

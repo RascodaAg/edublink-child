@@ -201,16 +201,16 @@
 
             <!-- Action Buttons -->
             <div class="action-buttons">
-              {% if course.is_free %}
-                {# Free course - show enroll/start learning button #}
+           {% if course.is_enrolled %}
+                {# Enrolled course - show start learning button #}
                 <a 
                   href="{{ course.link }}" 
                   class="learnsimply-buy-now-button buy-button"
                 >
                   <span>ابدأ التعلم</span>
                 </a>
-              {% else %}
-                {# Paid course - show cart and buy buttons - direct link for add to cart #}
+              {% elseif course.is_free %}
+                {# Free course - show enroll/start learning button #}
               {% if course.product_id %}
                 <a 
                   href="{{ cart_url|default(site.url ~ '/cart-1/') }}?add-to-cart={{ course.product_id }}"
