@@ -42,7 +42,7 @@ if ( function_exists( 'tutor_utils' ) ) {
 	$args = array(
 		'post_type'      => $course_post_type,
 		'post_status'    => 'publish',
-		'posts_per_page' => 6,
+		'posts_per_page' => -1,
 		'orderby'        => 'date',
 		'order'          => 'DESC',
 	);
@@ -253,7 +253,7 @@ if ( class_exists( 'WooCommerce' ) && class_exists( 'AsanaPlugins\WooCommerce\Pr
 	$args = array(
 		'post_type'      => 'product',
 		'post_status'    => 'publish',
-		'posts_per_page' => 6,
+		'posts_per_page' => -1,
 		'orderby'        => 'date',
 		'order'          => 'DESC',
 		'tax_query'      => array(

@@ -10,8 +10,8 @@
 
         <div class="learnsimply-courses-grid">
 
-          {# ── Premium Bundle Card (First Position) ── #}
-          {% if bundles is defined and bundles|length > 0 %}
+ {# ── Premium Bundle Cards (First Positions) ── #}
+          {% for bundle in bundles %}
           <article class="course-card bundle-card-premium">
             <div class="bundle-premium-badge">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="#f0a030"><path d="M12 2l2.9 6.26L21.9 9.27l-5 3.86L18 21l-6-3.16L6 21l1.1-7.87-5-3.86 6.99-0.99L12 2z"/></svg>
@@ -19,10 +19,10 @@
             </div>
 
             <div class="course-image bundle-image">
-              <a href="{{ site.url }}/product/java-basics-oop-bundle/">
-                <img src="{{ bundles[0].thumbnail }}" alt="{{ bundles[0].title }}" />
+              <a href="{{ bundle.link }}">
+                <img src="{{ bundle.thumbnail }}" alt="{{ bundle.title }}" />
                 <div class="bundle-image-overlay">
-                  <span class="bundle-items-count">{{ bundles[0].bundle_items_count }} دورات في باقة واحدة</span>
+                  <span class="bundle-items-count">{{ bundle.bundle_items_count }} دورات في باقة واحدة</span>
                 </div>
               </a>
             </div>
@@ -30,14 +30,14 @@
             <div class="course-header">
               <div class="instructor-info">
                 <div class="instructor-text">
-                  <p class="name">{{ bundles[0].author_name|default('م. احمد عادل') }}</p>
+                  <p class="name">{{ bundle.author_name|default('م. احمد عادل') }}</p>
                   <p class="title">{{ instructor_title }}</p>
                 </div>
                 <div class="instructor-avatar">
                   <div class="avatar-glow avatar-glow-1"></div>
                   <div class="avatar-glow avatar-glow-2"></div>
-                  {% if bundles[0].author_avatar %}
-                    <img src="{{ bundles[0].author_avatar }}" alt="Instructor" />
+                  {% if bundle.author_avatar %}
+                    <img src="{{ bundle.author_avatar }}" alt="Instructor" />
                   {% else %}
                     <img src="{{ theme_uri }}/assets/img/card_image.png" alt="Instructor" />
                   {% endif %}
@@ -49,7 +49,7 @@
             </div>
 
             <div class="course-title">
-              <a href="{{ site.url }}/product/java-basics-oop-bundle/" class="stretched-link"><p>{{ bundles[0].title }}</p></a>
+              <a href="{{ bundle.link }}" class="stretched-link"><p>{{ bundle.title }}</p></a>
             </div>
 
             <div class="review-students">
@@ -57,48 +57,33 @@
                 <svg class="star-icon" fill="none" viewBox="0 0 24 24">
                   <path d="M12 2l2.9 6.26L21.9 9.27l-5 3.86L18 21l-6-3.16L6 21l1.1-7.87-5-3.86 6.99-0.99L12 2z" fill="#FFBB54" />
                 </svg>
-                <p>{{ bundles[0].rating_avg }} ({{ bundles[0].rating_count }} تقييم)</p>
-              </div>
-            </div>
-
-            <div class="bundle-includes">
-              <div class="bundle-include-item">
-                <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M16.667 5L7.5 14.167 3.333 10" stroke="#18A963" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <span>كورس Java Basics</span>
-              </div>
-              <div class="bundle-include-item">
-                <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M16.667 5L7.5 14.167 3.333 10" stroke="#18A963" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <span>كورس OOP المتقدم</span>
-              </div>
-              <div class="bundle-include-item">
-                <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M16.667 5L7.5 14.167 3.333 10" stroke="#18A963" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <span>كتاب PDF مجاني</span>
+                <p>{{ bundle.rating_avg }} ({{ bundle.rating_count }} تقييم)</p>
               </div>
             </div>
 
             <div class="price-section">
-              {% if bundles[0].discount_percent > 0 %}
+              {% if bundle.discount_percent > 0 %}
                 <div class="discount-badge bundle-discount">
-                  <p>وفّر {{ bundles[0].discount_percent }}%</p>
+                  <p>وفّر {{ bundle.discount_percent }}%</p>
                 </div>
               {% endif %}
               <div class="price-display">
-                {% if bundles[0].regular_price and bundles[0].sale_price %}
-                  <p class="new-price">{{ bundles[0].sale_price|number_format(2, '.', ',') }} جنيه مصري</p>
-                  <p class="old-price">{{ bundles[0].regular_price|number_format(2, '.', ',') }} جنيه مصري</p>
+                {% if bundle.regular_price and bundle.sale_price %}
+                  <p class="new-price">{{ bundle.sale_price|number_format(2, '.', ',') }} جنيه مصري</p>
+                  <p class="old-price">{{ bundle.regular_price|number_format(2, '.', ',') }} جنيه مصري</p>
                 {% else %}
-                  <p class="new-price">{{ bundles[0].price|number_format(2, '.', ',') }} جنيه مصري</p>
+                  <p class="new-price">{{ bundle.price|number_format(2, '.', ',') }} جنيه مصري</p>
                 {% endif %}
               </div>
             </div>
 
             <div class="action-buttons">
-              <a href="{{ site.url }}/product/java-basics-oop-bundle/" class="learnsimply-buy-now-button buy-button bundle-btn">
+              <a href="{{ bundle.link }}" class="learnsimply-buy-now-button buy-button bundle-btn">
                 <span>اشترك في الباقة</span>
               </a>
             </div>
           </article>
-          {% endif %}
+          {% endfor %}
 
           {# ── Regular Course Cards ── #}
           {% for course in courses %}
